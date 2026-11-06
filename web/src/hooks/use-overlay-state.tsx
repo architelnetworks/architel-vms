@@ -165,10 +165,9 @@ export function useUserPersistedOverlayState<S extends string>(
   ];
 }
 
-export function useHashState<S extends string>(): [
-  S | undefined,
-  (value: S) => void,
-] {
+export function useHashState<S extends string>(
+  preserveSearch = false,
+): [S | undefined, (value: S) => void] {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -178,14 +177,18 @@ export function useHashState<S extends string>(): [
   const setHash = useCallback(
     (value: S | undefined) => {
       const loc = locationRef.current;
+      const search = preserveSearch ? loc.search : "";
       if (!value) {
-        navigate(loc.pathname);
+        navigate(
+          `${loc.pathname}${search}`,
+          preserveSearch ? { state: loc.state } : undefined,
+        );
       } else {
-        navigate(`${loc.pathname}#${value}`, { state: loc.state });
+        navigate(`${loc.pathname}${search}#${value}`, { state: loc.state });
       }
     },
     // locationRef is stable so we don't need it in deps
-    [navigate],
+    [navigate, preserveSearch],
   );
 
   const hash = useMemo(

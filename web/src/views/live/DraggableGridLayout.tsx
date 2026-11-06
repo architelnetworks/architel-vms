@@ -41,7 +41,7 @@ import { IoClose } from "react-icons/io5";
 import { LuLayoutDashboard, LuPencil } from "react-icons/lu";
 import { cn } from "@/lib/utils";
 import { EditGroupDialog } from "@/components/filter/CameraGroupSelector";
-import { useUserPersistedOverlayState } from "@/hooks/use-overlay-state";
+import { useCameraGroup } from "@/hooks/use-camera-group";
 import { FaCompress, FaExpand } from "react-icons/fa";
 import {
   Tooltip,
@@ -240,10 +240,7 @@ export default function DraggableGridLayout({
     [naturalAspectLayout],
   );
 
-  const [group] = useUserPersistedOverlayState(
-    "cameraGroup",
-    "default" as string,
-  );
+  const [group] = useCameraGroup();
 
   const groups = useMemo(() => {
     if (!config) {

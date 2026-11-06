@@ -82,7 +82,7 @@ import { CameraNameLabel } from "../camera/FriendlyNameLabel";
 import { useAllowedCameras } from "@/hooks/use-allowed-cameras";
 import { useHasFullCameraAccess } from "@/hooks/use-has-full-camera-access";
 import { useIsAdmin } from "@/hooks/use-is-admin";
-import { useUserPersistedOverlayState } from "@/hooks/use-overlay-state";
+import { useCameraGroup } from "@/hooks/use-camera-group";
 
 type CameraGroupSelectorProps = {
   className?: string;
@@ -120,10 +120,7 @@ export function CameraGroupSelector({
 
   // groups - use user-namespaced key for persistence to avoid cross-user conflicts
 
-  const [group, setGroup, , deleteGroup] = useUserPersistedOverlayState(
-    "cameraGroup",
-    "default" as string,
-  );
+  const [group, setGroup, , deleteGroup] = useCameraGroup();
 
   const groups = useMemo(() => {
     if (!config) {
@@ -165,7 +162,7 @@ export function CameraGroupSelector({
         size="sm"
         onClick={() => {
           if (group) {
-            setGroup("default", true);
+            setGroup("default");
           }
         }}
       >
@@ -183,7 +180,7 @@ export function CameraGroupSelector({
           aria-label={t("group.label")}
           size="sm"
           onClick={() => {
-            setGroup(name, group != "default");
+            setGroup(name);
           }}
         >
           <IconRenderer
@@ -248,7 +245,7 @@ export function CameraGroupSelector({
                 }
                 aria-label={t("menu.live.allCameras", { ns: "common" })}
                 size="xs"
-                onClick={() => (group ? setGroup("default", true) : null)}
+                onClick={() => (group ? setGroup("default") : null)}
                 onMouseEnter={() => showTooltip("default")}
                 onMouseLeave={() => showTooltip(undefined)}
               >
@@ -292,7 +289,7 @@ export function CameraGroupSelector({
                       showLabels ? formatDisplayName(name) : t("group.label")
                     }
                     size="xs"
-                    onClick={() => setGroup(name, group != "default")}
+                    onClick={() => setGroup(name)}
                     onMouseEnter={() => showTooltip(name)}
                     onMouseLeave={() => showTooltip(undefined)}
                   >
