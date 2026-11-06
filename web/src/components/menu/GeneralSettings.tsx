@@ -83,11 +83,13 @@ import { MdCategory } from "react-icons/md";
 type GeneralSettingsProps = {
   className?: string;
   large?: boolean;
+  showLabel?: boolean;
 };
 
 export default function GeneralSettings({
   className,
   large,
+  showLabel = false,
 }: GeneralSettingsProps) {
   const { t } = useTranslation(["common", "views/settings"]);
   const { getLocaleDocUrl } = useDocDomain();
@@ -220,22 +222,33 @@ export default function GeneralSettings({
   return (
     <>
       <Container>
-        <Trigger>
+        <Trigger
+          aria-label={t("menu.settings")}
+          className={showLabel ? "w-full" : undefined}
+        >
           <Tooltip>
             <TooltipTrigger asChild>
               <div
                 className={cn(
-                  "flex flex-col items-center justify-center",
-                  isDesktop
-                    ? "cursor-pointer rounded-lg bg-secondary text-secondary-foreground hover:bg-muted"
-                    : "text-secondary-foreground",
-                  large && "size-12",
+                  "flex items-center justify-center",
+                  showLabel && "w-full justify-start gap-3 text-sm",
                   className,
                 )}
               >
-                <LuSettings
-                  className={cn("md:m-[6px]", large ? "size-6" : "size-5")}
-                />
+                <div
+                  className={cn(
+                    "flex shrink-0 items-center justify-center",
+                    isDesktop
+                      ? "cursor-pointer rounded-lg bg-secondary text-secondary-foreground hover:bg-muted"
+                      : "text-secondary-foreground",
+                    large && "size-12",
+                  )}
+                >
+                  <LuSettings
+                    className={cn("md:m-[6px]", large ? "size-6" : "size-5")}
+                  />
+                </div>
+                {showLabel && <span>{t("menu.settings")}</span>}
               </div>
             </TooltipTrigger>
             <TooltipPortal>

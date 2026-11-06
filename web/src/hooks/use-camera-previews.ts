@@ -3,6 +3,7 @@ import { TimeRange } from "@/types/timeline";
 import { useEffect, useMemo, useState } from "react";
 import useSWR from "swr";
 import { useHourRollover } from "@/hooks/use-hour-rollover";
+import axios from "axios";
 
 type OptionalCameraPreviewProps = {
   camera?: string;
@@ -29,7 +30,23 @@ export function useCameraPreviews(
     fetchPreviews
       ? `preview/${camera}/start/${Math.round(timeRange.after)}/end/${Math.round(timeRange.before)}`
       : null,
-    { revalidateOnFocus: autoRefresh, revalidateOnReconnect: autoRefresh },
+    {
+      revalidateOnFocus: autoRefresh,
+      revalidateOnReconnect: autoRefresh,
+      fetcher: async (path: string) => {
+        try {
+          const response = await axios.get<Preview[]>(path);
+          return response.data;
+        } catch (error) {
+          // New recordings have no hourly preview MP4 until the hour closes.
+          // An empty preview list must not block the available motion timeline.
+          if (axios.isAxiosError(error) && error.response?.status === 404) {
+            return [];
+          }
+          throw error;
+        }
+      },
+    },
   );
 
   // an hour's mp4 is written after that hour ends, so it is never in the

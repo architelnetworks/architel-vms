@@ -66,12 +66,14 @@ function Sidebar({ collapsed, onToggle, preferenceLoaded }: SidebarProps) {
                 item={item}
                 Icon={item.icon}
               />
-              {showCameraGroups && <CameraGroupSelector className="mb-4" />}
+              {showCameraGroups && (
+                <CameraGroupSelector showLabels={!collapsed} className="mb-4" />
+              )}
             </div>
           );
         })}
       </div>
-      <div className="mb-8 flex flex-col items-center gap-4">
+      <div className="mb-8 flex w-full flex-col items-center gap-4 px-2">
         <Tooltip>
           <TooltipTrigger asChild>
             <Button
@@ -81,16 +83,15 @@ function Sidebar({ collapsed, onToggle, preferenceLoaded }: SidebarProps) {
               disabled={!preferenceLoaded}
               aria-label={t(collapsed ? "sidebar.expand" : "sidebar.collapse")}
               aria-expanded={!collapsed}
-              className={cn(
-                "gap-3",
-                !collapsed && "w-[calc(100%-1rem)] justify-start px-3",
-              )}
+              className={cn("gap-3 p-0", !collapsed && "w-full justify-start")}
             >
-              {collapsed ? (
-                <LuPanelLeftOpen className="size-5 shrink-0" />
-              ) : (
-                <LuPanelLeftClose className="size-5 shrink-0" />
-              )}
+              <span className="flex size-8 shrink-0 items-center justify-center">
+                {collapsed ? (
+                  <LuPanelLeftOpen className="size-5 shrink-0" />
+                ) : (
+                  <LuPanelLeftClose className="size-5 shrink-0" />
+                )}
+              </span>
               {!collapsed && <span>{t("sidebar.collapse")}</span>}
             </Button>
           </TooltipTrigger>
@@ -98,8 +99,8 @@ function Sidebar({ collapsed, onToggle, preferenceLoaded }: SidebarProps) {
             {t(collapsed ? "sidebar.expand" : "sidebar.collapse")}
           </TooltipContent>
         </Tooltip>
-        <GeneralSettings />
-        <AccountSettings />
+        <GeneralSettings showLabel={!collapsed} />
+        <AccountSettings showLabel={!collapsed} />
       </div>
     </aside>
   );

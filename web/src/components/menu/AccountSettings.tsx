@@ -33,9 +33,13 @@ import { useTranslation } from "react-i18next";
 
 type AccountSettingsProps = {
   className?: string;
+  showLabel?: boolean;
 };
 
-export default function AccountSettings({ className }: AccountSettingsProps) {
+export default function AccountSettings({
+  className,
+  showLabel = false,
+}: AccountSettingsProps) {
   const { t } = useTranslation(["views/settings", "common"]);
   const { data: profile } = useSWR("profile");
   const { data: config } = useSWR("config");
@@ -85,17 +89,29 @@ export default function AccountSettings({ className }: AccountSettingsProps) {
       <Tooltip>
         <Trigger asChild>
           <TooltipTrigger asChild>
-            <div
+            <button
+              type="button"
+              aria-label={t("menu.user.account", { ns: "common" })}
               className={cn(
-                "flex flex-col items-center justify-center",
-                isDesktop
-                  ? "cursor-pointer rounded-lg bg-secondary text-secondary-foreground hover:bg-muted"
-                  : "text-secondary-foreground",
+                "flex items-center justify-center",
+                showLabel && "w-full justify-start gap-3 text-sm",
                 className,
               )}
             >
-              <VscAccount className="size-5 md:m-[6px]" />
-            </div>
+              <span
+                className={cn(
+                  "flex shrink-0 items-center justify-center",
+                  isDesktop
+                    ? "cursor-pointer rounded-lg bg-secondary text-secondary-foreground hover:bg-muted"
+                    : "text-secondary-foreground",
+                )}
+              >
+                <VscAccount className="size-5 md:m-[6px]" />
+              </span>
+              {showLabel && (
+                <span>{t("menu.user.account", { ns: "common" })}</span>
+              )}
+            </button>
           </TooltipTrigger>
         </Trigger>
         <TooltipPortal>

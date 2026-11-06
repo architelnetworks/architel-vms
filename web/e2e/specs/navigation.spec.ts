@@ -12,6 +12,57 @@ import { BasePage } from "../pages/base.page";
 const PRIMARY_ROUTES = ["/review", "/explore", "/export"] as const;
 
 test.describe("Architel sidebar", () => {
+  test("group and footer labels align with navigation and collapse", async ({
+    frigateApp,
+  }) => {
+    test.skip(frigateApp.isMobile, "Desktop sidebar");
+    await frigateApp.goto("/");
+    const sidebar = frigateApp.page.getByRole("complementary", {
+      name: "Main navigation",
+    });
+    const liveLabel = sidebar
+      .getByRole("link", { name: "Live", exact: true })
+      .getByText("Live", { exact: true });
+    const liveBounds = await liveLabel.boundingBox();
+    for (const name of [
+      "All Cameras",
+      "Edit Camera Groups",
+      "Settings",
+      "Account",
+    ]) {
+      const button = sidebar.getByRole("button", { name, exact: true });
+      const label = button.getByText(name, { exact: true });
+      await expect(label).toBeVisible();
+      const bounds = await label.boundingBox();
+      expect(Math.abs(bounds!.x - liveBounds!.x)).toBeLessThan(2);
+    }
+    await sidebar
+      .getByRole("button", { name: "Settings", exact: true })
+      .click();
+    await expect(
+      frigateApp.page.getByLabel("Health and Metrics", { exact: true }),
+    ).toBeVisible();
+    await frigateApp.page.keyboard.press("Escape");
+    await sidebar.getByRole("button", { name: "Account", exact: true }).click();
+    await expect(
+      frigateApp.page.getByText(/Current User: admin/),
+    ).toBeVisible();
+    await frigateApp.page.keyboard.press("Escape");
+    await sidebar.getByRole("button", { name: "Collapse sidebar" }).click();
+    for (const name of [
+      "All Cameras",
+      "Edit Camera Groups",
+      "Settings",
+      "Account",
+    ]) {
+      await expect(
+        sidebar
+          .getByRole("button", { name, exact: true })
+          .getByText(name, { exact: true }),
+      ).toHaveCount(0);
+    }
+  });
+
   test("labels preserve icon buttons and collapse persists", async ({
     frigateApp,
   }) => {
@@ -243,7 +294,9 @@ test.describe("Navigation — settings menu (desktop) @critical", () => {
         .locator("aside .mb-8 div[class*='cursor-pointer']")
         .first();
       await gear.click();
-      await frigateApp.page.getByLabel(target.label, { exact: true }).click();
+      await frigateApp.page
+        .getByRole("menuitem", { name: target.label, exact: true })
+        .click();
       await expect(frigateApp.page).toHaveURL(target.url);
     });
   }

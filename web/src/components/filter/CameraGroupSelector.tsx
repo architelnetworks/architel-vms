@@ -85,9 +85,13 @@ import { useUserPersistedOverlayState } from "@/hooks/use-overlay-state";
 
 type CameraGroupSelectorProps = {
   className?: string;
+  showLabels?: boolean;
 };
 
-export function CameraGroupSelector({ className }: CameraGroupSelectorProps) {
+export function CameraGroupSelector({
+  className,
+  showLabels = false,
+}: CameraGroupSelectorProps) {
   const { t } = useTranslation(["components/camera"]);
   const { data: config } = useSWR<FrigateConfig>("config");
   const allowedCameras = useAllowedCameras();
@@ -227,6 +231,7 @@ export function CameraGroupSelector({ className }: CameraGroupSelectorProps) {
         <div
           className={cn(
             "flex flex-col items-center justify-start gap-2",
+            showLabels && "w-full items-stretch",
             className,
           )}
         >
@@ -234,9 +239,11 @@ export function CameraGroupSelector({ className }: CameraGroupSelectorProps) {
             <TooltipTrigger asChild>
               <Button
                 className={
-                  group == "default"
-                    ? "bg-blue-900 bg-opacity-60 text-selected focus:bg-blue-900 focus:bg-opacity-60"
-                    : "bg-secondary text-secondary-foreground focus:bg-secondary focus:text-secondary-foreground"
+                  showLabels
+                    ? "h-auto w-full justify-start gap-4 whitespace-normal bg-transparent p-0 pl-1 hover:bg-transparent"
+                    : group == "default"
+                      ? "bg-blue-900 bg-opacity-60 text-selected focus:bg-blue-900 focus:bg-opacity-60"
+                      : "bg-secondary text-secondary-foreground focus:bg-secondary focus:text-secondary-foreground"
                 }
                 aria-label={t("menu.live.allCameras", { ns: "common" })}
                 size="xs"
@@ -244,7 +251,22 @@ export function CameraGroupSelector({ className }: CameraGroupSelectorProps) {
                 onMouseEnter={() => showTooltip("default")}
                 onMouseLeave={() => showTooltip(undefined)}
               >
-                <MdHome className="size-4" />
+                <span
+                  className={cn(
+                    "flex size-6 shrink-0 items-center justify-center rounded-md",
+                    showLabels &&
+                      (group == "default"
+                        ? "bg-blue-900 bg-opacity-60 text-selected"
+                        : "bg-secondary text-secondary-foreground"),
+                  )}
+                >
+                  <MdHome className="size-4" />
+                </span>
+                {showLabels && (
+                  <span className="text-left text-foreground">
+                    {t("menu.live.allCameras", { ns: "common" })}
+                  </span>
+                )}
               </Button>
             </TooltipTrigger>
             <TooltipPortal>
@@ -259,24 +281,41 @@ export function CameraGroupSelector({ className }: CameraGroupSelectorProps) {
                 <TooltipTrigger asChild>
                   <Button
                     className={
-                      group == name
-                        ? "bg-blue-900 bg-opacity-60 text-selected focus:bg-blue-900 focus:bg-opacity-60"
-                        : "bg-secondary text-secondary-foreground"
+                      showLabels
+                        ? "h-auto w-full justify-start gap-4 whitespace-normal bg-transparent p-0 pl-1 hover:bg-transparent"
+                        : group == name
+                          ? "bg-blue-900 bg-opacity-60 text-selected focus:bg-blue-900 focus:bg-opacity-60"
+                          : "bg-secondary text-secondary-foreground"
                     }
-                    aria-label={t("group.label")}
+                    aria-label={showLabels ? name : t("group.label")}
                     size="xs"
                     onClick={() => setGroup(name, group != "default")}
                     onMouseEnter={() => showTooltip(name)}
                     onMouseLeave={() => showTooltip(undefined)}
                   >
-                    <IconRenderer
-                      icon={
-                        isValidIconName(config.icon)
-                          ? LuIcons[config.icon]
-                          : LuIcons.LuFolder
-                      }
-                      className="size-4"
-                    />
+                    <span
+                      className={cn(
+                        "flex size-6 shrink-0 items-center justify-center rounded-md",
+                        showLabels &&
+                          (group == name
+                            ? "bg-blue-900 bg-opacity-60 text-selected"
+                            : "bg-secondary text-secondary-foreground"),
+                      )}
+                    >
+                      <IconRenderer
+                        icon={
+                          isValidIconName(config.icon)
+                            ? LuIcons[config.icon]
+                            : LuIcons.LuFolder
+                        }
+                        className="size-4"
+                      />
+                    </span>
+                    {showLabels && (
+                      <span className="min-w-0 break-words text-left text-foreground">
+                        {name}
+                      </span>
+                    )}
                   </Button>
                 </TooltipTrigger>
                 <TooltipPortal>
@@ -292,14 +331,30 @@ export function CameraGroupSelector({ className }: CameraGroupSelectorProps) {
             <Tooltip open={tooltip == "edit"}>
               <TooltipTrigger asChild>
                 <Button
-                  className="bg-secondary text-muted-foreground"
+                  className={
+                    showLabels
+                      ? "h-auto w-full justify-start gap-4 whitespace-normal bg-transparent p-0 pl-1 hover:bg-transparent"
+                      : "bg-secondary text-muted-foreground"
+                  }
                   aria-label={t("group.editGroups")}
                   size="xs"
                   onClick={() => setAddGroup(true)}
                   onMouseEnter={() => showTooltip("edit")}
                   onMouseLeave={() => showTooltip(undefined)}
                 >
-                  <LuPencil className="size-4 text-primary-variant" />
+                  <span
+                    className={cn(
+                      "flex size-6 shrink-0 items-center justify-center rounded-md",
+                      showLabels && "bg-secondary text-muted-foreground",
+                    )}
+                  >
+                    <LuPencil className="size-4 text-primary-variant" />
+                  </span>
+                  {showLabels && (
+                    <span className="text-left text-foreground">
+                      {t("group.editGroups")}
+                    </span>
+                  )}
                 </Button>
               </TooltipTrigger>
               <TooltipPortal>

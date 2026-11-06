@@ -15,6 +15,41 @@ import {
 } from "../helpers/overlay-interaction";
 
 test.describe("Review — severity tabs @critical", () => {
+  test.describe("Missing hourly previews", () => {
+    // The intentionally missing preview returns a browser resource warning.
+    test.use({ expectedErrors: [/Failed to load resource.*404/] });
+    test("Motion renders without hourly previews on a new installation @mobile", async ({
+      frigateApp,
+    }) => {
+      await frigateApp.page.route("**/api/preview/all/start/**", (route) =>
+        route.fulfill({
+          status: 404,
+          json: { success: false, message: "No previews found." },
+        }),
+      );
+      await frigateApp.page.route("**/api/review/activity/motion**", (route) =>
+        route.fulfill({
+          json: [
+            {
+              camera: "front_door",
+              start_time: Math.floor(Date.now() / 1000) - 60,
+              motion: 100,
+            },
+          ],
+        }),
+      );
+      await frigateApp.goto("/review");
+      const review = new ReviewPage(frigateApp.page, !frigateApp.isMobile);
+      await review.motionTab.click();
+      await expect(review.motionTab).toHaveAttribute("data-state", "on");
+      await expect(
+        frigateApp.page.getByText("No Preview Found for Front Door", {
+          exact: true,
+        }),
+      ).toBeVisible();
+    });
+  });
+
   test("tabs render with Alerts default-on", async ({ frigateApp }) => {
     await frigateApp.goto("/review");
     const review = new ReviewPage(frigateApp.page, !frigateApp.isMobile);
