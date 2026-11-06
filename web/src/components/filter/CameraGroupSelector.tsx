@@ -1,3 +1,4 @@
+import { formatDisplayName } from "@/utils/stringUtil";
 import {
   AllGroupsStreamingSettings,
   CameraGroupConfig,
@@ -287,7 +288,9 @@ export function CameraGroupSelector({
                           ? "bg-blue-900 bg-opacity-60 text-selected focus:bg-blue-900 focus:bg-opacity-60"
                           : "bg-secondary text-secondary-foreground"
                     }
-                    aria-label={showLabels ? name : t("group.label")}
+                    aria-label={
+                      showLabels ? formatDisplayName(name) : t("group.label")
+                    }
                     size="xs"
                     onClick={() => setGroup(name, group != "default")}
                     onMouseEnter={() => showTooltip(name)}
@@ -313,14 +316,14 @@ export function CameraGroupSelector({
                     </span>
                     {showLabels && (
                       <span className="min-w-0 break-words text-left text-foreground">
-                        {name}
+                        {formatDisplayName(name)}
                       </span>
                     )}
                   </Button>
                 </TooltipTrigger>
                 <TooltipPortal>
                   <TooltipContent className="smart-capitalize" side="right">
-                    {name}
+                    {formatDisplayName(name)}
                   </TooltipContent>
                 </TooltipPortal>
               </Tooltip>
@@ -687,7 +690,7 @@ export function CameraGroupRow({
         className="transition-background flex flex-row items-center justify-between rounded-lg duration-100 md:p-1"
       >
         <div className={`flex items-center`}>
-          <p className="cursor-default">{group[0]}</p>
+          <p className="cursor-default">{formatDisplayName(group[0])}</p>
         </div>
         <AlertDialog
           open={deleteDialogOpen}
@@ -700,7 +703,10 @@ export function CameraGroupRow({
               </AlertDialogTitle>
             </AlertDialogHeader>
             <AlertDialogDescription>
-              <Trans ns="components/camera" values={{ name: group[0] }}>
+              <Trans
+                ns="components/camera"
+                values={{ name: formatDisplayName(group[0]) }}
+              >
                 group.delete.confirm.desc
               </Trans>
             </AlertDialogDescription>
@@ -898,7 +904,7 @@ export function CameraGroupEdit({
           if (res.status === 200) {
             toast.success(
               t("group.success", {
-                name: values.name,
+                name: formatDisplayName(values.name),
               }),
               {
                 position: "top-center",
@@ -978,6 +984,10 @@ export function CameraGroupEdit({
                   className="w-full border border-input bg-background p-2 hover:bg-accent hover:text-accent-foreground dark:[color-scheme:dark]"
                   placeholder={t("group.name.placeholder")}
                   {...field}
+                  value={field.value.replaceAll("_", " ")}
+                  onChange={(event) =>
+                    field.onChange(event.target.value.replaceAll("_", " "))
+                  }
                 />
               </FormControl>
               <FormMessage />

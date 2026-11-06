@@ -1,3 +1,4 @@
+import { formatDisplayName } from "@/utils/stringUtil";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   Dialog,
@@ -1228,7 +1229,9 @@ export function ExportContent({
                                   }
                                   className="mr-2 size-4 text-secondary-foreground"
                                 />
-                                <span className="truncate">{group.name}</span>
+                                <span className="truncate">
+                                  {formatDisplayName(group.name)}
+                                </span>
                                 <span className="ml-auto text-xs text-muted-foreground">
                                   {group.cameras.length}
                                 </span>

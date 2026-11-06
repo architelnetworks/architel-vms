@@ -1,3 +1,4 @@
+import { formatDisplayName } from "@/utils/stringUtil";
 import { Button } from "../ui/button";
 import { CameraGroupConfig } from "@/types/frigateConfig";
 import { useEffect, useMemo, useState } from "react";
@@ -199,7 +200,7 @@ export function CamerasFilterContent({
                     setCurrentCameras([...conf.cameras]);
                   }}
                 >
-                  {name}
+                  {formatDisplayName(name)}
                 </div>
               );
             })}

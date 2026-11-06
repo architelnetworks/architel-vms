@@ -12,6 +12,7 @@ import { useEffect, useMemo, useRef } from "react";
 import useSWR from "swr";
 import { useAllowedCameras } from "@/hooks/use-allowed-cameras";
 import { useHasFullCameraAccess } from "@/hooks/use-has-full-camera-access";
+import { formatDisplayName } from "@/utils/stringUtil";
 
 function Live() {
   const { t } = useTranslation(["views/live"]);
@@ -78,7 +79,7 @@ function Live() {
       });
     } else if (cameraGroup && cameraGroup != "default") {
       document.title = t("documentTitle.withCamera", {
-        camera: `${cameraGroup[0].toUpperCase()}${cameraGroup.substring(1)}`,
+        camera: formatDisplayName(cameraGroup),
       });
     } else {
       document.title = t("documentTitle.default", { ns: "views/live" });

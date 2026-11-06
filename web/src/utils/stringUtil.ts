@@ -12,6 +12,11 @@ export const capitalizeAll = (text: string): string => {
     .join(" ");
 };
 
+/** Formats an underscored identifier for display without changing saved names. */
+export const formatDisplayName = (name: string): string => {
+  return name.includes("_") ? capitalizeAll(name.toLowerCase()) : name;
+};
+
 /**
  * Generates a fixed-length hash from a camera name for use as a valid camera identifier.
  * Works safely with Unicode input while outputting Latin-only identifiers.

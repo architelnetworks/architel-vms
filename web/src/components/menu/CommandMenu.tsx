@@ -1,3 +1,4 @@
+import { formatDisplayName } from "@/utils/stringUtil";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -214,8 +215,8 @@ export default function CommandMenu() {
       built.push({
         id: `group-${group}`,
         section: "cameraGroups",
-        title: group,
-        terms: groupCameras,
+        title: formatDisplayName(group),
+        terms: [group, ...groupCameras],
         Icon: LuLayers,
         onRun: goTo(`/?group=${encodeURIComponent(group)}`),
       });

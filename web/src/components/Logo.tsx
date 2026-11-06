@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import { useTranslation } from "react-i18next";
+import { baseUrl } from "@/api/baseUrl";
 
 type LogoProps = {
   className?: string;
@@ -9,18 +10,26 @@ type LogoProps = {
 export default function Logo({ className, horizontal = false }: LogoProps) {
   const { t } = useTranslation("common");
 
-  // Plain text until the official artwork listed in BRANDING.md is supplied.
   return (
     <span
       role="img"
       aria-label={t("brand.name")}
       className={cn(
         "inline-flex shrink-0 items-center justify-center font-semibold",
-        horizontal ? "whitespace-nowrap text-lg" : "text-xs",
+        horizontal ? "gap-2 whitespace-nowrap text-lg" : "size-8",
         className,
       )}
     >
-      {t(horizontal ? "brand.name" : "brand.shortName")}
+      <img
+        src={`${baseUrl}images/branding/hexagon.svg`}
+        alt=""
+        aria-hidden="true"
+        className={cn(
+          "dark:invert",
+          horizontal ? "size-6 shrink-0" : "size-full",
+        )}
+      />
+      {horizontal && <span>{t("brand.name")}</span>}
     </span>
   );
 }

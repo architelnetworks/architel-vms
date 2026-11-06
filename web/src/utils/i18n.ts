@@ -2,6 +2,7 @@ import i18n, { t } from "i18next";
 import { initReactI18next } from "react-i18next";
 import HttpBackend from "i18next-http-backend";
 import { EventType } from "@/types/search";
+import { formatDisplayName } from "@/utils/stringUtil";
 
 export const getTranslatedLabel = (
   label: string,
@@ -9,7 +10,9 @@ export const getTranslatedLabel = (
 ) => {
   if (!label) return "";
 
-  if (type === "manual") return label;
+  if (type === "manual") {
+    return formatDisplayName(label);
+  }
 
   const normalize = (s: string) =>
     s
