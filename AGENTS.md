@@ -448,3 +448,127 @@ Always conform new and refactored code to the existing coding style in the proje
 - Documentation: https://docs.frigate.video
 - Main Repository: https://github.com/blakeblackshear/frigate
 - Home Assistant Integration: https://github.com/blakeblackshear/frigate-hass-integration
+
+# AGENTS.md — Architel VMS
+
+## Project Overview
+
+Architel VMS is a fork of Frigate, being developed into a standalone video management system for commercial, community and not-for-profit environments.
+
+Frigate provides the underlying camera management, recording, detection and video processing capabilities.
+
+Our objective is to build on this foundation rather than unnecessarily replacing existing functionality.
+
+## Development Principles
+
+- Prefer reusing existing Frigate functionality over implementing duplicate systems.
+- Keep modifications modular, maintainable and well documented.
+- Follow existing repository conventions unless there is a clear reason to depart from them.
+- Avoid introducing unnecessary dependencies or architectural complexity.
+- Preserve compatibility with existing camera hardware and industry-standard protocols.
+- Design for installations ranging from small deployments to large multi-camera sites.
+
+## Architecture
+
+Before implementing changes:
+
+1. Inspect the relevant existing Frigate implementation.
+2. Identify existing APIs, services, components and data models that can be reused.
+3. Explain any substantial architectural changes before proceeding.
+4. Avoid rewriting working functionality unnecessarily.
+5. Keep frontend and backend responsibilities appropriately separated.
+
+## Frontend
+
+- Maintain a consistent, modern and intuitive interface.
+- Prefer existing components, styling conventions and frontend patterns.
+- Prioritise usability for non-technical operators.
+- Avoid creating unnecessary new UI frameworks or design systems.
+- Ensure the interface works well for large camera installations.
+
+## Backend
+
+- Preserve Frigate's core video processing, recording and camera management capabilities.
+- Reuse existing APIs and services wherever practical.
+- Avoid changes that unnecessarily disrupt video streams or recording.
+- Consider reliability, scalability and performance when modifying background services.
+
+## Reliability and Independence
+
+- Core video recording and camera operation must not depend on Architel ACS.
+- Architel ACS integrations should be optional and loosely coupled.
+- Temporary failures of external services must not interrupt recording.
+- Prefer local operation without requiring continuous internet connectivity.
+
+## Security
+
+- Maintain appropriate authentication and authorisation.
+- Do not expose credentials, tokens or sensitive configuration.
+- Validate inputs and protect administrative operations.
+- Avoid introducing unnecessary externally accessible services.
+
+## Coding Standards
+
+- Follow the existing repository's formatting, linting and testing conventions.
+- Prefer small, focused changes over large rewrites.
+- Remove obsolete code only when its purpose and dependencies are understood.
+- Document significant deviations from upstream Frigate.
+- Do not silently introduce breaking changes.
+
+## Working With This Repository
+
+When completing a development task:
+
+1. Examine the existing implementation before writing new code.
+2. Prefer minimal, targeted modifications.
+3. Identify potential effects on existing functionality.
+4. Implement the change.
+5. Run relevant available checks and tests.
+6. Summarise what changed, what was tested and any outstanding issues.
+
+Do not assume functionality is missing without checking the codebase first.
+
+## Upstream Compatibility
+
+This project is based on Frigate.
+
+- Preserve upstream compatibility where practical.
+- Keep custom Architel functionality identifiable and modular.
+- Avoid modifying core Frigate functionality when an extension or integration can achieve the same result.
+- Make future upstream merges easier rather than harder.
+
+## Architel Ownership and Deployment Boundaries
+
+- Architel VMS owns cameras, streams, recording, retention, playback, exports,
+  video analytics, and video-specific events.
+- Architel ACS owns access-control identity, permissions, credentials, doors,
+  security alarms, and their associated audit history. VMS must still enforce
+  local application authorization and support independent emergency administration.
+- Integrate through explicit APIs and asynchronous events. Do not share platform
+  databases or add synchronous ACS dependencies to capture or recording paths.
+- Hikvision access-control and Protege WX intrusion equipment must retain
+  independent operation when either management platform is unavailable.
+- Production targets local Ubuntu Server operation without internet access.
+  Required models and assets must be provisioned before offline use. Optional
+  remote services must not become essential dependencies.
+- Do not introduce required per-camera, per-user, or recurring software fees.
+- Keep site-specific identifiers, mappings, and hardware assumptions configurable.
+  The first deployment has approximately 78 cameras; establish capacity through
+  representative testing rather than assuming the development setup proves scale.
+- Treat the internal anonymous-admin listener and development MQTT broker as
+  trusted development surfaces, not production authentication configurations.
+
+## Architel Architecture Records
+
+- Maintain `docs/architel/ARCHITECTURE.md`, `ROADMAP.md`, `DECISIONS.md`, and
+  `INTEGRATIONS.md` when relevant implementation or architectural choices change.
+- Distinguish observed implementation, proposed work, and verified acceptance.
+  Cite repository evidence before declaring a capability missing or complete.
+- Reuse existing camera onboarding, recording, review, search, roles, export
+  cases, notices, and UI components before introducing parallel implementations.
+- Record substantial architectural decisions, compatibility effects, and
+  migration requirements before implementing them.
+- The audit records a toolchain discrepancy: this guidance specifies Python
+  3.13+, but Docker, CI, and Ruff currently target 3.11. Resolve the supported
+  baseline explicitly with build/test evidence; do not silently upgrade the
+  runtime or assume newer syntax is supported by the current container.
