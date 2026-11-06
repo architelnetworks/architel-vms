@@ -1,3 +1,4 @@
+import { FRIGATE_PLUS_UI_ENABLED } from "@/utils/productFeatures";
 import { isDesktop, isIOS, isMobile, isSafari } from "react-device-detect";
 import { SearchResult } from "@/types/search";
 import useSWR from "swr";
@@ -350,7 +351,10 @@ function DialogContentComponent({
       search={
         {
           ...search,
-          plus_id: config?.plus?.enabled ? search.plus_id : "not_enabled",
+          plus_id:
+            FRIGATE_PLUS_UI_ENABLED && config?.plus?.enabled
+              ? search.plus_id
+              : "not_enabled",
         } as unknown as Event
       }
     />
@@ -1513,6 +1517,7 @@ function ObjectDetailsTab({
 
       {isAdmin &&
         search.data.type === "object" &&
+        FRIGATE_PLUS_UI_ENABLED &&
         config?.plus?.enabled &&
         search.end_time != undefined &&
         search.has_snapshot && (

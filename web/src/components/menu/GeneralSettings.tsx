@@ -1,6 +1,5 @@
 import {
   LuActivity,
-  LuGithub,
   LuLanguages,
   LuLayers,
   LuLifeBuoy,
@@ -767,20 +766,6 @@ export default function GeneralSettings({
               >
                 <LuLifeBuoy className="mr-2 size-4" />
                 <span>{t("menu.documentation.title")}</span>
-              </MenuItem>
-            </a>
-            <a
-              href="https://github.com/blakeblackshear/frigate"
-              target="_blank"
-            >
-              <MenuItem
-                className={
-                  isDesktop ? "cursor-pointer" : "flex items-center p-2 text-sm"
-                }
-                aria-label={t("menu.upstreamGithub")}
-              >
-                <LuGithub className="mr-2 size-4" />
-                <span>GitHub</span>
               </MenuItem>
             </a>
             {isAdmin && (

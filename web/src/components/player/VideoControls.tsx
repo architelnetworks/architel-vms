@@ -1,3 +1,4 @@
+import { FRIGATE_PLUS_UI_ENABLED } from "@/utils/productFeatures";
 import { useCallback, useMemo, useRef, useState } from "react";
 import { LuFolderX } from "react-icons/lu";
 import { isMobileOnly } from "react-device-detect";
@@ -279,7 +280,7 @@ export default function VideoControls({
           </DropdownMenuContent>
         </DropdownMenu>
       )}
-      {features.plusUpload && onUploadFrame && (
+      {FRIGATE_PLUS_UI_ENABLED && features.plusUpload && onUploadFrame && (
         <FrigatePlusUploadButton
           video={video}
           onClose={() => {

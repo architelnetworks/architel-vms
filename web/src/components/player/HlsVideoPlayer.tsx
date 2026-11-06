@@ -1,3 +1,4 @@
+import { FRIGATE_PLUS_UI_ENABLED } from "@/utils/productFeatures";
 import {
   MutableRefObject,
   ReactNode,
@@ -484,7 +485,9 @@ export default function HlsVideoPlayer({
             volume: true,
             seek: true,
             playbackRate: true,
-            plusUpload: isAdmin && config?.plus?.enabled == true,
+            plusUpload:
+              isAdmin &&
+              (FRIGATE_PLUS_UI_ENABLED && config?.plus?.enabled) == true,
             snapshot: !!onSnapshot,
             fullscreen: supportsFullscreen,
           }}

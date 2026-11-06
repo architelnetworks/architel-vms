@@ -1,3 +1,4 @@
+import { FRIGATE_PLUS_UI_ENABLED } from "@/utils/productFeatures";
 import ActivityIndicator from "@/components/indicators/activity-indicator";
 import type { FrigatePlusModel } from "@/components/config-form/theme/fields/ModelSourcePicker";
 import { Button } from "@/components/ui/button";
@@ -62,7 +63,7 @@ export default function SetupDetector({
   const { data: config } = useSWR<FrigateConfig>("config", {
     revalidateOnFocus: false,
   });
-  const plusEnabled = Boolean(config?.plus?.enabled);
+  const plusEnabled = Boolean(FRIGATE_PLUS_UI_ENABLED && config?.plus?.enabled);
 
   // the cpu is always probed, so an empty list means the probe failed
   const options = useMemo(

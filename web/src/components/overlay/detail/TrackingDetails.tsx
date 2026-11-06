@@ -1,3 +1,4 @@
+import { FRIGATE_PLUS_UI_ENABLED } from "@/utils/productFeatures";
 import useSWR from "swr";
 import {
   useCallback,
@@ -1216,74 +1217,78 @@ function LifecycleIconRow({
         <div className="ml-3 flex-shrink-0 px-1 text-right text-xs text-primary-variant">
           <div className="flex flex-row items-center gap-3">
             <div className="whitespace-nowrap">{formattedEventTimestamp}</div>
-            {isAdmin && (config?.plus?.enabled || item.data.box) && (
-              <DropdownMenu
-                modal={false}
-                open={isOpen}
-                onOpenChange={setIsOpen}
-              >
-                <DropdownMenuTrigger>
-                  <div className="rounded p-1 pr-2" role="button">
-                    <HiDotsHorizontal className="size-4 text-muted-foreground" />
-                  </div>
-                </DropdownMenuTrigger>
-                <DropdownMenuPortal>
-                  <DropdownMenuContent>
-                    {isAdmin && config?.plus?.enabled && (
-                      <DropdownMenuItem
-                        className="cursor-pointer"
-                        onSelect={async () => {
-                          try {
-                            const resp = await axios.post(
-                              `/${item.camera}/plus/${item.timestamp + annotationOffset / 1000}`,
-                            );
+            {isAdmin &&
+              ((FRIGATE_PLUS_UI_ENABLED && config?.plus?.enabled) ||
+                item.data.box) && (
+                <DropdownMenu
+                  modal={false}
+                  open={isOpen}
+                  onOpenChange={setIsOpen}
+                >
+                  <DropdownMenuTrigger>
+                    <div className="rounded p-1 pr-2" role="button">
+                      <HiDotsHorizontal className="size-4 text-muted-foreground" />
+                    </div>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuPortal>
+                    <DropdownMenuContent>
+                      {isAdmin &&
+                        FRIGATE_PLUS_UI_ENABLED &&
+                        config?.plus?.enabled && (
+                          <DropdownMenuItem
+                            className="cursor-pointer"
+                            onSelect={async () => {
+                              try {
+                                const resp = await axios.post(
+                                  `/${item.camera}/plus/${item.timestamp + annotationOffset / 1000}`,
+                                );
 
-                            if (resp.status !== 200) {
-                              throw new Error();
-                            }
+                                if (resp.status !== 200) {
+                                  throw new Error();
+                                }
 
-                            toast.success(
-                              t("toast.success.submittedFrigatePlus", {
-                                ns: "components/player",
-                              }),
-                              {
-                                position: "top-center",
-                              },
-                            );
-                          } catch {
-                            toast.error(
-                              t("toast.error.submitFrigatePlusFailed", {
-                                ns: "components/player",
-                              }),
-                              {
-                                position: "top-center",
-                              },
-                            );
-                          }
-                        }}
-                      >
-                        {t("itemMenu.submitToPlus.label")}
-                      </DropdownMenuItem>
-                    )}
-                    {item.data.box && (
-                      <DropdownMenuItem
-                        className="cursor-pointer"
-                        onSelect={() => {
-                          setIsOpen(false);
-                          setTimeout(() => {
-                            navigate(
-                              `/settings?page=masksAndZones&camera=${item.camera}&object_mask=${item.data.box}`,
-                            );
-                          }, 0);
-                        }}
-                      >
-                        {t("trackingDetails.createObjectMask")}
-                      </DropdownMenuItem>
-                    )}
-                  </DropdownMenuContent>
-                </DropdownMenuPortal>
-              </DropdownMenu>
-            )}
+                                toast.success(
+                                  t("toast.success.submittedFrigatePlus", {
+                                    ns: "components/player",
+                                  }),
+                                  {
+                                    position: "top-center",
+                                  },
+                                );
+                              } catch {
+                                toast.error(
+                                  t("toast.error.submitFrigatePlusFailed", {
+                                    ns: "components/player",
+                                  }),
+                                  {
+                                    position: "top-center",
+                                  },
+                                );
+                              }
+                            }}
+                          >
+                            {t("itemMenu.submitToPlus.label")}
+                          </DropdownMenuItem>
+                        )}
+                      {item.data.box && (
+                        <DropdownMenuItem
+                          className="cursor-pointer"
+                          onSelect={() => {
+                            setIsOpen(false);
+                            setTimeout(() => {
+                              navigate(
+                                `/settings?page=masksAndZones&camera=${item.camera}&object_mask=${item.data.box}`,
+                              );
+                            }, 0);
+                          }}
+                        >
+                          {t("trackingDetails.createObjectMask")}
+                        </DropdownMenuItem>
+                      )}
+                    </DropdownMenuContent>
+                  </DropdownMenuPortal>
+                </DropdownMenu>
+              )}
           </div>
         </div>
       </div>

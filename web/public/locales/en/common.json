@@ -247,7 +247,7 @@
     "help": "Help",
     "documentation": {
       "title": "Documentation",
-      "label": "Upstream Frigate documentation"
+      "label": "Documentation"
     },
     "restart": "Restart Architel VMS",
     "live": {

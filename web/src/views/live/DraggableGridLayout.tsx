@@ -858,19 +858,25 @@ export default function DraggableGridLayout({
             >
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <div
+                  <button
+                    type="button"
                     data-testid="toggle-edit-layout"
-                    className="cursor-pointer rounded-lg bg-secondary text-secondary-foreground opacity-60 transition-all duration-300 hover:bg-muted hover:opacity-100"
+                    className="flex items-center gap-2 rounded-lg bg-secondary px-3 py-2 text-sm text-secondary-foreground opacity-60 transition-all duration-300 hover:bg-muted hover:opacity-100 focus-visible:opacity-100"
                     onClick={() =>
                       setIsEditMode((prevIsEditMode) => !prevIsEditMode)
                     }
                   >
                     {isEditMode ? (
-                      <IoClose className="size-5 md:m-[6px]" />
+                      <IoClose className="size-5 shrink-0" />
                     ) : (
-                      <LuLayoutDashboard className="size-5 md:m-[6px]" />
+                      <LuLayoutDashboard className="size-5 shrink-0" />
                     )}
-                  </div>
+                    <span>
+                      {isEditMode
+                        ? t("editLayout.exitEdit")
+                        : t("editLayout.label")}
+                    </span>
+                  </button>
                 </TooltipTrigger>
                 <TooltipContent>
                   {isEditMode
@@ -883,14 +889,16 @@ export default function DraggableGridLayout({
                   {!fullscreen && isAdmin && (
                     <Tooltip>
                       <TooltipTrigger asChild>
-                        <div
-                          className="cursor-pointer rounded-lg bg-secondary text-secondary-foreground opacity-60 transition-all duration-300 hover:bg-muted hover:opacity-100"
+                        <button
+                          type="button"
+                          className="flex items-center gap-2 rounded-lg bg-secondary px-3 py-2 text-sm text-secondary-foreground opacity-60 transition-all duration-300 hover:bg-muted hover:opacity-100 focus-visible:opacity-100"
                           onClick={() =>
                             setEditGroup((prevEditGroup) => !prevEditGroup)
                           }
                         >
-                          <LuPencil className="size-5 md:m-[6px]" />
-                        </div>
+                          <LuPencil className="size-5 shrink-0" />
+                          <span>{t("editLayout.group.label")}</span>
+                        </button>
                       </TooltipTrigger>
                       <TooltipContent>
                         {isEditMode
@@ -901,16 +909,22 @@ export default function DraggableGridLayout({
                   )}
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <div
-                        className="cursor-pointer rounded-lg bg-secondary text-secondary-foreground opacity-60 transition-all duration-300 hover:bg-muted hover:opacity-100"
+                      <button
+                        type="button"
+                        className="flex items-center gap-2 rounded-lg bg-secondary px-3 py-2 text-sm text-secondary-foreground opacity-60 transition-all duration-300 hover:bg-muted hover:opacity-100 focus-visible:opacity-100"
                         onClick={toggleFullscreen}
                       >
                         {fullscreen ? (
-                          <FaCompress className="size-5 md:m-[6px]" />
+                          <FaCompress className="size-5 shrink-0" />
                         ) : (
-                          <FaExpand className="size-5 md:m-[6px]" />
+                          <FaExpand className="size-5 shrink-0" />
                         )}
-                      </div>
+                        <span>
+                          {fullscreen
+                            ? t("button.exitFullscreen", { ns: "common" })
+                            : t("button.fullscreen", { ns: "common" })}
+                        </span>
+                      </button>
                     </TooltipTrigger>
                     <TooltipContent>
                       {fullscreen

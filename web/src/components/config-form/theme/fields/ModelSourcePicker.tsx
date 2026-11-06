@@ -1,3 +1,4 @@
+import { FRIGATE_PLUS_UI_ENABLED } from "@/utils/productFeatures";
 import { ReactNode, useId, useState } from "react";
 import { Trans, useTranslation } from "react-i18next";
 import useSWR from "swr";
@@ -60,7 +61,7 @@ export function ModelSourcePicker({
   const { t } = useTranslation(["views/settings"]);
   const { data: config } = useSWR<FrigateConfig>("config");
 
-  const plusEnabled = Boolean(config?.plus?.enabled);
+  const plusEnabled = Boolean(FRIGATE_PLUS_UI_ENABLED && config?.plus?.enabled);
   // an unsaved pick still carries the plus:// path, which wins over the
   // metadata of whatever model was saved before it
   const selectedId = plusModelId(path) ?? plus?.id;

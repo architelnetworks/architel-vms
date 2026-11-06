@@ -1,3 +1,4 @@
+import { FRIGATE_PLUS_UI_ENABLED } from "@/utils/productFeatures";
 import { FaArrowRight, FaFilter } from "react-icons/fa";
 
 import { useEffect, useMemo, useState } from "react";
@@ -763,7 +764,7 @@ export function SnapshotClipFilterContent({
           </ToggleGroup>
         </div>
 
-        {config?.plus?.enabled && (
+        {FRIGATE_PLUS_UI_ENABLED && config?.plus?.enabled && (
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
               <TooltipProvider>

@@ -1,3 +1,4 @@
+import { FRIGATE_PLUS_UI_ENABLED } from "@/utils/productFeatures";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -159,6 +160,7 @@ export default function EventMenu({
               event.has_snapshot &&
               event.plus_id == undefined &&
               event.data.type == "object" &&
+              FRIGATE_PLUS_UI_ENABLED &&
               config?.plus?.enabled && (
                 <DropdownMenuItem
                   className="cursor-pointer"
