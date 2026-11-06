@@ -628,7 +628,7 @@
     },
     "review": {
       "title": "Pregled",
-      "desc": "Privremeno uključite/isključite upozorenja i detekcije za ovu kameru dok se frigate ne ponovno pokrene. Kada je onemogućen, neće se generirati nove stavke za pregled. ",
+      "desc": "Privremeno uključite/isključite upozorenja i detekcije za ovu kameru dok se Architel VMS ne ponovno pokrene. Kada je onemogućen, neće se generirati nove stavke za pregled. ",
       "alerts": "Upozorenja ",
       "detections": "Detekcije "
     },

@@ -200,7 +200,7 @@
       "title": "Compartir marca de tiempo",
       "custom": "Marca de tiempo personalizada",
       "button": "Compartir URL de la marca de tiempo",
-      "shareTitle": "Marca de tiempo de revisión de Frigate: {{camera}}"
+      "shareTitle": "Marca de tiempo de revisión de Architel VMS: {{camera}}"
     },
     "genaiDescription": {
       "toast": {

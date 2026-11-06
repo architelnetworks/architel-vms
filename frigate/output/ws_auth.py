@@ -4,6 +4,7 @@ from typing import Any
 
 from frigate.config import FrigateConfig
 from frigate.models import User
+from frigate.util.roles import is_admin_role
 
 
 def _get_valid_ws_roles(ws: Any, config: FrigateConfig) -> list[str]:
@@ -28,12 +29,12 @@ def ws_has_camera_access(ws: Any, camera_name: str, config: FrigateConfig) -> bo
     # Birdseye is a composite stream, so only users with unrestricted access
     # should receive it.
     if camera_name == "birdseye":
-        return any(role == "admin" or not roles_dict.get(role) for role in roles)
+        return any(is_admin_role(role) or not roles_dict.get(role) for role in roles)
 
     all_camera_names = set(config.cameras.keys())
 
     for role in roles:
-        if role == "admin" or not roles_dict.get(role):
+        if is_admin_role(role) or not roles_dict.get(role):
             return True
 
         allowed_cameras = User.get_allowed_cameras(role, roles_dict, all_camera_names)

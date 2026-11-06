@@ -276,7 +276,7 @@
       "logout": "Logout",
       "setPassword": "Set Password"
     },
-    "upstreamGithub": "Upstream Frigate GitHub"
+    "upstreamGithub": "Upstream Architel VMS GitHub"
   },
   "toast": {
     "copyUrlToClipboard": "Copied URL to clipboard.",
@@ -293,7 +293,8 @@
     "title": "Role",
     "admin": "Admin",
     "viewer": "Viewer",
-    "desc": "Admins have full access to all features in the Architel VMS UI. Viewers are limited to viewing cameras, review items, and historical footage in the UI."
+    "desc": "Admins have full access to all features in the Architel VMS UI. Viewers are limited to viewing cameras, review items, and historical footage in the UI.",
+    "superadmin": "Superadmin"
   },
   "pagination": {
     "label": "pagination",

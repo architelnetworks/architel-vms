@@ -52,7 +52,12 @@ export default function ProtectedRoute({
 
   // Unauthenticated mode
   if (!auth.isAuthenticated) {
-    return <Outlet />;
+    return requiredRoles.includes("superadmin") &&
+      !requiredRoles.includes("admin") ? (
+      <Navigate to="/unauthorized" replace />
+    ) : (
+      <Outlet />
+    );
   }
 
   // Authenticated mode (external port): require login
@@ -68,7 +73,10 @@ export default function ProtectedRoute({
     return <Outlet />;
   }
 
-  if (!requiredRoles.includes(auth.user.role)) {
+  if (
+    !requiredRoles.includes(auth.user.role) &&
+    !(auth.user.role === "superadmin" && requiredRoles.includes("admin"))
+  ) {
     return <Navigate to="/unauthorized" replace />;
   }
 

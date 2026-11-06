@@ -10,10 +10,13 @@ continues to use the original bottom bar.
 
 ## Official artwork to supply
 
-No new artwork has been generated. The shared React `Logo` component currently
-renders plain text, either `Architel VMS` or `AV`. Existing upstream favicon/PWA
-icons are temporary placeholders. Their original asset license is preserved.
-Do not treat those placeholders as approved Architel artwork.
+The shared React `Logo` component uses the simple outlined hexagon requested by the
+project owner, stored at `web/public/images/branding/hexagon.svg`. It renders
+black in light mode and white in dark mode, with the Architel VMS name beside it
+in horizontal layouts. Browser favicons, Apple touch icons, and PWA icons also use this outlined
+hexagon. The SVG favicon switches between black and white with the browser
+theme. Raster fallbacks use a black outline, with white backgrounds for touch
+and maskable icons. Original upstream asset license notices remain preserved.
 
 Destination paths below are relative to the repository root. SVG sizes describe
 recommended viewBoxes/aspect ratios; they must remain sharp at the rendered size.
@@ -35,11 +38,11 @@ Use self-contained SVGs with no external fonts, scripts, or linked resources.
 | `web/public/images/maskable-icon.png` | Maskable PWA and notification icon | PNG, exactly 180 x 180 px, matching the current manifest; keep critical content inside the central safe circle with radius 40% of image width | Opaque full-bleed background | Web manifest and push notifications |
 | `web/public/images/maskable-badge.png` | Notification badge and existing small maskable entry | PNG, exactly 96 x 96 px, monochrome mark | Transparent outside mark | Push notifications and existing web manifest entry |
 
-One horizontal master and one compact master may be enough to derive all
+If replacing the current hexagon later, one horizontal master and one compact master may be enough to derive all
 exports. There is no need to commission separate login, loading, or splash
 artwork: shared branding and PWA icons cover the existing surfaces. Once supplied,
-wire approved SVG variants into `web/src/components/Logo.tsx`; keep its plain-text
-fallback. No missing-file requests are made for the future logo paths today.
+wire approved SVG variants into `web/src/components/Logo.tsx`. No missing-file
+requests are made for the optional replacement logo paths today.
 
 The inherited documentation website also contains assets at
 `docs/static/img/branding/logo.svg`, `logo-dark.svg`, and `favicon.ico`. If using
@@ -78,7 +81,7 @@ The following Frigate references are intentional:
   chat still uses the upstream Frigate support service and is not presented as
   Architel support. Replacing that external documentation service is outside this
   UI-only stage.
-- Original favicon/PWA graphics remain temporary placeholders pending the
+- Custom hexagon favicon/PWA graphics are in place pending the
   official files above. Replacing the raster/icon files at these paths needs no
   API, schema, or deployment-path change.
 

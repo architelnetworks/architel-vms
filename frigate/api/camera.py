@@ -48,6 +48,7 @@ from frigate.util.live_streams import (
     measure_stream_bitrate,
     sync_transcode_streams,
 )
+from frigate.util.roles import is_admin_role
 from frigate.util.services import (
     analyze_record_keyframes,
     ffprobe_stream,
@@ -103,7 +104,7 @@ async def go2rtc_streams(request: Request):
     if not isinstance(current_user, JSONResponse):
         role = current_user["role"]
         roles_dict = request.app.frigate_config.auth.roles
-        if role != "admin" and roles_dict.get(role):
+        if not is_admin_role(role) and roles_dict.get(role):
             all_camera_names = set(request.app.frigate_config.cameras.keys())
             allowed_cameras = set(
                 User.get_allowed_cameras(role, roles_dict, all_camera_names)

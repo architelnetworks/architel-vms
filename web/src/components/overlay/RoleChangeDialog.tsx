@@ -74,7 +74,12 @@ export default function RoleChangeDialog({
                 : {t("users.dialog.changeRole.roleInfo.viewerDesc")}
               </li>
               {availableRoles
-                .filter((role) => role !== "admin" && role !== "viewer")
+                .filter(
+                  (role) =>
+                    role !== "admin" &&
+                    role !== "viewer" &&
+                    role !== "superadmin",
+                )
                 .map((role) => (
                   <li key={role}>
                     <span className="font-medium">{role}</span>:{" "}
@@ -96,7 +101,7 @@ export default function RoleChangeDialog({
                   className="flex items-center gap-2"
                 >
                   <div className="flex items-center gap-2">
-                    {role === "admin" ? (
+                    {role === "admin" || role === "superadmin" ? (
                       <LuShield className="size-4 text-primary" />
                     ) : role === "viewer" ? (
                       <LuUser className="size-4 text-primary" />
@@ -104,8 +109,8 @@ export default function RoleChangeDialog({
                       <LuUser className="size-4 text-muted-foreground" />
                     )}
                     <span>
-                      {role === "admin"
-                        ? t("role.admin", { ns: "common" })
+                      {role === "admin" || role === "superadmin"
+                        ? t(`role.${role}`, { ns: "common" })
                         : role === "viewer"
                           ? t("role.viewer", { ns: "common" })
                           : role}

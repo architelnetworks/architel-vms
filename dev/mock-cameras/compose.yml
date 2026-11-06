@@ -9,7 +9,7 @@ services:
     restart: unless-stopped
     shm_size: "512mb"
     ports:
-      - "127.0.0.1:5002:5000"
+      - "127.0.0.1:8972:8971"
     volumes:
       - ../../frigate:/opt/frigate/frigate:ro
       - ../../migrations:/opt/frigate/migrations:ro

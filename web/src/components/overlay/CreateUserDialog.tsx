@@ -1,3 +1,4 @@
+import { useIsSuperAdmin } from "@/hooks/use-is-superadmin";
 import { Button } from "../ui/button";
 import {
   Form,
@@ -65,10 +66,13 @@ export default function CreateUserDialog({
   const [showConfirmPassword, setShowConfirmPassword] =
     useState<boolean>(false);
 
+  const isSuperAdmin = useIsSuperAdmin();
   const roles = useMemo(() => {
     const existingRoles = config ? Object.keys(config.auth?.roles || {}) : [];
-    return Array.from(new Set(["admin", "viewer", ...(existingRoles || [])]));
-  }, [config]);
+    return Array.from(
+      new Set(["admin", "viewer", ...(existingRoles || [])]),
+    ).filter((role) => role !== "superadmin" || isSuperAdmin);
+  }, [config, isSuperAdmin]);
 
   const formSchema = z
     .object({

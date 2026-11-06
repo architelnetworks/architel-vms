@@ -327,3 +327,15 @@ test.describe("Navigation — mobile @critical @mobile", () => {
     ).toBeVisible();
   });
 });
+
+test("Architel hides upstream service settings even with a configured key @high", async ({
+  frigateApp,
+}) => {
+  await frigateApp.installDefaults({ config: { plus: { enabled: true } } });
+  await frigateApp.goto("/settings");
+  await expect(frigateApp.page.locator("#pageRoot")).toBeVisible();
+  await expect(
+    frigateApp.page.getByText("Frigate+", { exact: true }),
+  ).toHaveCount(0);
+  await expect(frigateApp.page.locator('[href*="frigateplus"]')).toHaveCount(0);
+});

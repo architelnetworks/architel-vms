@@ -1,5 +1,10 @@
 # Seed configuration copied into .data/config/config.yml on first startup only.
 # This file is never merged into the normal config/config.yml.
+# Authenticated HTTP listener is host-loopback only for the local Vite proxy.
+auth:
+  enabled: true
+tls:
+  enabled: false
 mqtt:
   enabled: false
 telemetry:

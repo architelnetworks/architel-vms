@@ -91,7 +91,9 @@ class AuthConfig(FrigateBaseModel):
         # 'none' is the deny sentinel for proxy.default_role, where it is matched
         # case-insensitively, so every casing of it has to be reserved here
         used_reserved = sorted(
-            r for r in v if r in ("admin", "viewer") or r.lower() == "none"
+            r
+            for r in v
+            if r in ("admin", "viewer") or r.lower() in ("superadmin", "none")
         )
         if used_reserved:
             raise ValueError(
@@ -110,6 +112,7 @@ class AuthConfig(FrigateBaseModel):
     @model_validator(mode="after")
     def ensure_default_roles(self):
         # Ensure admin and viewer are never overridden
+        self.roles["superadmin"] = []
         self.roles["admin"] = []
         self.roles["viewer"] = []
 

@@ -1348,8 +1348,7 @@
             "description": "Hardware, na kterém model běží, ve tvaru '<detector>' nebo '<detector>:<device>' (například 'edgetpu:pci:0' nebo 'openvino:GPU'). Vícenásobné uvedení stejného zařízení na něm spustí další procesy inference."
         },
         "path": {
-            "label": "Cesta k vlastnímu modelu detekce objektů",
-            "description": "Cesta k souboru vlastního modelu detekce (nebo plus://<model_id> pro modely Frigate+)."
+            "label": "Cesta k vlastnímu modelu detekce objektů"
         },
         "labelmap_path": {
             "label": "Mapa štítků pro vlastní detektor objektů",

@@ -1512,8 +1512,7 @@
             "description": "이 모델이 실행되는 하드웨어로, '<detector>' 또는 '<detector>:<device>' 형식으로 지정합니다 (예: 'edgetpu:pci:0' 또는 'openvino:GPU'). 동일한 장치를 여러 번 나열하면 해당 장치에서 추론 프로세스를 추가로 실행합니다."
         },
         "path": {
-            "label": "사용자 지정 객체 감지기 모델 경로",
-            "description": "사용자 지정 감지 모델 파일의 경로입니다 (Frigate+ 모델의 경우 plus://<model_id>)."
+            "label": "사용자 지정 객체 감지기 모델 경로"
         },
         "labelmap_path": {
             "label": "사용자 지정 객체 감지기 라벨 맵",

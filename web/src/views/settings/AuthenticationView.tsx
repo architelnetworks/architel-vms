@@ -1,3 +1,5 @@
+import { useIsSuperAdmin } from "@/hooks/use-is-superadmin";
+import { isAdminRole } from "@/utils/roles";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import ActivityIndicator from "@/components/indicators/activity-indicator";
 import { FrigateConfig } from "@/types/frigateConfig";
@@ -45,6 +47,7 @@ export default function AuthenticationView({
   section,
 }: AuthenticationViewProps) {
   const { t } = useTranslation("views/settings");
+  const isSuperAdmin = useIsSuperAdmin();
   const { data: config, mutate: updateConfig } =
     useSWR<FrigateConfig>("config");
   const { data: users, mutate: mutateUsers } = useSWR<User[]>("users");
@@ -383,7 +386,10 @@ export default function AuthenticationView({
 
   const roles = config?.auth?.roles
     ? Object.entries(config.auth.roles)
-        .filter(([name]) => name !== "admin")
+        .filter(
+          ([name]) =>
+            name !== "admin" && (name !== "superadmin" || isSuperAdmin),
+        )
         .map(([name, data]) => ({
           name,
           cameras: Array.isArray(data) ? data : [],
@@ -391,8 +397,12 @@ export default function AuthenticationView({
     : [];
 
   const availableRoles = useMemo(() => {
-    return config ? [...Object.keys(config.auth?.roles || {})] : [];
-  }, [config]);
+    return config
+      ? Object.keys(config.auth?.roles || {}).filter(
+          (role) => role !== "superadmin" || isSuperAdmin,
+        )
+      : [];
+  }, [config, isSuperAdmin]);
 
   if (!config || !users) {
     return (
@@ -469,10 +479,10 @@ export default function AuthenticationView({
                       <TableCell>
                         <Badge
                           variant={
-                            user.role === "admin" ? "default" : "outline"
+                            isAdminRole(user.role) ? "default" : "outline"
                           }
                           className={
-                            user.role === "admin"
+                            isAdminRole(user.role)
                               ? "bg-primary/20 text-primary hover:bg-primary/30"
                               : ""
                           }
@@ -485,80 +495,83 @@ export default function AuthenticationView({
                       <TableCell className="text-right">
                         <TooltipProvider>
                           <div className="flex items-center justify-end gap-2">
-                            {user.username !== "admin" && (
-                              <Tooltip>
-                                <TooltipTrigger asChild>
-                                  <Button
-                                    size="sm"
-                                    variant="outline"
-                                    className="h-8 px-2"
-                                    onClick={() => {
-                                      setSelectedUser(user.username);
-                                      setSelectedUserRole(
-                                        user.role || "viewer",
-                                      );
-                                      setShowRoleChange(true);
-                                    }}
-                                  >
-                                    <LuUserCog className="size-3.5" />
-                                    <span className="ml-1.5 hidden sm:inline-block">
-                                      {t("role.title", { ns: "common" })}
-                                    </span>
-                                  </Button>
-                                </TooltipTrigger>
-                                <TooltipContent>
-                                  <p>{t("users.table.changeRole")}</p>
-                                </TooltipContent>
-                              </Tooltip>
-                            )}
+                            {user.username !== "admin" &&
+                              (user.role !== "superadmin" || isSuperAdmin) && (
+                                <Tooltip>
+                                  <TooltipTrigger asChild>
+                                    <Button
+                                      size="sm"
+                                      variant="outline"
+                                      className="h-8 px-2"
+                                      onClick={() => {
+                                        setSelectedUser(user.username);
+                                        setSelectedUserRole(
+                                          user.role || "viewer",
+                                        );
+                                        setShowRoleChange(true);
+                                      }}
+                                    >
+                                      <LuUserCog className="size-3.5" />
+                                      <span className="ml-1.5 hidden sm:inline-block">
+                                        {t("role.title", { ns: "common" })}
+                                      </span>
+                                    </Button>
+                                  </TooltipTrigger>
+                                  <TooltipContent>
+                                    <p>{t("users.table.changeRole")}</p>
+                                  </TooltipContent>
+                                </Tooltip>
+                              )}
 
-                            {config.auth?.enabled !== false && (
-                              <Tooltip>
-                                <TooltipTrigger asChild>
-                                  <Button
-                                    size="sm"
-                                    variant="outline"
-                                    className="h-8 px-2"
-                                    onClick={() => {
-                                      setShowSetPassword(true);
-                                      setSelectedUser(user.username);
-                                    }}
-                                  >
-                                    <FaUserEdit className="size-3.5" />
-                                    <span className="ml-1.5 hidden sm:inline-block">
-                                      {t("users.table.password")}
-                                    </span>
-                                  </Button>
-                                </TooltipTrigger>
-                                <TooltipContent>
-                                  <p>{t("users.updatePassword")}</p>
-                                </TooltipContent>
-                              </Tooltip>
-                            )}
+                            {config.auth?.enabled !== false &&
+                              (user.role !== "superadmin" || isSuperAdmin) && (
+                                <Tooltip>
+                                  <TooltipTrigger asChild>
+                                    <Button
+                                      size="sm"
+                                      variant="outline"
+                                      className="h-8 px-2"
+                                      onClick={() => {
+                                        setShowSetPassword(true);
+                                        setSelectedUser(user.username);
+                                      }}
+                                    >
+                                      <FaUserEdit className="size-3.5" />
+                                      <span className="ml-1.5 hidden sm:inline-block">
+                                        {t("users.table.password")}
+                                      </span>
+                                    </Button>
+                                  </TooltipTrigger>
+                                  <TooltipContent>
+                                    <p>{t("users.updatePassword")}</p>
+                                  </TooltipContent>
+                                </Tooltip>
+                              )}
 
-                            {user.username !== "admin" && (
-                              <Tooltip>
-                                <TooltipTrigger asChild>
-                                  <Button
-                                    size="sm"
-                                    variant="destructive"
-                                    className="h-8 px-2"
-                                    onClick={() => {
-                                      setShowDelete(true);
-                                      setSelectedUser(user.username);
-                                    }}
-                                  >
-                                    <HiTrash className="size-3.5" />
-                                    <span className="ml-1.5 hidden sm:inline-block">
-                                      {t("button.delete", { ns: "common" })}
-                                    </span>
-                                  </Button>
-                                </TooltipTrigger>
-                                <TooltipContent>
-                                  <p>{t("users.table.deleteUser")}</p>
-                                </TooltipContent>
-                              </Tooltip>
-                            )}
+                            {user.username !== "admin" &&
+                              (user.role !== "superadmin" || isSuperAdmin) && (
+                                <Tooltip>
+                                  <TooltipTrigger asChild>
+                                    <Button
+                                      size="sm"
+                                      variant="destructive"
+                                      className="h-8 px-2"
+                                      onClick={() => {
+                                        setShowDelete(true);
+                                        setSelectedUser(user.username);
+                                      }}
+                                    >
+                                      <HiTrash className="size-3.5" />
+                                      <span className="ml-1.5 hidden sm:inline-block">
+                                        {t("button.delete", { ns: "common" })}
+                                      </span>
+                                    </Button>
+                                  </TooltipTrigger>
+                                  <TooltipContent>
+                                    <p>{t("users.table.deleteUser")}</p>
+                                  </TooltipContent>
+                                </Tooltip>
+                              )}
                           </div>
                         </TooltipProvider>
                       </TableCell>
@@ -654,7 +667,10 @@ export default function AuthenticationView({
                   roles.map((roleData) => (
                     <TableRow key={roleData.name} className="group">
                       <TableCell className="font-medium">
-                        {roleData.name}
+                        {t(`role.${roleData.name}`, {
+                          ns: "common",
+                          defaultValue: roleData.name,
+                        })}
                       </TableCell>
                       <TableCell>
                         {roleData.cameras.length === 0 ? (
@@ -691,7 +707,8 @@ export default function AuthenticationView({
                         <TooltipProvider>
                           <div className="flex items-center justify-end gap-2">
                             {roleData.name !== "admin" &&
-                              roleData.name !== "viewer" && (
+                              roleData.name !== "viewer" &&
+                              roleData.name !== "superadmin" && (
                                 <>
                                   <Tooltip>
                                     <TooltipTrigger asChild>

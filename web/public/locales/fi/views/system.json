@@ -137,7 +137,7 @@
         "shm_too_low": "/dev/shm allokaatiota ({{total}} MB) pitäisi lisätä ainakin {{min}} MB",
         "failed_login_one": "Epäonnistunut kirjautuminen käyttäjälle {{user}}",
         "failed_login_other": "Epäonnistuneet kirjautumisyritykset käyttäjälle {{user}}",
-        "update_available": "Frigate {{version}} on saatavilla"
+        "update_available": "Architel VMS {{version}} on saatavilla"
       },
       "streamPrefix": "Striimi {{index}}: {{message}}"
     }

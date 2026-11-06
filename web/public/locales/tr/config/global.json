@@ -1348,8 +1348,7 @@
             "description": "Bu modelin çalıştığı donanım; '<algılayıcı>' veya <'algılayıcı'>:<'aygıt'> şeklinde (örneğin 'edgetpu:pci0' veya 'openvino:GPU'). Aynı aygıtı birden fazla kes listelemek o aygıt üzerinde ek çıkarım (inference) işlemlerinin çalışmasına yol açar."
         },
         "path": {
-            "label": "Özelleştirilmiş nesne algılayıcı model yolu",
-            "description": "Özelleştirilmiş algılama modeli dosya yolu (veya Frigate+ modelleri için plus://<model_kimliği>)."
+            "label": "Özelleştirilmiş nesne algılayıcı model yolu"
         },
         "labelmap_path": {
             "label": "Özelleştirilmiş nesne algılayıcı için etiket haritası (labelmap)",

@@ -299,7 +299,7 @@
         "shm_too_low": "L'assignació /dev/shm ({{total}} MB) s'hauria d'augmentar a com a mínim {{min}} MB",
         "failed_login_one": "Error en l'intent d'inici de sessió de {{user}}",
         "failed_login_other": "Intents d'inici de sessió fallits per {{user}}",
-        "update_available": "Frigate {{version}} està disponible",
+        "update_available": "Architel VMS {{version}} està disponible",
         "ffmpeg_high_cpu": "L'ús de la CPU FFmpeg és alt ({{cpu}}% mitjana)",
         "detect_high_cpu": "L'ús de la CPU de detecció és alt ({{cpu}}% mitjana)",
         "object_processing_behind": "No s'ha pogut mantenir el processament d'objectes rastrejat, de manera que s'han deixat anar els fotogrames de la càmera. Comprova la utilització de la CPU, i si els límits de la CPU o la fixació al contenidor o VM estan deixant la Architel VMS massa poca CPU"

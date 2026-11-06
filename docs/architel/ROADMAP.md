@@ -67,3 +67,12 @@ All stages maintain [Decisions](DECISIONS.md) and [Integrations](INTEGRATIONS.md
 add focused regression coverage for implementation changes, and preserve upstream
 mergeability. An ACS integration can ship later without delaying a standalone
 video release if it is not a launch acceptance requirement.
+
+
+### Authenticated development baseline update
+
+Superadmin inheritance and account protections are implemented. The mock
+backend now publishes authenticated port 8972; the frontend uses native login
+and session cookies. An offline provisioning command promotes existing
+accounts with a database backup. Production TLS, site-specific permission
+boundaries, and ACS identity integration remain separate roadmap work.

@@ -187,10 +187,13 @@ camera checks; outbound WebSocket topics are fail-closed. TLS and configurable
 listeners are supported. These are source observations, not proof of complete
 security coverage.
 
-The internal port (default 5000) grants anonymous admin. Our development Compose
-binds it to loopback and Vite proxies to it. That setup bypasses login and cannot
-validate authenticated operator workflows. The production authenticated listener
-defaults to 8971; internal services must not be exposed to untrusted networks.
+The internal port (default 5000) grants anonymous admin, never superadmin. The
+local development Compose files now publish authenticated listeners instead:
+8971 for normal development and 8972 for mock cameras. Vite proxies to the
+selected authenticated listener. Native login, session cookies, and anonymous
+API rejection were verified against the mock backend. The mock listener uses
+HTTP on host loopback only; production requires its own TLS configuration.
+Internal services must not be exposed to untrusted networks.
 The original devcontainer Compose also exposes a no-auth MQTT broker, so neither
 development Compose file is a production deployment specification.
 
@@ -303,3 +306,15 @@ test, validate vendor APIs, or certify licensing. Earlier development bring-up
 verified the local backend health/API and Vite config proxy with zero cameras.
 Only documentation is changed in this stage; validate Markdown links and diff
 whitespace. Production claims require the acceptance work in the roadmap.
+
+
+## Superadmin and authenticated development (2026-11-06)
+
+The built-in `superadmin` role inherits site administration and provides an
+explicit engineering permission boundary. User management protects these
+accounts from ordinary admins; authentication, proxy, and environment writes
+require superadmin. Existing viewer/custom camera restrictions are retained.
+No database schema migration or automatic account promotion is introduced.
+See [AUTHENTICATION.md](AUTHENTICATION.md) for provisioning and development
+listener configuration. Development Compose files publish authenticated
+listeners rather than the anonymous admin listener.

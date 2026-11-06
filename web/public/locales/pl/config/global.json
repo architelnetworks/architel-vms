@@ -965,7 +965,7 @@
         },
         "topic_prefix": {
             "label": "Prefiks tematów",
-            "description": "Prefiks dla wszystkich tematów MQTT publikowanych przez Architel VMS (domyślnie frigate)."
+            "description": "Prefiks dla wszystkich tematów MQTT publikowanych przez Architel VMS (domyślnie Architel VMS)."
         },
         "client_id": {
             "label": "Identyfikator klienta",

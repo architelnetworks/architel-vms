@@ -162,7 +162,7 @@
       "description": "Udostępnij adres URL z aktualnym znacznikiem czasu pozycji odtwarzacza lub wybierz niestandardowy znacznik czasu. Należy pamiętać, że nie jest to publiczny link udostępniania i jest dostępny wyłącznie dla użytkowników mających dostęp do Architel VMS i tej kamery.",
       "custom": "Własny znacznik czasu",
       "button": "Udostępnij adres URL ze znacznikiem czasu",
-      "shareTitle": "Znacznik czasu przeglądu Frigate: {{camera}}"
+      "shareTitle": "Znacznik czasu przeglądu Architel VMS: {{camera}}"
     }
   },
   "streaming": {

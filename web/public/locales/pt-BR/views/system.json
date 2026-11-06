@@ -298,7 +298,7 @@
         "shm_too_low": "A alocação de /dev/shm ({{total}} MB) deve ser aumentada para pelo menos {{min}} MB",
         "failed_login_other": "Tentativas de login malsucedidas para {{user}}",
         "failed_login_one": "Tentativa de login malsucedida para {{user}}",
-        "update_available": "O Frigate {{version}} está disponível",
+        "update_available": "O Architel VMS {{version}} está disponível",
         "ffmpeg_high_cpu": "O uso de CPU do FFmpeg está alto ({{cpu}}% em média)",
         "detect_high_cpu": "O uso de CPU da detecção está alto ({{cpu}}% em média)"
       },

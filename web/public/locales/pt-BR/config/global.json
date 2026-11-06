@@ -1503,8 +1503,7 @@
             "description": "Hardware em que este modelo é executado, no formato '<detector>' ou '<detector>:<device>' (por exemplo, 'edgetpu:pci:0' ou 'openvino:GPU'). Listar o mesmo dispositivo mais de uma vez executa processos de inferência adicionais nele."
         },
         "path": {
-            "label": "Caminho do modelo personalizado do detector de objetos",
-            "description": "Caminho para um arquivo de modelo de detecção personalizado (ou plus://<model_id> para modelos do Frigate+)."
+            "label": "Caminho do modelo personalizado do detector de objetos"
         },
         "labelmap_path": {
             "description": "Caminho para um arquivo de labelmap que associa classes numéricas a rótulos de texto para o detector.",

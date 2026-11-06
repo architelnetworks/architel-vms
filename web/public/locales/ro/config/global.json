@@ -1512,8 +1512,7 @@
             "description": "Hardware-ul pe care rulează acest model, sub forma '<detector>' sau '<detector>:<device>' (de exemplu 'edgetpu:pci:0' sau 'openvino:GPU'). Listarea aceluiași dispozitiv de mai multe ori rulează procese de inferență suplimentare pe acesta."
         },
         "path": {
-            "label": "Calea către modelul personalizat al detectorului de obiecte",
-            "description": "Calea către un fișier de model de detecție personalizat (sau plus://<model_id> pentru modele Frigate+)."
+            "label": "Calea către modelul personalizat al detectorului de obiecte"
         },
         "labelmap_path": {
             "label": "Mapare de etichete pentru detectorul de obiecte personalizat",

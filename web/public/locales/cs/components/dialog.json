@@ -58,7 +58,7 @@
       "description": "Sdílejte URL s časovou značkou aktuální pozice přehrávače nebo vyberte vlastní časovou značku. Nejde o veřejný odkaz; je přístupný pouze uživatelům s přístupem k Architel VMS a této kameře.",
       "custom": "Vlastní časová značka",
       "button": "Sdílet URL s časovou značkou",
-      "shareTitle": "Časová značka revize Frigate: {{camera}}"
+      "shareTitle": "Časová značka revize Architel VMS: {{camera}}"
     },
     "genaiDescription": {
       "toast": {

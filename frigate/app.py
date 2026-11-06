@@ -620,7 +620,7 @@ class FrigateApp:
                 )
                 User.replace(
                     username="admin",
-                    role="admin",
+                    role=User.get_by_id("admin").role,
                     password_hash=password_hash,
                     password_changed_at=datetime.datetime.now(),
                     notification_tokens=[],

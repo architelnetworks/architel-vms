@@ -145,7 +145,7 @@ paths:
         - Auth
       summary: Get all users
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Returns a list of all users with their usernames and roles. Requires admin role. Each user object contains the username and assigned role.
       operationId: get_users_users_get
@@ -163,9 +163,9 @@ paths:
         - Auth
       summary: Create new user
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
-        Creates a new user with the specified username, password, and role. Requires admin role. Password must be at least 12 characters long.
+        Creates a new user with the specified username, password, and role. Requires admin or superadmin role. Only superadmins can create superadmin accounts. Password must be at least 12 characters long.
       operationId: create_user_users_post
       requestBody:
         required: true
@@ -194,9 +194,9 @@ paths:
         - Auth
       summary: Delete user
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
-        Deletes a user by username. The built-in admin user cannot be deleted. Requires admin role. Returns success message or error if user not found.
+        Deletes a user by username. The built-in admin user cannot be deleted. Requires admin role. Only superadmins can delete superadmin accounts. The last superadmin cannot be deleted. Returns success message or error if user not found.
       operationId: delete_user_users__username__delete
       parameters:
         - name: username
@@ -264,9 +264,9 @@ paths:
         - Auth
       summary: Update user role
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
-        Updates a user's role. The built-in admin user's role cannot be modified. Requires admin role. Valid roles are defined in the configuration.
+        Updates a user's role. The built-in admin user's role cannot be modified. Requires admin role. Only superadmins can assign or modify the superadmin role. The last superadmin cannot be demoted. Valid roles are defined in the configuration.
       operationId: update_role_users__username__role_put
       parameters:
         - name: username
@@ -348,7 +348,7 @@ paths:
         - Camera
       summary: Go2Rtc Add Stream
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Add or update a go2rtc stream configuration.
       operationId: go2rtc_add_stream_go2rtc_streams__stream_name__put
@@ -386,7 +386,7 @@ paths:
         - Camera
       summary: Go2Rtc Delete Stream
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Delete a go2rtc stream.
       operationId: go2rtc_delete_stream_go2rtc_streams__stream_name__delete
@@ -418,7 +418,7 @@ paths:
         - Camera
       summary: Go2Rtc Stream Bitrate
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Measure a go2rtc stream's bitrate over a few seconds.
       operationId: 
@@ -481,14 +481,14 @@ paths:
       security:
         - frigateAdminAuth: []
       x-required-role: admin
-      description: '**Access:** Admin role required.'
+      description: '**Access:** Admin or superadmin role required.'
   /keyframe_analysis:
     get:
       tags:
         - Camera
       summary: Keyframe Analysis
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Probe a camera's record stream and classify its keyframe spacing.
 
@@ -523,7 +523,7 @@ paths:
         - Camera
       summary: Ffprobe Snapshot
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Get a snapshot from a stream URL using ffmpeg.
       operationId: ffprobe_snapshot_ffprobe_snapshot_get
@@ -563,7 +563,7 @@ paths:
         - Camera
       summary: Reolink Detect
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Detect Reolink camera capabilities and recommend optimal protocol.
 
@@ -613,7 +613,7 @@ paths:
         - Camera
       summary: Probe ONVIF device
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Probe an ONVIF device to determine capabilities and optionally test available stream URIs. Query params: host (required), port (default 80), username, password, test (boolean), auth_type (basic or digest, default basic).
       operationId: onvif_probe_onvif_probe_get
@@ -680,7 +680,7 @@ paths:
         - Camera
       summary: Delete Camera
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Delete a camera and all its associated data.
 
@@ -726,7 +726,7 @@ paths:
         - Camera
       summary: Camera Set
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Set a camera feature state. Use camera_name='*' to target all cameras.
 
@@ -816,7 +816,7 @@ paths:
         - Camera
       summary: Camera Set
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Set a camera feature state. Use camera_name='*' to target all cameras.
 
@@ -905,7 +905,7 @@ paths:
         - Chat
       summary: Get available tools
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Returns OpenAI-compatible tool definitions for function calling.
       operationId: get_tools_chat_tools_get
@@ -924,7 +924,7 @@ paths:
         - Chat
       summary: Execute a tool
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Execute a tool function call from an LLM.
       operationId: execute_tool_chat_execute_post
@@ -955,7 +955,7 @@ paths:
         - Chat
       summary: Chat completion with tool calling
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Send a chat message to the configured GenAI provider with tool calling support. The LLM can call Frigate tools to answer questions about your cameras and events.
       operationId: chat_completion_chat_completion_post
@@ -986,7 +986,7 @@ paths:
         - Chat
       summary: Start a VLM watch job
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Start monitoring a camera with the vision provider. The VLM analyzes live frames until the specified condition is met, then sends a notification. Only one watch job can run at a time.
       operationId: start_vlm_monitor_vlm_monitor_post
@@ -1016,7 +1016,7 @@ paths:
         - Chat
       summary: Get current VLM watch job
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Returns the current (or most recently completed) VLM watch job.
       operationId: get_vlm_monitor_vlm_monitor_get
@@ -1034,7 +1034,7 @@ paths:
         - Chat
       summary: Cancel the current VLM watch job
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Cancels the running watch job if one exists.
       operationId: cancel_vlm_monitor_vlm_monitor_delete
@@ -1053,7 +1053,7 @@ paths:
         - Classification
       summary: Get all registered faces
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Returns a dictionary mapping face names to lists of image filenames.
             Each key represents a registered face name, and the value is a list of image
@@ -1076,7 +1076,7 @@ paths:
         - Classification
       summary: Reprocess a face training image
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Reprocesses a face training image to update the prediction.
             Requires face recognition to be enabled in the configuration. The training file
@@ -1111,7 +1111,7 @@ paths:
         - Classification
       summary: Classify and save a face training image
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Adds a training image to a specific face name for face recognition.
             Accepts either a training file from the train directory or an event_id to extract
@@ -1156,7 +1156,7 @@ paths:
         - Classification
       summary: Create a new face name
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Creates a new folder for a face name in the faces directory.
             This is used to organize face training images. The face name is sanitized and
@@ -1192,7 +1192,7 @@ paths:
         - Classification
       summary: Register a face image
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Registers a face image for a specific face name by uploading an image file.
             The uploaded image is processed and added to the face recognition system. Returns a
@@ -1234,7 +1234,7 @@ paths:
         - Classification
       summary: Recognize a face from an uploaded image
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Recognizes a face from an uploaded image file by comparing it against
             registered faces in the system. Returns the recognized face name and confidence score,
@@ -1268,7 +1268,7 @@ paths:
         - Classification
       summary: Reclassify a face image to a different name
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Moves a single face image from one person's folder to another.
             The image is moved and renamed, and the face classifier is cleared to
@@ -1311,7 +1311,7 @@ paths:
         - Classification
       summary: Delete face images
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Deletes specific face images for a given face name. The image IDs must belong
             to the specified face folder. To delete an entire face folder, all image IDs in that
@@ -1352,7 +1352,7 @@ paths:
         - Classification
       summary: Rename a face name
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Renames a face name in the system. The old name must exist and the new
             name must be valid. Returns a success message or an error if face recognition is not enabled.
@@ -1392,7 +1392,7 @@ paths:
         - Classification
       summary: Reprocess a license plate
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Reprocesses a license plate image to update the plate.
             Requires license plate recognition to be enabled in the configuration. The event_id
@@ -1427,7 +1427,7 @@ paths:
         - Classification
       summary: Reindex embeddings
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Reindexes the embeddings for all tracked objects.
             Requires semantic search to be enabled in the configuration. Returns a success message or an error if semantic search is not enabled.
@@ -1448,7 +1448,7 @@ paths:
         - Classification
       summary: Transcribe audio
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Transcribes audio from a specific event.
             Requires audio transcription to be enabled in the configuration. The event_id
@@ -1482,7 +1482,7 @@ paths:
         - Classification
       summary: Get classification dataset
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Gets the dataset for a specific classification model.
             The name must exist in the classification models. Returns a success message or an error if the name is invalid.
@@ -1557,7 +1557,7 @@ paths:
         - Classification
       summary: Get classification train images
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Gets the train images for a specific classification model.
             The name must exist in the classification models. Returns a success message or an error if the name is invalid.
@@ -1589,7 +1589,7 @@ paths:
         - Classification
       summary: Train a classification model
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Trains a specific classification model.
             The name must exist in the classification models. Returns a success message or an error if the name is invalid.
@@ -1623,7 +1623,7 @@ paths:
         - Classification
       summary: Delete classification dataset images
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Deletes specific dataset images for a given classification model and category.
             The image IDs must belong to the specified category. Returns a success message or an error if the name or category is invalid.
@@ -1671,7 +1671,7 @@ paths:
         - Classification
       summary: Reclassify a dataset image to a different category
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Moves a single dataset image from one category to another.
             The image is re-saved as PNG in the target category and removed from the source.
@@ -1719,7 +1719,7 @@ paths:
         - Classification
       summary: Rename a classification category
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Renames a classification category for a given classification model.
             The old category must exist and the new name must be valid. Returns a success message or an error if the name is invalid.
@@ -1767,7 +1767,7 @@ paths:
         - Classification
       summary: Categorize a classification image
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Categorizes a specific classification image for a given classification model and category.
             The image must exist in the specified category. Returns a success message or an error if the name or category is invalid.
@@ -1809,7 +1809,7 @@ paths:
         - Classification
       summary: Create an empty classification category folder
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Creates an empty folder for a classification category.
             This is used to create folders for categories that don't have images yet.
@@ -1851,7 +1851,7 @@ paths:
         - Classification
       summary: Delete classification train images
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Deletes specific train images for a given classification model.
             The image IDs must belong to the specified train folder. Returns a success message or an error if the name is invalid.
@@ -1893,7 +1893,7 @@ paths:
         - Classification
       summary: Generate state classification examples
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Generate examples for state classification.
       operationId: 
@@ -1926,7 +1926,7 @@ paths:
         - Classification
       summary: Generate object classification examples
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Generate examples for object classification.
       operationId: 
@@ -1959,7 +1959,7 @@ paths:
         - Classification
       summary: Delete a classification model
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Deletes a specific classification model and all its associated data.
             Works even if the model is not in the config (e.g., partially created during wizard).
@@ -2207,7 +2207,7 @@ paths:
       security:
         - frigateAdminAuth: []
       x-required-role: admin
-      description: '**Access:** Admin role required.'
+      description: '**Access:** Admin or superadmin role required.'
   /review/activity/motion:
     get:
       tags:
@@ -2330,7 +2330,7 @@ paths:
         - Review
       summary: Generate a review item description
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Re-runs a review item through the GenAI descriptions process.
             Frames are always taken from recordings, and both alerts and detections are
@@ -2520,7 +2520,7 @@ paths:
       security:
         - frigateAdminAuth: []
       x-required-role: admin
-      description: '**Access:** Admin role required.'
+      description: '**Access:** Admin or superadmin role required.'
   /metrics:
     get:
       tags:
@@ -2546,7 +2546,7 @@ paths:
         - App
       summary: List available GenAI models
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Returns available models for each configured GenAI provider.
       operationId: genai_models_genai_models_get
@@ -2565,7 +2565,7 @@ paths:
         - App
       summary: Get the model assigned to each GenAI role
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Returns the selected model and its context size for each configured GenAI role. Reads only what the client saved when it initialized, so the provider is not queried for its model list.
       operationId: genai_roles_genai_roles_get
@@ -2584,7 +2584,7 @@ paths:
         - App
       summary: Probe a GenAI provider without saving config
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Builds a transient client from the request body and returns its available models. Used to validate provider credentials in the UI before saving the configuration.
       operationId: genai_probe_genai_probe_post
@@ -2650,7 +2650,7 @@ paths:
         - App
       summary: Get Active Profile
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Get the currently active profile.
       operationId: get_active_profile_profile_active_get
@@ -2669,7 +2669,7 @@ paths:
         - App
       summary: Ffmpeg Presets
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Return available ffmpeg preset keys for config UI usage.
       operationId: ffmpeg_presets_ffmpeg_presets_get
@@ -2688,7 +2688,7 @@ paths:
         - App
       summary: Config Raw Paths
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Admin-only endpoint that returns camera paths and go2rtc streams without credential masking.
       operationId: config_raw_paths_config_raw_paths_get
@@ -2716,7 +2716,7 @@ paths:
       security:
         - frigateAdminAuth: []
       x-required-role: admin
-      description: '**Access:** Admin role required.'
+      description: '**Access:** Admin or superadmin role required.'
   /config/save:
     post:
       tags:
@@ -2751,7 +2751,7 @@ paths:
       security:
         - frigateAdminAuth: []
       x-required-role: admin
-      description: '**Access:** Admin role required.'
+      description: '**Access:** Admin or superadmin role required.'
   /config/set:
     put:
       tags:
@@ -2779,7 +2779,7 @@ paths:
       security:
         - frigateAdminAuth: []
       x-required-role: admin
-      description: '**Access:** Admin role required.'
+      description: '**Access:** Admin or superadmin role required.'
   /vainfo:
     get:
       tags:
@@ -2819,7 +2819,7 @@ paths:
         - Logs
       summary: Logs
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Get logs for the requested service (frigate/nginx/go2rtc)
       operationId: logs_logs__service__get
@@ -2898,14 +2898,14 @@ paths:
       security:
         - frigateAdminAuth: []
       x-required-role: admin
-      description: '**Access:** Admin role required.'
+      description: '**Access:** Admin or superadmin role required.'
   /media/sync:
     post:
       tags:
         - App
       summary: Start media sync job
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Start an asynchronous media sync job to find and (optionally) remove orphaned media files.
             Returns 202 with job details when queued, or 409 if a job is already running.
@@ -2937,7 +2937,7 @@ paths:
         - App
       summary: Get current media sync job
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Retrieve the current running media sync job, if any. Returns the job details
             or null when no job is active.
@@ -2957,7 +2957,7 @@ paths:
         - App
       summary: Get media sync job status
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Get status and results for the specified media sync job id. Returns 200 with
             job details including results, or 404 if the job is not found.
@@ -3098,7 +3098,7 @@ paths:
       security:
         - frigateAdminAuth: []
       x-required-role: admin
-      description: '**Access:** Admin role required.'
+      description: '**Access:** Admin or superadmin role required.'
   /plus/models:
     get:
       tags:
@@ -3600,7 +3600,7 @@ paths:
         - Export
       summary: Create export case
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Creates a new export case.
       operationId: create_export_case_cases_post
@@ -3664,7 +3664,7 @@ paths:
         - Export
       summary: Update export case
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Updates an existing export case.
       operationId: update_export_case_cases__case_id__patch
@@ -3702,7 +3702,7 @@ paths:
         - Export
       summary: Delete export case
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Deletes an export case.
             Exports that reference this case will have their export_case set to null.
@@ -3920,7 +3920,7 @@ paths:
         - Export
       summary: Rename export
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Renames an export.
             NOTE: This changes the friendly name of the export, not the filename.
@@ -4052,7 +4052,7 @@ paths:
         - Export
       summary: Bulk delete exports
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Deletes one or more exports by ID. All IDs must exist and none can be in-progress.
       operationId: bulk_delete_exports_exports_delete_post
@@ -4084,7 +4084,7 @@ paths:
         - Export
       summary: Bulk reassign exports to a case
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Assigns or unassigns one or more exports to/from a case. All IDs must exist.
       operationId: bulk_reassign_exports_exports_reassign_post
@@ -4116,7 +4116,7 @@ paths:
         - Hardware
       summary: Probe Hardware
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Get the object detection hardware attached to this system.
 
@@ -4159,7 +4159,7 @@ paths:
         - Hardware
       summary: Hwaccel Recommendation
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Get the hardware decoding this system can do.
 
@@ -4211,7 +4211,7 @@ paths:
         - Notices
       summary: Get Notices
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Get notices, most severe first.
 
@@ -4251,7 +4251,7 @@ paths:
         - Notices
       summary: Get Notice Stats
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Get lifetime occurrence counts per notice kind.
       operationId: get_notice_stats_notices_stats_get
@@ -4270,7 +4270,7 @@ paths:
         - Notices
       summary: Get Muted Checks
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Get the muted config and stream check rows, newest first.
       operationId: get_muted_checks_notices_muted_checks_get
@@ -4289,7 +4289,7 @@ paths:
         - Notices
       summary: Unhide All Notices
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Show every acknowledged and muted notice and check row again.
       operationId: unhide_all_notices_notices_hidden_delete
@@ -4308,7 +4308,7 @@ paths:
         - Notices
       summary: Acknowledge Notice
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Hide a notice until it happens again.
 
@@ -4343,7 +4343,7 @@ paths:
         - Notices
       summary: Mute Notice
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Hide a notice or a config or stream check row for good.
       operationId: mute_notice_notices__notice_id__mute_post
@@ -4375,7 +4375,7 @@ paths:
         - Notices
       summary: Unhide Notice
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Show an acknowledged or muted notice or check row again.
       operationId: unhide_notice_notices__notice_id__hidden_delete
@@ -5080,7 +5080,7 @@ paths:
         - Events
       summary: Delete event
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Deletes an event from the database.
             Returns a success message or an error if the event is not found.
@@ -5114,7 +5114,7 @@ paths:
         - Events
       summary: Set event retain indefinitely.
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Sets an event to retain indefinitely.
             Returns a success message or an error if the event is not found.
@@ -5148,7 +5148,7 @@ paths:
         - Events
       summary: Stop event from being retained indefinitely
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Stops an event from being retained indefinitely.
             Returns a success message or an error if the event is not found.
@@ -5183,7 +5183,7 @@ paths:
         - Events
       summary: Send event to Frigate+
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Sends an event to Frigate+.
             Returns a success message or an error if the event is not found.
@@ -5222,7 +5222,7 @@ paths:
         - Events
       summary: Submit false positive to Frigate+
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Submit an event as a false positive to Frigate+.
             This endpoint is the same as the standard Frigate+ submission endpoint,
@@ -5257,7 +5257,7 @@ paths:
         - Events
       summary: Set event sub label
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Sets an event's sub label.
             Returns a success message or an error if the event is not found.
@@ -5297,7 +5297,7 @@ paths:
         - Events
       summary: Set event license plate
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Sets an event's license plate.
             Returns a success message or an error if the event is not found.
@@ -5337,7 +5337,7 @@ paths:
         - Events
       summary: Set custom classification attributes
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Sets an event's custom classification attributes for all attribute-type models that apply to the event's object type.
       operationId: set_attributes_events__event_id__attributes_post
@@ -5376,7 +5376,7 @@ paths:
         - Events
       summary: Set event description
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Sets an event's description.
             Returns a success message or an error if the event is not found.
@@ -5416,7 +5416,7 @@ paths:
         - Events
       summary: Regenerate event description
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Regenerates an event's description.
             Returns a success message or an error if the event is not found.
@@ -5469,7 +5469,7 @@ paths:
         - Events
       summary: Generate description embedding
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Generates an embedding for an event's description.
             Returns a success message or an error if the event is not found.
@@ -5502,7 +5502,7 @@ paths:
         - Events
       summary: Delete events
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Deletes a list of events from the database.
             Returns a success message or an error if the events are not found.
@@ -5535,7 +5535,7 @@ paths:
         - Events
       summary: Create manual event
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Creates a manual event in the database.
             Returns a success message or an error if the event is not found.
@@ -5589,7 +5589,7 @@ paths:
         - Events
       summary: End manual event
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Ends a manual event.
             Returns a success message or an error if the event is not found.
@@ -5630,7 +5630,7 @@ paths:
         - Events
       summary: Create trigger embedding
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Creates a trigger embedding for a specific trigger.
             Returns a success message or an error if the trigger is not found.
@@ -5678,7 +5678,7 @@ paths:
         - Events
       summary: Update trigger embedding
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Updates a trigger embedding for a specific trigger.
             Returns a success message or an error if the trigger is not found.
@@ -5727,7 +5727,7 @@ paths:
         - Events
       summary: Delete trigger embedding
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Deletes a trigger embedding for a specific trigger.
             Returns a success message or an error if the trigger is not found.
@@ -5771,7 +5771,7 @@ paths:
         - Events
       summary: Get triggers status
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Gets the status of all triggers for a specific camera.
             Returns a success message or an error if the camera is not found.
@@ -6682,7 +6682,7 @@ paths:
         - Media
       summary: Clear Region Grid
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Clear the region grid for a camera.
       operationId: clear_region_grid__camera_name__region_grid_delete
@@ -7351,7 +7351,7 @@ paths:
       security:
         - frigateAdminAuth: []
       x-required-role: admin
-      description: '**Access:** Admin role required.'
+      description: '**Access:** Admin or superadmin role required.'
   /recordings/summary:
     get:
       tags:
@@ -7606,7 +7606,7 @@ paths:
         - Recordings
       summary: Delete recordings
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Deletes recordings within the specified time range.
             Recordings can be filtered by cameras and kept based on motion, objects, or audio attributes.
@@ -7667,7 +7667,7 @@ paths:
         - App
       summary: Start debug replay
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Start a debug replay session from camera recordings. Returns immediately while clip generation runs as a background job; subscribe to the 'debug_replay' job_state WS topic to track progress.
       operationId: start_debug_replay_debug_replay_start_post
@@ -7705,7 +7705,7 @@ paths:
         - App
       summary: Start debug replay from an export
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Start a debug replay session covering an existing export's time range. The end time is derived from the export's video duration.
       operationId: 
@@ -7744,7 +7744,7 @@ paths:
         - App
       summary: Get debug replay status
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Get the status of the current debug replay session.
       operationId: get_debug_replay_status_debug_replay_status_get
@@ -7764,7 +7764,7 @@ paths:
         - App
       summary: Stop debug replay
       description: |-
-        **Access:** Admin role required.
+        **Access:** Admin or superadmin role required.
 
         Stop the active debug replay session and clean up all artifacts.
       operationId: stop_debug_replay_debug_replay_stop_post
@@ -9651,10 +9651,8 @@ components:
       type: apiKey
       in: cookie
       name: frigate_token
-      description: Authenticated session whose resolved role is 'admin'. The 
-        session is established via the JWT cookie issued by POST /login, or via 
-        proxy auth headers (remote-user / remote-role) when Frigate runs behind 
-        an authenticating reverse proxy.
+      description: Authenticated admin or superadmin session established through
+        POST /login or trusted proxy authentication.
     frigateUserAuth:
       type: apiKey
       in: cookie

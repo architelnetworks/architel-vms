@@ -78,6 +78,7 @@ from frigate.util.live_streams import (
     sync_transcode_streams,
 )
 from frigate.util.object_names import get_categorized_object_names
+from frigate.util.roles import is_admin_role
 from frigate.util.schema import get_config_schema
 from frigate.util.services import (
     Go2rtcStreamIssue,
@@ -131,7 +132,7 @@ def stats(
     stats_data = request.app.stats_emitter.get_latest_stats()
 
     # Admins see the full snapshot
-    if request.headers.get("remote-role") == "admin":
+    if is_admin_role(request.headers.get("remote-role")):
         return JSONResponse(content=stats_data)
 
     allowed_set = set(allowed_cameras)
@@ -317,7 +318,7 @@ def config(request: Request):
         mode="json", warnings="none", exclude_none=True
     )
 
-    is_admin = request.headers.get("remote-role") == "admin"
+    is_admin = is_admin_role(request.headers.get("remote-role"))
 
     # hide environment_vars and the notification email from non-admin users
     if not is_admin:
@@ -633,8 +634,34 @@ def _restricted_go2rtc_streams_response(
     )
 
 
+def _protected_auth_config_response(
+    request: Request, config: FrigateConfig
+) -> JSONResponse | None:
+    """Keep site administrators from changing the engineering trust boundary."""
+    if request.headers.get("remote-role") == "superadmin":
+        return None
+    current = request.app.frigate_config
+    excluded = {"roles", "admin_first_time_login"}
+    if (
+        config.auth.model_dump(exclude=excluded)
+        != current.auth.model_dump(exclude=excluded)
+        or config.proxy != current.proxy
+        or config.environment_vars != current.environment_vars
+    ):
+        return JSONResponse(
+            content={
+                "success": False,
+                "message": "Superadmin role is required to change authentication, proxy, or environment settings",
+            },
+            status_code=403,
+        )
+    return None
+
+
 @router.post("/config/save", dependencies=[Depends(require_role(["admin"]))])
-def config_save(save_option: str, body: Any = Body(media_type="text/plain")):
+def config_save(
+    request: Request, save_option: str, body: Any = Body(media_type="text/plain")
+):
     new_config = body.decode()
     if not new_config:
         return JSONResponse(
@@ -651,7 +678,7 @@ def config_save(save_option: str, body: Any = Body(media_type="text/plain")):
         yaml_config.preserve_quotes = True
         full_config = yaml_config.load(StringIO(new_config))
 
-        FrigateConfig.parse_yaml(new_config)
+        parsed_config = FrigateConfig.parse_yaml(new_config)
 
     except ValidationError as e:
         error_message = []
@@ -709,6 +736,10 @@ def config_save(save_option: str, body: Any = Body(media_type="text/plain")):
             status_code=400,
         )
 
+    protected_response = _protected_auth_config_response(request, parsed_config)
+    if protected_response is not None:
+        return protected_response
+
     config_file = find_config_file()
 
     try:
@@ -733,7 +764,7 @@ def config_save(save_option: str, body: Any = Body(media_type="text/plain")):
             content=(
                 {
                     "success": False,
-                    "message": "Could not write config file, be sure that Frigate has write permission on the config file.",
+                    "message": "Could not write config file, be sure that Architel VMS has write permission on the config file.",
                 }
             ),
             status_code=400,
@@ -748,7 +779,7 @@ def config_save(save_option: str, body: Any = Body(media_type="text/plain")):
                 content=(
                     {
                         "success": True,
-                        "message": "Config successfully saved, unable to restart Frigate",
+                        "message": "Config successfully saved, unable to restart Architel VMS",
                     }
                 ),
                 status_code=200,
@@ -1121,6 +1152,25 @@ def config_set(request: Request, body: AppConfigSetBody):
                         **updates,
                     }
 
+                # Reject protected paths before they can reach the saved file.
+                if request.headers.get("remote-role") != "superadmin" and any(
+                    path == "auth"
+                    or (
+                        path.startswith("auth.")
+                        and path != "auth.roles"
+                        and not path.startswith("auth.roles.")
+                    )
+                    or path.split(".")[0] in {"proxy", "environment_vars"}
+                    for path in updates
+                ):
+                    return JSONResponse(
+                        content={
+                            "success": False,
+                            "message": "Superadmin role is required to change authentication, proxy, or environment settings",
+                        },
+                        status_code=403,
+                    )
+
                 # apply all updates in a single operation
                 update_yaml_file_bulk(config_file, updates)
 
@@ -1172,6 +1222,12 @@ def config_set(request: Request, body: AppConfigSetBody):
                         ),
                         status_code=400,
                     )
+                protected_response = _protected_auth_config_response(request, config)
+                if protected_response is not None:
+                    with open(config_file, "w") as f:
+                        f.write(old_raw_config)
+                    return protected_response
+
                 restricted_response = _restricted_go2rtc_streams_response(
                     old_raw_config, new_raw_config
                 )
@@ -1404,7 +1460,7 @@ def restart():
             content=(
                 {
                     "success": False,
-                    "message": "Unable to restart Frigate.",
+                    "message": "Unable to restart Architel VMS.",
                 }
             ),
             status_code=500,

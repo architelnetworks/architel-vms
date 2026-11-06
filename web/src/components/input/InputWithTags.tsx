@@ -1,3 +1,4 @@
+import { FRIGATE_PLUS_UI_ENABLED } from "@/utils/productFeatures";
 import React, {
   useState,
   useRef,
@@ -849,65 +850,70 @@ export default function InputWithTags({
                     </button>
                   </span>
                 )}
-                {Object.entries(filters).map(([filterType, filterValues]) =>
-                  Array.isArray(filterValues)
-                    ? filterValues
-                        .filter(() => filterType !== "query")
-                        .filter(() => !filterValues.includes("similarity"))
-                        .map((value, index) => (
+                {Object.entries(filters)
+                  .filter(
+                    ([filterType]) =>
+                      FRIGATE_PLUS_UI_ENABLED || filterType !== "is_submitted",
+                  )
+                  .map(([filterType, filterValues]) =>
+                    Array.isArray(filterValues)
+                      ? filterValues
+                          .filter(() => filterType !== "query")
+                          .filter(() => !filterValues.includes("similarity"))
+                          .map((value, index) => (
+                            <span
+                              key={`${filterType}-${index}`}
+                              className="inline-flex items-center whitespace-nowrap rounded-full bg-green-100 px-2 py-0.5 text-sm text-green-800 smart-capitalize"
+                            >
+                              {t("filter.label." + filterType)}:{" "}
+                              {filterType === "labels" ? (
+                                resolveLabel(value)
+                              ) : filterType === "cameras" ? (
+                                <CameraNameLabel camera={value} />
+                              ) : filterType === "zones" ? (
+                                <ZoneNameLabel zone={value} />
+                              ) : (
+                                value.replaceAll("_", " ")
+                              )}
+                              <button
+                                onClick={() =>
+                                  removeFilter(filterType as FilterType, value)
+                                }
+                                className="ml-1 focus:outline-none"
+                                aria-label={`Remove ${filterType}:${value.replaceAll("_", " ")} filter`}
+                              >
+                                <LuX className="h-3 w-3" />
+                              </button>
+                            </span>
+                          ))
+                      : !(filterType == "event_id" && isSimilaritySearch) && (
                           <span
-                            key={`${filterType}-${index}`}
+                            key={filterType}
                             className="inline-flex items-center whitespace-nowrap rounded-full bg-green-100 px-2 py-0.5 text-sm text-green-800 smart-capitalize"
                           >
-                            {t("filter.label." + filterType)}:{" "}
-                            {filterType === "labels" ? (
-                              resolveLabel(value)
-                            ) : filterType === "cameras" ? (
-                              <CameraNameLabel camera={value} />
-                            ) : filterType === "zones" ? (
-                              <ZoneNameLabel zone={value} />
-                            ) : (
-                              value.replaceAll("_", " ")
-                            )}
+                            {filterType === "event_id"
+                              ? t("trackedObjectId")
+                              : filterType === "is_submitted"
+                                ? t("features.submittedToFrigatePlus.label", {
+                                    ns: "components/filter",
+                                  })
+                                : t("filter.label." + filterType)}
+                            : {formatFilterValues(filterType, filterValues)}
                             <button
                               onClick={() =>
-                                removeFilter(filterType as FilterType, value)
+                                removeFilter(
+                                  filterType as FilterType,
+                                  filterValues as string | number,
+                                )
                               }
                               className="ml-1 focus:outline-none"
-                              aria-label={`Remove ${filterType}:${value.replaceAll("_", " ")} filter`}
+                              aria-label={`Remove ${filterType}:${filterValues} filter`}
                             >
                               <LuX className="h-3 w-3" />
                             </button>
                           </span>
-                        ))
-                    : !(filterType == "event_id" && isSimilaritySearch) && (
-                        <span
-                          key={filterType}
-                          className="inline-flex items-center whitespace-nowrap rounded-full bg-green-100 px-2 py-0.5 text-sm text-green-800 smart-capitalize"
-                        >
-                          {filterType === "event_id"
-                            ? t("trackedObjectId")
-                            : filterType === "is_submitted"
-                              ? t("features.submittedToFrigatePlus.label", {
-                                  ns: "components/filter",
-                                })
-                              : t("filter.label." + filterType)}
-                          : {formatFilterValues(filterType, filterValues)}
-                          <button
-                            onClick={() =>
-                              removeFilter(
-                                filterType as FilterType,
-                                filterValues as string | number,
-                              )
-                            }
-                            className="ml-1 focus:outline-none"
-                            aria-label={`Remove ${filterType}:${filterValues} filter`}
-                          >
-                            <LuX className="h-3 w-3" />
-                          </button>
-                        </span>
-                      ),
-                )}
+                        ),
+                  )}
               </div>
             </CommandGroup>
           )}

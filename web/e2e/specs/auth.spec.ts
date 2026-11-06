@@ -177,3 +177,19 @@ test.describe("Auth: login redirect @high", () => {
     });
   }
 });
+
+test.describe("Auth superadmin access @high", () => {
+  test("superadmin inherits site administration and camera access", async ({
+    frigateApp,
+  }) => {
+    await frigateApp.installDefaults({
+      profile: adminProfile({ username: "engineer", role: "superadmin" }),
+    });
+    await frigateApp.goto("/system");
+    await expect(systemTab(frigateApp, "general")).toBeVisible();
+    await frigateApp.goto("/");
+    await expect(
+      frigateApp.page.locator("[data-camera='front_door']"),
+    ).toBeVisible();
+  });
+});

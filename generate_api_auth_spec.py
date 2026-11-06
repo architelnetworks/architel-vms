@@ -108,10 +108,8 @@ SECURITY_SCHEMES = {
         "in": "cookie",
         "name": "frigate_token",
         "description": (
-            "Authenticated session whose resolved role is 'admin'. The session "
-            "is established via the JWT cookie issued by POST /login, or via "
-            "proxy auth headers (remote-user / remote-role) when Frigate runs "
-            "behind an authenticating reverse proxy."
+            "Authenticated admin or superadmin session established through "
+            "POST /login or trusted proxy authentication."
         ),
     },
     USER_SCHEME: {
@@ -132,7 +130,7 @@ ACCESS_NOTES = {
     AUTHENTICATED: "**Access:** Any authenticated user.",
     CAMERA: "**Access:** Authenticated user with access to the referenced camera.",
     ALL_CAMERAS: "**Access:** Authenticated user with access to all cameras.",
-    ADMIN: "**Access:** Admin role required.",
+    ADMIN: "**Access:** Admin or superadmin role required.",
 }
 
 

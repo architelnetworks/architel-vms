@@ -41,6 +41,7 @@ from frigate.const import (
 from frigate.models import User
 from frigate.output.ws_auth import ws_has_camera_access
 from frigate.util.origin import origin_allowed
+from frigate.util.roles import is_admin_role
 
 logger = logging.getLogger(__name__)
 
@@ -116,7 +117,7 @@ def _check_ws_authorization(
     roles = [r.strip() for r in role_header.split(separator)] if role_header else []
 
     # Admin can send anything
-    if "admin" in roles:
+    if any(is_admin_role(role) for role in roles):
         return True
 
     # Read-only topics any authenticated user can send
@@ -363,7 +364,7 @@ def _ws_is_unrestricted(ws: Any, config: FrigateConfig) -> bool:
     if not roles:
         return False
     roles_dict = config.auth.roles
-    return any(r == "admin" or not roles_dict.get(r) for r in roles)
+    return any(is_admin_role(r) or not roles_dict.get(r) for r in roles)
 
 
 def _ws_allowed_cameras(ws: Any, config: FrigateConfig) -> set[str]:
@@ -374,7 +375,7 @@ def _ws_allowed_cameras(ws: Any, config: FrigateConfig) -> set[str]:
     all_cameras = set(config.cameras.keys())
     allowed: set[str] = set()
     for role in roles:
-        if role == "admin" or not config.auth.roles.get(role):
+        if is_admin_role(role) or not config.auth.roles.get(role):
             return all_cameras
         allowed.update(User.get_allowed_cameras(role, config.auth.roles, all_cameras))
     return allowed
@@ -417,7 +418,11 @@ def _materialize_for_ws(
         return full_message if _ws_is_unrestricted(ws, config) else None
 
     if kind == "admin_only":
-        return full_message if "admin" in _ws_valid_roles(ws, config) else None
+        return (
+            full_message
+            if any(is_admin_role(role) for role in _ws_valid_roles(ws, config))
+            else None
+        )
 
     if kind == "camera":
         return full_message if ws_has_camera_access(ws, extra, config) else None

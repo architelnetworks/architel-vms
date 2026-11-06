@@ -8,7 +8,7 @@ services:
     working_dir: /opt/frigate
     shm_size: "256mb"
     ports:
-      - "127.0.0.1:5000:5000"
+      - "127.0.0.1:8971:8971"
     volumes:
       - ./frigate:/opt/frigate/frigate:ro
       - ./migrations:/opt/frigate/migrations:ro

@@ -299,7 +299,7 @@
         "shm_too_low": "/dev/shm tahsisi ({{total}} MB) en az {{min}} MB olacak şekilde artırılmalı",
         "failed_login_one": "{{user}} kullanıcısı için başarısız oturum açma girişimi",
         "failed_login_other": "{{user}} kullanıcısı için başarısız oturum açma girişimleri",
-        "update_available": "Frigate {{version}} sürümü çıkmış",
+        "update_available": "Architel VMS {{version}} sürümü çıkmış",
         "ffmpeg_high_cpu": "FFmpeg CPU kullanımı yüksek (ortalama %{{cpu}})",
         "detect_high_cpu": "Algılama CPU kullanımı yüksek (ortalama %{{cpu}})",
         "object_processing_behind": "Takipli nesneler eş zamanlı işlenemediği için kamera kareleri atlandı. CPU kullanımını kontrol edin. Konteyner ya da sanal makine (VM) üzerindeki CPU limitleri veya sabitlemeleri (pinning) de Architel VMS'e çok az CPU bırakıyor olabilir"

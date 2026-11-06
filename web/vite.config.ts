@@ -7,30 +7,40 @@ import monacoEditorPlugin from "vite-plugin-monaco-editor";
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, import.meta.dirname, "PROXY_");
   const proxyHost =
-    process.env.PROXY_HOST || env.PROXY_HOST || "127.0.0.1:5000";
+    process.env.PROXY_HOST || env.PROXY_HOST || "127.0.0.1:8971";
+
+  const proxyProtocol =
+    process.env.PROXY_PROTOCOL || env.PROXY_PROTOCOL || "https";
+  const proxyTarget = `${proxyProtocol}://${proxyHost}`;
 
   return {
     server: {
       proxy: {
         "/api": {
-          target: `http://${proxyHost}`,
+          target: proxyTarget,
+          secure: false,
           ws: true,
         },
         "/vod": {
-          target: `http://${proxyHost}`,
+          target: proxyTarget,
+          secure: false,
         },
         "/clips": {
-          target: `http://${proxyHost}`,
+          target: proxyTarget,
+          secure: false,
         },
         "/exports": {
-          target: `http://${proxyHost}`,
+          target: proxyTarget,
+          secure: false,
         },
         "/ws": {
-          target: `ws://${proxyHost}`,
+          target: proxyTarget,
+          secure: false,
           ws: true,
         },
         "/live": {
-          target: `ws://${proxyHost}`,
+          target: proxyTarget,
+          secure: false,
           ws: true,
         },
       },
@@ -47,6 +57,17 @@ export default defineConfig(({ mode }) => {
       },
     },
     plugins: [
+      {
+        name: "architel-login-page",
+        configureServer(server) {
+          server.middlewares.use((request, _response, next) => {
+            if (request.url?.split("?")[0] === "/login") {
+              request.url = request.url.replace(/^\/login/, "/login.html");
+            }
+            next();
+          });
+        },
+      },
       react(),
       monacoEditorPlugin.default({
         customWorkers: [{ label: "yaml", entry: "monaco-yaml/yaml.worker" }],

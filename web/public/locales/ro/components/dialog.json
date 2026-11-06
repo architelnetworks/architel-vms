@@ -58,7 +58,7 @@
       "description": "Partajează un URL cu timestamp al poziției actuale din player sau alege un timestamp personalizat. Reține că acesta nu este un URL de partajare publică și este accesibil doar utilizatorilor care au acces la Architel VMS și la această cameră.",
       "custom": "Timestamp personalizat",
       "button": "Partajează URL-ul cu timestamp",
-      "shareTitle": "Timestamp review Frigate: {{camera}}"
+      "shareTitle": "Timestamp review Architel VMS: {{camera}}"
     },
     "genaiDescription": {
       "toast": {

@@ -82,6 +82,7 @@ from frigate.record.export import (
 )
 from frigate.util.path import sanitize_contained_path
 from frigate.util.recording_coverage import recording_overlap
+from frigate.util.roles import is_admin_role
 from frigate.util.time import get_normalized_tz_name, is_current_hour
 
 logger = logging.getLogger(__name__)
@@ -694,7 +695,7 @@ def export_recordings_batch(
     # Stopgap: attaching to an existing case remains admin-only until
     # case-level ACLs exist. Non-admins can still create a fresh case
     # as a side effect of queueing items they already have camera access to.
-    if body.export_case_id is not None and current_user["role"] != "admin":
+    if body.export_case_id is not None and not is_admin_role(current_user["role"]):
         return JSONResponse(
             content={
                 "success": False,
@@ -895,7 +896,7 @@ def export_recording(
     # Attaching to an existing case requires admin. Single-export for
     # cameras the user can access is otherwise non-admin; we only gate
     # the case-attachment side effect.
-    if export_case_id is not None and current_user["role"] != "admin":
+    if export_case_id is not None and not is_admin_role(current_user["role"]):
         return JSONResponse(
             content={
                 "success": False,
@@ -1069,7 +1070,7 @@ def export_recording_custom(
 
     # Validate user-provided ffmpeg args to prevent injection and add to cases.
     # Admin users are trusted and skip validation.
-    is_admin = request.headers.get("remote-role", "") == "admin"
+    is_admin = is_admin_role(request.headers.get("remote-role", ""))
 
     playback_source = body.source
     friendly_name = body.name

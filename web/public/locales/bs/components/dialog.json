@@ -163,7 +163,7 @@
       "description": "Dijelite URL označen vremenom trenutne pozicije igrača ili odaberite prilagođenu vremensku oznaku. Napomena: ovo nije javni URL za dijeljenje i dostupan je samo korisnicima koji imaju pristup Architel VMS i ovoj kameri.",
       "custom": "Prilagođena vremenska oznaka",
       "button": "URL za dijeljenje vremenske oznake",
-      "shareTitle": "Vremenska oznaka pregleda Frigate: {{camera}}"
+      "shareTitle": "Vremenska oznaka pregleda Architel VMS: {{camera}}"
     },
     "confirmDelete": {
       "title": "Potvrdi brisanje",

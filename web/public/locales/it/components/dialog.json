@@ -200,7 +200,7 @@
       "description": "Condividi un URL con l'orario della posizione attuale del lettore oppure scegli un orario personalizzato. Tieni presente che questo URL non è pubblico ed è accessibile solo agli utenti che hanno accesso a Architel VMS e a questa telecamera.",
       "custom": "Orario personalizzato",
       "button": "URL dell'orario di condivisione",
-      "shareTitle": "Orario revisione Frigate: {{camera}}"
+      "shareTitle": "Orario revisione Architel VMS: {{camera}}"
     },
     "genaiDescription": {
       "toast": {

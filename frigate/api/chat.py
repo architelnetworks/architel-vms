@@ -64,6 +64,7 @@ from frigate.models import Event, Export, ExportCase
 from frigate.record.export import PlaybackSourceEnum
 from frigate.util.file import get_event_thumbnail_bytes, load_event_snapshot_image
 from frigate.util.object_names import get_categorized_object_names
+from frigate.util.roles import is_admin_role
 
 logger = logging.getLogger(__name__)
 
@@ -716,7 +717,7 @@ async def _execute_set_camera_state(
     request: Request,
     arguments: dict[str, Any],
 ) -> dict[str, Any]:
-    if "admin" not in _request_roles(request):
+    if not any(is_admin_role(role) for role in _request_roles(request)):
         return {"error": "Admin privileges required to change camera settings."}
 
     camera = arguments.get("camera", "").strip()
@@ -832,7 +833,7 @@ async def _execute_create_export(
     # until case-level ACLs exist.
     export_case_id = (arguments.get("export_case_id") or "").strip() or None
     if export_case_id is not None:
-        if "admin" not in _request_roles(request):
+        if not any(is_admin_role(role) for role in _request_roles(request)):
             return {"error": "Only admins can attach exports to an existing case."}
         try:
             ExportCase.get(ExportCase.id == export_case_id)
@@ -1885,7 +1886,7 @@ async def get_vlm_monitor(request: Request) -> JSONResponse:
 
     # Admin and the job's creator always see the job. Other users only see it
     # if they have access to the camera being watched; otherwise hide it.
-    if role != "admin" and username != job.username:
+    if not is_admin_role(role) and username != job.username:
         try:
             await require_camera_access(job.camera, request=request)
         except HTTPException:
@@ -1912,7 +1913,7 @@ async def cancel_vlm_monitor(request: Request) -> JSONResponse:
     username = request.headers.get("remote-user", "")
 
     # Admin can cancel any job; other users can only cancel jobs they started.
-    if role != "admin" and username != job.username:
+    if not is_admin_role(role) and username != job.username:
         return JSONResponse(
             content={
                 "success": False,

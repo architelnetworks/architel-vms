@@ -22,6 +22,7 @@ from peewee import DoesNotExist
 from frigate.config import FrigateConfig
 from frigate.const import EXPORT_DIR
 from frigate.models import Export, User
+from frigate.util.roles import is_admin_role
 
 logger = logging.getLogger(__name__)
 
@@ -252,7 +253,7 @@ def check_camera_access(role: str, camera: str, frigate_config: FrigateConfig) -
     Mirrors the gating logic in `require_camera_access`: admin and any role
     without a non-empty allow-list bypass the check.
     """
-    if role == "admin":
+    if is_admin_role(role):
         return True
 
     roles_dict = frigate_config.auth.roles
@@ -266,7 +267,7 @@ def check_camera_access(role: str, camera: str, frigate_config: FrigateConfig) -
 
 def is_role_restricted(role: str, frigate_config: FrigateConfig) -> bool:
     """True if `role` has a non-empty allow-list (i.e. not full-access)."""
-    if role == "admin":
+    if is_admin_role(role):
         return False
     return bool(frigate_config.auth.roles.get(role))
 
@@ -298,7 +299,7 @@ def deny_response_for_media_uri(
     if resolution == MediaAuthResolution.UNKNOWN:
         return None
 
-    if not role or role == "admin":
+    if not role or is_admin_role(role):
         return None
 
     if not is_role_restricted(role, frigate_config):

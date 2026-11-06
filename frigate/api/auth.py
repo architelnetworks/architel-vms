@@ -40,6 +40,7 @@ from frigate.const import CONFIG_DIR, JWT_SECRET_ENV_VAR, PASSWORD_HASH_ALGORITH
 from frigate.models import User
 from frigate.notices import raise_notice
 from frigate.util.origin import origin_allowed
+from frigate.util.roles import is_admin_role
 
 logger = logging.getLogger(__name__)
 
@@ -150,7 +151,7 @@ def require_admin_by_default():
         # For all other paths, require admin role
         # Internal port requests have admin role set automatically
         role = request.headers.get("remote-role")
-        if role == "admin":
+        if is_admin_role(role):
             return
 
         raise HTTPException(
@@ -213,7 +214,7 @@ def allow_any_authenticated():
         # Internal port requests have admin role and should be allowed
         role = request.headers.get("remote-role")
 
-        if role != "admin":
+        if not is_admin_role(role):
             if username is None or not _is_authenticated(request):
                 raise HTTPException(status_code=401, detail="Authentication required")
 
@@ -554,17 +555,26 @@ def require_role(required_roles: list[str]):
                 detail=f"No valid roles found in {roles}. Required: {', '.join(required_roles)}. Available: {', '.join(config_roles)}",
             )
 
-        if not any(role in required_roles for role in valid_roles):
+        allowed_roles = set(required_roles)
+        if "admin" in allowed_roles:
+            allowed_roles.add("superadmin")
+
+        if not any(role in allowed_roles for role in valid_roles):
             raise HTTPException(
                 status_code=403,
                 detail=f"Role {', '.join(valid_roles)} not authorized. Required: {', '.join(required_roles)}",
             )
 
         return next(
-            (role for role in valid_roles if role in required_roles), valid_roles[0]
+            (role for role in valid_roles if role in allowed_roles), valid_roles[0]
         )
 
     return role_checker
+
+
+def require_superadmin():
+    """Require an explicitly authenticated engineering role, never anonymous admin."""
+    return require_role(["superadmin"])
 
 
 def resolve_role(
@@ -636,6 +646,9 @@ def resolve_role(
         }
         logger.debug("Matched roles from role_map: %s", matched_roles)
 
+        if "superadmin" in matched_roles and "superadmin" in config_roles:
+            return "superadmin"
+
         # If admin matches, prioritize it to avoid accidental downgrade when
         # users belong to both admin and lower-privilege groups.
         if "admin" in matched_roles and "admin" in config_roles:
@@ -663,8 +676,12 @@ def resolve_role(
     logger.debug("Parsed roles directly from header: %s", roles_from_header)
 
     resolved = next(
-        (r for r in config_roles if r in roles_from_header),
-        validated_default,
+        (
+            r
+            for r in ("superadmin", "admin")
+            if r in config_roles and r in roles_from_header
+        ),
+        next((r for r in config_roles if r in roles_from_header), validated_default),
     )
     if resolved == validated_default and roles_from_header:
         logger.debug(
@@ -998,7 +1015,7 @@ def login(request: Request, body: AppPostLoginBody):
         )
         # Clear admin_first_time_login flag after successful admin login so the
         # UI stops showing the first-time login documentation link.
-        if role == "admin":
+        if is_admin_role(role):
             request.app.frigate_config.auth.admin_first_time_login = False
 
         return response
@@ -1008,6 +1025,19 @@ def login(request: Request, body: AppPostLoginBody):
     )
     failed_logins.record(user, time.time(), known=True)
     return JSONResponse(content={"message": "Login failed"}, status_code=401)
+
+
+def _protect_superadmin_account(request: Request, user: User) -> None:
+    if user.role == "superadmin" and request.headers.get("remote-role") != "superadmin":
+        raise HTTPException(status_code=403, detail="Superadmin role is required")
+
+
+def _preserve_last_superadmin(user: User) -> None:
+    if (
+        user.role == "superadmin"
+        and User.select().where(User.role == "superadmin").count() <= 1
+    ):
+        raise HTTPException(status_code=403, detail="Cannot remove the last superadmin")
 
 
 @router.get(
@@ -1027,12 +1057,15 @@ def get_users():
     "/users",
     dependencies=[Depends(require_role(["admin"]))],
     summary="Create new user",
-    description="Creates a new user with the specified username, password, and role. Requires admin role. Password must be at least 12 characters long.",
+    description="Creates a new user with the specified username, password, and role. Requires admin or superadmin role. Only superadmins can create superadmin accounts. Password must be at least 12 characters long.",
 )
 def create_user(
     request: Request,
     body: AppPostUsersBody,
 ):
+    if body.role == "superadmin" and request.headers.get("remote-role") != "superadmin":
+        raise HTTPException(status_code=403, detail="Superadmin role is required")
+
     HASH_ITERATIONS = request.app.frigate_config.auth.hash_iterations
     config_roles = list(request.app.frigate_config.auth.roles.keys())
 
@@ -1073,7 +1106,7 @@ def create_user(
     "/users/{username}",
     dependencies=[Depends(require_role(["admin"]))],
     summary="Delete user",
-    description="Deletes a user by username. The built-in admin user cannot be deleted. Requires admin role. Returns success message or error if user not found.",
+    description="Deletes a user by username. The built-in admin user cannot be deleted. Requires admin role. Only superadmins can delete superadmin accounts. The last superadmin cannot be deleted. Returns success message or error if user not found.",
 )
 def delete_user(request: Request, username: str):
     # Prevent deletion of the built-in admin user
@@ -1082,6 +1115,10 @@ def delete_user(request: Request, username: str):
             content={"message": "Cannot delete admin user"}, status_code=403
         )
 
+    user = User.get_or_none(User.username == username)
+    if user is not None:
+        _protect_superadmin_account(request, user)
+        _preserve_last_superadmin(user)
     User.delete_by_id(username)
     refresh_user_session(request, username)
     request.app.config_publisher.publisher.publish("config/auth", None)
@@ -1110,7 +1147,7 @@ async def update_password(
 
     # Only admins may target another account. This has to cover every non-admin
     # role rather than just viewer, since custom roles are arbitrary names
-    if current_role != "admin" and current_username != username:
+    if not is_admin_role(current_role) and current_username != username:
         raise HTTPException(
             status_code=403, detail="Users can only update their own password"
         )
@@ -1122,9 +1159,11 @@ async def update_password(
     except DoesNotExist:
         return JSONResponse(content={"message": "User not found"}, status_code=404)
 
+    _protect_superadmin_account(request, user)
+
     # Require old_password when non-admin user is changing any password
     # Admin users changing passwords do NOT need to provide the current password
-    if current_role != "admin":
+    if not is_admin_role(current_role):
         if not body.old_password:
             return JSONResponse(
                 content={"message": "Current password is required"},
@@ -1180,7 +1219,7 @@ async def update_password(
     "/users/{username}/role",
     dependencies=[Depends(require_role(["admin"]))],
     summary="Update user role",
-    description="Updates a user's role. The built-in admin user's role cannot be modified. Requires admin role. Valid roles are defined in the configuration.",
+    description="Updates a user's role. The built-in admin user's role cannot be modified. Requires admin role. Only superadmins can assign or modify the superadmin role. The last superadmin cannot be demoted. Valid roles are defined in the configuration.",
 )
 async def update_role(
     request: Request,
@@ -1208,6 +1247,15 @@ async def update_role(
             content={"message": f"Role must be one of: {', '.join(config_roles)}"},
             status_code=400,
         )
+
+    user = User.get_or_none(User.username == username)
+    if user is None:
+        raise HTTPException(status_code=404, detail="User not found")
+    _protect_superadmin_account(request, user)
+    if body.role == "superadmin" and current_role != "superadmin":
+        raise HTTPException(status_code=403, detail="Superadmin role is required")
+    if body.role != "superadmin":
+        _preserve_last_superadmin(user)
 
     User.set_by_id(username, {User.role: body.role})
     refresh_user_session(request, username)
@@ -1418,7 +1466,7 @@ async def require_go2rtc_stream_access(
     allowed_cameras = User.get_allowed_cameras(role, roles_dict, all_camera_names)
 
     # Admin or full access bypasses
-    if role == "admin" or not roles_dict.get(role):
+    if is_admin_role(role) or not roles_dict.get(role):
         return
 
     owner_cameras = _get_stream_owner_cameras(request, stream_name)

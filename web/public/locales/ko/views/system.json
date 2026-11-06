@@ -299,7 +299,7 @@
         "shm_too_low": "/dev/shm 할당량({{total}} MB)을 최소 {{min}} MB 이상으로 늘려야 합니다",
         "failed_login_one": "{{user}} 계정 로그인 시도 실패",
         "failed_login_other": "{{user}} 계정 로그인 시도 실패",
-        "update_available": "Frigate {{version}} 버전을 사용할 수 있습니다",
+        "update_available": "Architel VMS {{version}} 버전을 사용할 수 있습니다",
         "ffmpeg_high_cpu": "FFmpeg CPU 사용량이 높음 (평균 {{cpu}}%)",
         "detect_high_cpu": "감지 프로세스 CPU 사용량이 높음 (평균 {{cpu}}%)",
         "object_processing_behind": "추적 객체 처리 속도가 따라가지 못해 카메라 프레임이 누락되었습니다. CPU 사용량을 확인하고, 컨테이너나 가상 머신(VM)의 CPU 제한 또는 코어 고정(pinning) 설정으로 인해 Architel VMS에 할당된 CPU가 너무 부족한 것은 아닌지 확인하세요"

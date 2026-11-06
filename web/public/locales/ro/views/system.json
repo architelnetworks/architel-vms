@@ -299,7 +299,7 @@
         "shm_too_low": "Alocarea /dev/shm ({{total}} MB) ar trebui mărită la cel puțin {{min}} MB",
         "failed_login_one": "Încercare eșuată de autentificare pentru {{user}}",
         "failed_login_other": "Încercări eșuate de autentificare pentru {{user}}",
-        "update_available": "Frigate {{version}} este disponibil",
+        "update_available": "Architel VMS {{version}} este disponibil",
         "ffmpeg_high_cpu": "Utilizarea CPU FFmpeg este ridicată (medie {{cpu}}%)",
         "detect_high_cpu": "Utilizarea CPU pentru detecție este ridicată (medie {{cpu}}%)",
         "object_processing_behind": "Procesarea obiectelor urmărite nu a făcut față, așa că au fost omise cadre de la cameră. Verifică utilizarea CPU-ului și dacă limitele sau fixarea (pinning) CPU-ului pe container sau VM lasă prea puține resurse de procesare pentru Architel VMS"

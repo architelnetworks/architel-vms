@@ -1,3 +1,4 @@
+import { isAdminRole } from "@/utils/roles";
 import { useContext } from "react";
 import { AuthContext } from "@/context/auth-context";
 import useSWR from "swr";
@@ -12,7 +13,7 @@ export function useAllowedCameras() {
 
   if (
     auth.user?.role === "viewer" ||
-    auth.user?.role === "admin" ||
+    isAdminRole(auth.user?.role) ||
     !auth.isAuthenticated // anonymous internal port
   ) {
     // return all cameras, excluding replay cameras

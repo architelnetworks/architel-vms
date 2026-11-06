@@ -725,3 +725,27 @@ test.describe("Detection models settings @high", () => {
     expect(models?.[0].devices).toEqual(["edgetpu:pci:0", "edgetpu:pci:1"]);
   });
 });
+
+test("Architel hides upstream model service tabs with a configured key @high", async ({
+  frigateApp,
+}) => {
+  await installRoutes(
+    frigateApp.page,
+    [
+      {
+        scene: "default",
+        devices: ["openvino:GPU.0"],
+        path: "plus://abc123",
+        plus: PLUS_MODEL,
+      },
+    ],
+    true,
+  );
+  await openPage(frigateApp);
+  await expect(
+    frigateApp.page.getByRole("tab", { name: "Frigate+" }),
+  ).toHaveCount(0);
+  await expect(
+    frigateApp.page.getByText("Frigate+", { exact: true }),
+  ).toHaveCount(0);
+});

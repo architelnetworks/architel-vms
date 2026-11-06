@@ -200,7 +200,7 @@
       "description": "Compartilhe uma URL com marca de tempo da posição atual da reprodução ou escolha uma marca de tempo personalizada. Observe que esta não é uma URL de compartilhamento público e só pode ser acessada por usuários que tenham acesso ao Architel VMS e a esta câmera.",
       "custom": "Marcação de data/hora personalizado",
       "button": "Compartilhar URL com marcação de tempo",
-      "shareTitle": "Marcação de data/hora da análise do Frigate: {{camera}}"
+      "shareTitle": "Marcação de data/hora da análise do Architel VMS: {{camera}}"
     },
     "genaiDescription": {
       "toast": {

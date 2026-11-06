@@ -30,7 +30,7 @@ See [Architecture](ARCHITECTURE.md) and [Roadmap](ROADMAP.md).
 | ID | Question and repository evidence | Required decision gate |
 | --- | --- | --- |
 | O01 | Python guidance says 3.13+, while Docker/CI/Ruff use 3.11; web build uses Node 20 while local setup used 26 | Choose supported runtime/toolchain versions, test locked dependencies/builds, then align instructions and automation together. Do not silently change either baseline |
-| O02 | Local dev proxies anonymous-admin port 5000; native auth/TLS listener exists | Define authenticated dev and Ubuntu production entry points, TLS trust/renewal, rate limits, protected service ports and emergency administration before claiming auth acceptance |
+| O02 | Local dev now proxies authenticated listeners; native login and anonymous rejection verified on mock backend | Complete Ubuntu production entry points, TLS trust/renewal, rate limits, protected service ports and emergency administration before production auth acceptance |
 | O03 | ACS owns identity/access permissions, while VMS already has local users and camera roles | Define authoritative external identities, VMS application grants, offline authorization validity/revocation and independent emergency access; reuse existing enforcement rather than duplicate identity stores |
 | O04 | Approximately 78 cameras, no verified stream/hardware/storage inventory | Approve retention, concurrency, bandwidth, failure/recovery objectives and server sizing from representative pilot/load evidence |
 | O05 | Storage pressure can delete retained footage | Agree whether evidence needs protected copies/holds, capacity reserves and immutable manifests; define behavior when preservation conflicts with continued recording |
@@ -53,3 +53,29 @@ For a resolved decision, record date, rationale, alternatives, affected modules,
 migration/compatibility effects, and acceptance evidence here. Product constraints
 remain in force until explicitly revised. A feature's presence in source does not
 make its production deployment or its operational policy accepted.
+
+
+## Architel UI and upstream services
+
+Architel hides Frigate+ interfaces through `web/src/utils/productFeatures.ts`.
+This covers model pickers, setup, upload actions, and search filters even when
+an existing backend configuration enables the upstream service. The settings
+section is removed from both the navigation index and page component map.
+Upstream service code, translation keys, and backend APIs remain for merge
+compatibility; hiding the UI does not disable a configured backend integration.
+The upstream GitHub menu shortcut is removed. Technical documentation links,
+Python package/logger names, API identifiers, and required license notices are
+preserved. User-facing titles, messages, and configuration descriptions use
+Architel VMS or neutral video engine terminology.
+
+
+## Superadmin and authenticated development (2026-11-06)
+
+The built-in `superadmin` role inherits site administration and provides an
+explicit engineering permission boundary. User management protects these
+accounts from ordinary admins; authentication, proxy, and environment writes
+require superadmin. Existing viewer/custom camera restrictions are retained.
+No database schema migration or automatic account promotion is introduced.
+See [AUTHENTICATION.md](AUTHENTICATION.md) for provisioning and development
+listener configuration. Development Compose files publish authenticated
+listeners rather than the anonymous admin listener.
