@@ -1,5 +1,5 @@
 {
-  "documentTitle": "Klassificeringsmodeller - Frigate",
+  "documentTitle": "Klassificeringsmodeller - Architel VMS",
   "button": {
     "deleteClassificationAttempts": "Ta bort klassificeringsförsök",
     "renameCategory": "Byt namn på klass",
@@ -132,7 +132,7 @@
       "selectImagesDescription": "Klicka på bilderna för att välja dem. Klicka på Fortsätt när du är klar med den här klassen.",
       "generating": {
         "title": "Generera exempelbilder",
-        "description": "Frigate hämtar representativa bilder från dina inspelningar. Det kan ta en stund…"
+        "description": "Architel VMS hämtar representativa bilder från dina inspelningar. Det kan ta en stund…"
       },
       "training": {
         "title": "Tränar modellen",

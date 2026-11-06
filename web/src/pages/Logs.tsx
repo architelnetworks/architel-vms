@@ -520,12 +520,21 @@ function Logs() {
                   className={`flex items-center justify-between gap-2 ${logService == item ? "" : "text-muted-foreground"}`}
                   value={item}
                   data-nav-item={item}
-                  aria-label={`Select ${item}`}
+                  aria-label={t("logs.selectService", {
+                    service:
+                      item === "frigate"
+                        ? t("brand.name", { ns: "common" })
+                        : item,
+                  })}
                 >
                   <div
                     className={item !== "websocket" ? "smart-capitalize" : ""}
                   >
-                    {item === "websocket" ? t("logs.websocket.label") : item}
+                    {item === "frigate"
+                      ? t("brand.name", { ns: "common" })
+                      : item === "websocket"
+                        ? t("logs.websocket.label")
+                        : item}
                   </div>
                 </ToggleGroupItem>
               ))}

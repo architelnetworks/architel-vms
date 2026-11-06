@@ -1,13 +1,13 @@
 {
   "documentTitle": {
-    "cameras": "Στατιστικά Καμερών - Frigate",
-    "storage": "Στατιστικά αποθήκευσης - Frigate",
-    "general": "Γενικά στατιστικά - Frigate",
-    "enrichments": "Στατιστικά Εμπλουτισμού - Frigate",
+    "cameras": "Στατιστικά Καμερών - Architel VMS",
+    "storage": "Στατιστικά αποθήκευσης - Architel VMS",
+    "general": "Γενικά στατιστικά - Architel VMS",
+    "enrichments": "Στατιστικά Εμπλουτισμού - Architel VMS",
     "logs": {
-      "frigate": "Frigate αρχέιο καταγραφών - Frigate",
-      "go2rtc": "Αρχείο καταγραφής Go2RTC - Frigate",
-      "nginx": "Αρχείο καταγραφών Nginx - Frigate"
+      "frigate": "Architel VMS αρχέιο καταγραφών - Architel VMS",
+      "go2rtc": "Αρχείο καταγραφής Go2RTC - Architel VMS",
+      "nginx": "Αρχείο καταγραφών Nginx - Architel VMS"
     }
   },
   "title": "Σύστημα",

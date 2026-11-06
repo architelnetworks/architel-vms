@@ -1,16 +1,16 @@
 {
   "documentTitle": {
-    "cameras": "Statystyki kamer - Frigate",
-    "storage": "Statystyki Magazynowania - Frigate",
-    "general": "Statystyki Ogólne - Frigate",
-    "enrichments": "Statystyki Wzbogacania - Frigate",
+    "cameras": "Statystyki kamer - Architel VMS",
+    "storage": "Statystyki Magazynowania - Architel VMS",
+    "general": "Statystyki Ogólne - Architel VMS",
+    "enrichments": "Statystyki Wzbogacania - Architel VMS",
     "logs": {
-      "frigate": "Logi Frigate - Frigate",
-      "go2rtc": "Logi Go2RTC - Frigate",
-      "nginx": "Logi Nginx - Frigate",
-      "websocket": "Logi komunikatów - Frigate"
+      "frigate": "Logi Architel VMS - Architel VMS",
+      "go2rtc": "Logi Go2RTC - Architel VMS",
+      "nginx": "Logi Nginx - Architel VMS",
+      "websocket": "Logi komunikatów - Architel VMS"
     },
-    "health": "Zdrowie – Frigate"
+    "health": "Zdrowie – Architel VMS"
   },
   "general": {
     "hardwareInfo": {
@@ -149,7 +149,7 @@
     "cameraStorage": {
       "unused": {
         "title": "Niewykorzystane",
-        "tips": "Ta wartość może niedokładnie przedstawiać wolne miejsce dostępne dla Frigate, jeśli masz inne pliki przechowywane na dysku poza nagraniami Frigate. Frigate nie śledzi wykorzystania magazynu poza swoimi nagraniami."
+        "tips": "Ta wartość może niedokładnie przedstawiać wolne miejsce dostępne dla Architel VMS, jeśli masz inne pliki przechowywane na dysku poza nagraniami Architel VMS. Architel VMS nie śledzi wykorzystania magazynu poza swoimi nagraniami."
       },
       "title": "Magazyn kamery",
       "camera": "Kamera",
@@ -162,7 +162,7 @@
     "overview": "Przegląd",
     "recordings": {
       "title": "Nagrania",
-      "tips": "Ta wartość reprezentuje całkowite miejsce zajmowane przez nagrania w bazie danych Frigate. Frigate nie śledzi wykorzystania magazynu dla wszystkich plików na twoim dysku.",
+      "tips": "Ta wartość reprezentuje całkowite miejsce zajmowane przez nagrania w bazie danych Architel VMS. Architel VMS nie śledzi wykorzystania magazynu dla wszystkich plików na twoim dysku.",
       "earliestRecording": "Najwcześniejsze dostępne nagranie:"
     },
     "shm": {
@@ -268,7 +268,7 @@
     "title": "Zdrowie",
     "notices": {
       "title": "Ogłoszenia",
-      "empty": "Instalacja programu Frigate działa poprawnie",
+      "empty": "Instalacja programu Architel VMS działa poprawnie",
       "acknowledge": "Potwierdzić",
       "acknowledgeHint": "Ukryj, dopóki to się nie powtórzy",
       "mute": "Wycisz",

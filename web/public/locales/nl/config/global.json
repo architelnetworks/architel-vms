@@ -185,7 +185,7 @@
     },
     "safe_mode": {
         "label": "Veilige modus",
-        "description": "Wanneer ingeschakeld, start Frigate op in veilige modus met beperkte functies voor probleemoplossing."
+        "description": "Wanneer ingeschakeld, start Architel VMS op in veilige modus met beperkte functies voor probleemoplossing."
     },
     "environment_vars": {
         "label": "Omgevingsvariabelen",
@@ -195,7 +195,7 @@
         "label": "Authenticatie",
         "enabled": {
             "label": "Authenticatie inschakelen",
-            "description": "Schakel native authenticatie in voor de Frigate UI."
+            "description": "Schakel native authenticatie in voor de Architel VMS UI."
         },
         "reset_admin_password": {
             "label": "Adminwachtwoord resetten",
@@ -261,10 +261,10 @@
     },
     "database": {
         "label": "Database",
-        "description": "Instellingen voor de SQLite-database die Frigate gebruikt om gevolgde objecten en opname-metadata op te slaan.",
+        "description": "Instellingen voor de SQLite-database die Architel VMS gebruikt om gevolgde objecten en opname-metadata op te slaan.",
         "path": {
             "label": "Databasepad",
-            "description": "Bestandssysteempad waar het Frigate SQLite-databasebestand wordt opgeslagen."
+            "description": "Bestandssysteempad waar het Architel VMS SQLite-databasebestand wordt opgeslagen."
         }
     },
     "go2rtc": {
@@ -363,20 +363,20 @@
             "description": "Configuratie van interne en externe luisterpoorten. Dit is voor gevorderde gebruikers. In de meeste gevallen wordt aanbevolen de poortensectie in het Docker Compose-bestand aan te passen.",
             "internal": {
                 "label": "Interne poort",
-                "description": "Interne luisterpoort voor Frigate (standaard 5000)."
+                "description": "Interne luisterpoort voor Architel VMS (standaard 5000)."
             },
             "external": {
                 "label": "Externe poort",
-                "description": "Externe luisterpoort voor Frigate (standaard 8971)."
+                "description": "Externe luisterpoort voor Architel VMS (standaard 8971)."
             }
         }
     },
     "proxy": {
         "label": "Proxy",
-        "description": "Instellingen voor het integreren van Frigate achter een reverse proxy die geauthenticeerde gebruikersheaders doorgeeft.",
+        "description": "Instellingen voor het integreren van Architel VMS achter een reverse proxy die geauthenticeerde gebruikersheaders doorgeeft.",
         "header_map": {
             "label": "Headertoewijzing",
-            "description": "Inkomende proxyheaders koppelen aan Frigate gebruikers- en rolvelden voor proxy-authenticatie.",
+            "description": "Inkomende proxyheaders koppelen aan Architel VMS gebruikers- en rolvelden voor proxy-authenticatie.",
             "user": {
                 "label": "Gebruikersheader",
                 "description": "Header met de geauthenticeerde gebruikersnaam van de upstream-proxy."
@@ -1393,7 +1393,7 @@
             },
             "calibrate_on_startup": {
                 "label": "Kalibreren bij opstarten",
-                "description": "PTZ-motorsnelheden meten bij opstarten voor nauwkeurigere volging. Frigate werkt de configuratie bij met movement_weights na kalibratie."
+                "description": "PTZ-motorsnelheden meten bij opstarten voor nauwkeurigere volging. Architel VMS werkt de configuratie bij met movement_weights na kalibratie."
             },
             "zooming": {
                 "label": "Zoommodus",

@@ -1,14 +1,14 @@
 {
   "documentTitle": {
-    "cameras": "Статистика камер - Frigate",
-    "storage": "Статистика хранилища - Frigate",
-    "general": "Общая статистика - Frigate",
-    "enrichments": "Статистика обогащений - Frigate",
+    "cameras": "Статистика камер - Architel VMS",
+    "storage": "Статистика хранилища - Architel VMS",
+    "general": "Общая статистика - Architel VMS",
+    "enrichments": "Статистика обогащений - Architel VMS",
     "logs": {
-      "frigate": "Логи Frigate - Frigate",
-      "go2rtc": "Логи Go2RTC - Frigate",
-      "nginx": "Логи Nginx - Frigate",
-      "websocket": "Логи сообщений - Frigate"
+      "frigate": "Логи Architel VMS - Architel VMS",
+      "go2rtc": "Логи Go2RTC - Architel VMS",
+      "nginx": "Логи Nginx - Architel VMS",
+      "websocket": "Логи сообщений - Architel VMS"
     }
   },
   "title": "Система",
@@ -127,7 +127,7 @@
     "overview": "Обзор",
     "recordings": {
       "title": "Записи",
-      "tips": "Это значение показывает, сколько места в хранилище занимают записи из базы данных Frigate. Frigate не учитывает другие файлы на диске.",
+      "tips": "Это значение показывает, сколько места в хранилище занимают записи из базы данных Architel VMS. Architel VMS не учитывает другие файлы на диске.",
       "earliestRecording": "Первая запись:"
     },
     "cameraStorage": {
@@ -139,7 +139,7 @@
       "bandwidth": "Пропускная способность",
       "unused": {
         "title": "Не используется",
-        "tips": "Это значение может неточно отражать свободное место, доступное Frigate, если на вашем диске есть другие файлы помимо записей Frigate. Frigate не отслеживает использование хранилища за пределами своих записей."
+        "tips": "Это значение может неточно отражать свободное место, доступное Architel VMS, если на вашем диске есть другие файлы помимо записей Architel VMS. Architel VMS не отслеживает использование хранилища за пределами своих записей."
       }
     },
     "shm": {

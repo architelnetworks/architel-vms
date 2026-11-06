@@ -30,7 +30,7 @@
         "noSessionDesc": "Start een debugherhaling vanuit de Geschiedenis-weergave door op de knop Acties in de werkbalk te klikken en Debug Herhaling te kiezen.",
         "goToRecordings": "Ga naar Geschiedenis",
         "preparingClip": "Clip voorbereiden…",
-        "preparingClipDesc": "Frigate voegt opnames samen voor het geselecteerde tijdsbereik. Dit kan bij langere bereiken even duren.",
+        "preparingClipDesc": "Architel VMS voegt opnames samen voor het geselecteerde tijdsbereik. Dit kan bij langere bereiken even duren.",
         "startingCamera": "Debugherhaling starten…",
         "startError": {
             "title": "Kan debugherhaling niet starten",

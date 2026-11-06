@@ -9,7 +9,7 @@ import NavPath from "@site/src/components/NavPath";
 
 # Metrics
 
-Frigate exposes Prometheus metrics at the `/api/metrics` endpoint that can be used to monitor the performance and health of your Frigate instance.
+Architel VMS exposes Prometheus metrics at the `/api/metrics` endpoint that can be used to monitor the performance and health of your Architel VMS instance.
 
 ## Enabling Telemetry
 
@@ -23,7 +23,7 @@ Navigate to <NavPath path="Settings > System > Telemetry" /> to configure metric
 </TabItem>
 <TabItem value="yaml">
 
-Metrics are available at `/api/metrics` by default. No additional Frigate configuration is required to expose them.
+Metrics are available at `/api/metrics` by default. No additional Architel VMS configuration is required to expose them.
 
 </TabItem>
 </ConfigTabs>
@@ -59,7 +59,7 @@ Metrics are available at `/api/metrics` by default. No additional Frigate config
 - `frigate_storage_used_bytes{storage=""}` - Storage used bytes
 - `frigate_storage_mount_type{mount_type="", storage=""}` - Storage mount type info
 
-These gauges report the operating system's figures for the whole filesystem (the same numbers as `df`), not Frigate's own recording footprint. For how this differs from the recordings usage shown in the UI, see [Understanding storage usage](/configuration/record#understanding-storage-usage).
+These gauges report the operating system's figures for the whole filesystem (the same numbers as `df`), not Architel VMS's own recording footprint. For how this differs from the recordings usage shown in the UI, see [Understanding storage usage](/configuration/record#understanding-storage-usage).
 
 ### Service Metrics
 
@@ -73,7 +73,7 @@ These gauges report the operating system's figures for the whole filesystem (the
 
 ## Configuring Prometheus
 
-To scrape metrics from Frigate, add the following to your Prometheus configuration:
+To scrape metrics from Architel VMS, add the following to your Prometheus configuration:
 
 ```yaml
 scrape_configs:
@@ -107,7 +107,7 @@ sum by (camera) (frigate_camera_events)
 
 ## Grafana Dashboard
 
-You can use these metrics to create Grafana dashboards to monitor your Frigate instance. Here's an example of metrics you might want to track:
+You can use these metrics to create Grafana dashboards to monitor your Architel VMS instance. Here's an example of metrics you might want to track:
 
 - CPU, Memory and GPU usage over time
 - Camera FPS and detection rates
@@ -119,7 +119,7 @@ A sample Grafana dashboard JSON will be provided in a future update.
 
 ## Metric Types
 
-The metrics exposed by Frigate use the following Prometheus metric types:
+The metrics exposed by Architel VMS use the following Prometheus metric types:
 
 - **Gauge**: Values that can go up and down (e.g., `frigate_cpu_usage_percent`, `frigate_camera_events`)
 - **Info**: Key-value pairs for metadata (e.g., `frigate_storage_mount_type`)

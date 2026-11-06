@@ -1,15 +1,15 @@
 {
   "documentTitle": {
-    "cameras": "Statistika kamer - Frigate",
-    "storage": "Statistika shrambe - Frigate",
-    "general": "Splošna statistika - Frigate",
+    "cameras": "Statistika kamer - Architel VMS",
+    "storage": "Statistika shrambe - Architel VMS",
+    "general": "Splošna statistika - Architel VMS",
     "logs": {
-      "frigate": "Frigate dnevniki - Frigate",
-      "go2rtc": "Go2RTC dnevniki - Frigate",
-      "nginx": "Nginx dnevniki - Frigate",
-      "websocket": "Dnevniki sporočil - Frigate"
+      "frigate": "Architel VMS dnevniki - Architel VMS",
+      "go2rtc": "Go2RTC dnevniki - Architel VMS",
+      "nginx": "Nginx dnevniki - Architel VMS",
+      "websocket": "Dnevniki sporočil - Architel VMS"
     },
-    "enrichments": "Statistika obogatenih podatkov - Frigate"
+    "enrichments": "Statistika obogatenih podatkov - Architel VMS"
   },
   "logs": {
     "download": {
@@ -62,7 +62,7 @@
   "storage": {
     "recordings": {
       "title": "Posnetki",
-      "tips": "Ta vrednost predstavlja skupno shrambo, ki jo zasedajo posnetki v podatkovni bazi Frigate. Frigate ne spremlja porabe shrambe za vse datoteke na tvojem disku.",
+      "tips": "Ta vrednost predstavlja skupno shrambo, ki jo zasedajo posnetki v podatkovni bazi Architel VMS. Architel VMS ne spremlja porabe shrambe za vse datoteke na tvojem disku.",
       "earliestRecording": "Najstarejši razpoložljiv posnetek:"
     },
     "title": "Shramba",
@@ -76,7 +76,7 @@
       "bandwidth": "Pasovna širina",
       "unused": {
         "title": "Neporabljeno",
-        "tips": "Ta vrednost morda ne predstavlja natančno prostega prostora, ki je na voljo programu Frigate, če imaš na disku poleg posnetkov Frigate shranjene še druge datoteke. Frigate ne spremlja porabe shrambe izven svojih posnetkov."
+        "tips": "Ta vrednost morda ne predstavlja natančno prostega prostora, ki je na voljo programu Architel VMS, če imaš na disku poleg posnetkov Architel VMS shranjene še druge datoteke. Architel VMS ne spremlja porabe shrambe izven svojih posnetkov."
       }
     },
     "shm": {

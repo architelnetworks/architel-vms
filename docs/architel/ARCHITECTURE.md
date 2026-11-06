@@ -9,6 +9,11 @@ explicitly. No major source refactor was performed for this audit.
 Related documents: [Roadmap](ROADMAP.md), [Decisions](DECISIONS.md),
 [Integrations](INTEGRATIONS.md).
 
+Stage 2 implementation note: product identity and desktop navigation have been
+updated since this audit baseline. See [Branding](BRANDING.md) for asset handoff,
+compatibility references, and the persistent expanded/collapsed sidebar. This
+does not change the audited recording/backend architecture.
+
 ## Deployment context and ownership
 
 The initial target is the Victorian Pride Centre in Melbourne: approximately

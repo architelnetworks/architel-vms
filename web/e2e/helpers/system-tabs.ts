@@ -5,7 +5,8 @@ import type { FrigateApp } from "../fixtures/frigate-test";
 // kebab. The selected tab always stays in the strip.
 
 export function systemTab(frigateApp: FrigateApp, name: string) {
+  const label = name === "frigate" ? "Architel VMS" : name;
   return frigateApp.page
-    .locator(`[aria-label="Select ${name}" i]:not([inert] *)`)
+    .locator(`[aria-label="Select ${label}" i]:not([inert] *)`)
     .first();
 }

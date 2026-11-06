@@ -539,14 +539,14 @@ class FrigateConfig(FrigateBaseModel):
     safe_mode: bool = Field(
         default=False,
         title="Safe mode",
-        description="When enabled, start Frigate in safe mode with reduced features for troubleshooting.",
+        description="When enabled, start Architel VMS in safe mode with reduced features for troubleshooting.",
     )
 
     # Fields that install global state should be defined first, so that their validators run first.
     environment_vars: EnvVars = Field(
         default_factory=dict,
         title="Environment variables",
-        description="Key/value pairs of environment variables to set for the Frigate process in Home Assistant OS. Non-HAOS users must use Docker environment variable configuration instead.",
+        description="Key/value pairs of environment variables to set for the Architel VMS process in Home Assistant OS. Non-HAOS users must use Docker environment variable configuration instead.",
     )
     logger: LoggerConfig = Field(
         default_factory=LoggerConfig,
@@ -564,7 +564,7 @@ class FrigateConfig(FrigateBaseModel):
     database: DatabaseConfig = Field(
         default_factory=DatabaseConfig,
         title="Database",
-        description="Settings for the SQLite database used by Frigate to store tracked object and recording metadata.",
+        description="Settings for the SQLite database used by Architel VMS to store tracked object and recording metadata.",
     )
     go2rtc: RestreamConfig = Field(
         default_factory=RestreamConfig,
@@ -583,12 +583,12 @@ class FrigateConfig(FrigateBaseModel):
     networking: NetworkingConfig = Field(
         default_factory=NetworkingConfig,
         title="Networking",
-        description="Network-related settings such as IPv6 enablement for Frigate endpoints.",
+        description="Network-related settings such as IPv6 enablement for Architel VMS endpoints.",
     )
     proxy: ProxyConfig = Field(
         default_factory=ProxyConfig,
         title="Proxy",
-        description="Settings for integrating Frigate behind a reverse proxy that passes authenticated user headers.",
+        description="Settings for integrating Architel VMS behind a reverse proxy that passes authenticated user headers.",
     )
     telemetry: TelemetryConfig = Field(
         default_factory=TelemetryConfig,
@@ -598,7 +598,7 @@ class FrigateConfig(FrigateBaseModel):
     tls: TlsConfig = Field(
         default_factory=TlsConfig,
         title="TLS",
-        description="TLS settings for Frigate's web endpoints (port 8971).",
+        description="TLS settings for Architel VMS's web endpoints (port 8971).",
     )
     ui: UIConfig = Field(
         default_factory=UIConfig,

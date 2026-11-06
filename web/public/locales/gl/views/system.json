@@ -1,11 +1,11 @@
 {
   "documentTitle": {
-    "cameras": "Estatísticas de cámaras - Frigate",
-    "storage": "Estatísticas de Almacenamento - Frigate",
-    "general": "Estatísticas Xerais - Frigate",
-    "enrichments": "Estatísticas complementarias - Frigate",
+    "cameras": "Estatísticas de cámaras - Architel VMS",
+    "storage": "Estatísticas de Almacenamento - Architel VMS",
+    "general": "Estatísticas Xerais - Architel VMS",
+    "enrichments": "Estatísticas complementarias - Architel VMS",
     "logs": {
-      "frigate": "Rexistros de Frigate - Frigate"
+      "frigate": "Rexistros de Architel VMS - Architel VMS"
     }
   },
   "title": "Sistema",

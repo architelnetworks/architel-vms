@@ -1,16 +1,16 @@
 {
   "documentTitle": {
-    "default": "Ρυθμίσεις - Frigate",
-    "authentication": "Ρυθμίσεις ελέγχου ταυτοποίησης - Frigate",
-    "enrichments": "Ρυθμίσεις εμπλουτισμού - Frigate",
-    "masksAndZones": "Ρυθμίσεις Μασκών και Ζωνών - Frigate",
-    "motionTuner": "Ρύθμιση Κίνησης - Frigate",
-    "object": "Επίλυση σφαλμάτων - Frigate",
-    "general": "Ρυθμίσεις UI - Frigate",
-    "frigatePlus": "Ρυθμίσεις Frigate+ - Frigate",
+    "default": "Ρυθμίσεις - Architel VMS",
+    "authentication": "Ρυθμίσεις ελέγχου ταυτοποίησης - Architel VMS",
+    "enrichments": "Ρυθμίσεις εμπλουτισμού - Architel VMS",
+    "masksAndZones": "Ρυθμίσεις Μασκών και Ζωνών - Architel VMS",
+    "motionTuner": "Ρύθμιση Κίνησης - Architel VMS",
+    "object": "Επίλυση σφαλμάτων - Architel VMS",
+    "general": "Ρυθμίσεις UI - Architel VMS",
+    "frigatePlus": "Ρυθμίσεις Frigate+ - Architel VMS",
     "notifications": "Ρυθμίσεις Ειδοποιήσεων",
-    "cameraManagement": "Διαχείριση καμερών - Frigate",
-    "cameraReview": "Ρυθμίσεις αξιολόγησης κάμερας - Frigate"
+    "cameraManagement": "Διαχείριση καμερών - Architel VMS",
+    "cameraReview": "Ρυθμίσεις αξιολόγησης κάμερας - Architel VMS"
   },
   "masksAndZones": {
     "zones": {

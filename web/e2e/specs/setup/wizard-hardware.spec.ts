@@ -78,7 +78,7 @@ test.describe("setup wizard hardware @high @mobile", () => {
     });
     const saves = await captureSaves(page);
 
-    await frigateApp.gotoAndWait("/", "text=Welcome to Frigate");
+    await frigateApp.gotoAndWait("/", "text=Welcome to Architel VMS");
     await gotoDetectorStep(page);
 
     // the default hardware mock reports two Corals, an Intel GPU, and the CPU
@@ -116,11 +116,11 @@ test.describe("setup wizard hardware @high @mobile", () => {
     await expect(page.getByText("You're done!")).toBeVisible();
 
     await expect(
-      page.getByText("Frigate needs to restart to apply your settings"),
+      page.getByText("Architel VMS needs to restart to apply your settings"),
     ).toBeVisible();
     await page.getByRole("button", { name: "Apply & Restart" }).click();
 
-    await expect(page.getByText("Starting Frigate...")).toBeVisible();
+    await expect(page.getByText("Starting Architel VMS...")).toBeVisible();
     await expect.poll(() => restarts).toHaveLength(1);
   });
 
@@ -133,7 +133,7 @@ test.describe("setup wizard hardware @high @mobile", () => {
     });
     const saves = await captureSaves(page);
 
-    await frigateApp.gotoAndWait("/", "text=Welcome to Frigate");
+    await frigateApp.gotoAndWait("/", "text=Welcome to Architel VMS");
     await gotoDetectorStep(page);
 
     await expect(
@@ -156,12 +156,12 @@ test.describe("setup wizard hardware @high @mobile", () => {
     await expect(page.getByText("You're done!")).toBeVisible();
 
     await expect(
-      page.getByText("Frigate needs to restart to apply your settings"),
+      page.getByText("Architel VMS needs to restart to apply your settings"),
     ).toBeHidden();
     await page.getByRole("button", { name: "Go to Live View" }).click();
 
     // hands off without restarting, and the wizard does not come back
-    await expect(page.getByText("Welcome to Frigate")).toBeHidden();
+    await expect(page.getByText("Welcome to Architel VMS")).toBeHidden();
     expect(restarts).toHaveLength(0);
   });
 
@@ -178,7 +178,7 @@ test.describe("setup wizard hardware @high @mobile", () => {
     });
     await captureSaves(page);
 
-    await frigateApp.gotoAndWait("/", "text=Welcome to Frigate");
+    await frigateApp.gotoAndWait("/", "text=Welcome to Architel VMS");
     await gotoDetectorStep(page);
     await page
       .getByRole("button", { name: "Continue without detection" })
@@ -221,7 +221,7 @@ test.describe("setup wizard hardware @high @mobile", () => {
     });
     const saves = await captureSaves(page);
 
-    await frigateApp.gotoAndWait("/", "text=Welcome to Frigate");
+    await frigateApp.gotoAndWait("/", "text=Welcome to Architel VMS");
     await gotoDetectorStep(page);
     await page.getByRole("button", { name: "Next" }).click();
     await expect(page.getByText("Hardware Acceleration")).toBeVisible();
@@ -249,7 +249,7 @@ test.describe("setup wizard hardware @high @mobile", () => {
     await installFirstRun(frigateApp, page);
     const saves = await captureSaves(page);
 
-    await frigateApp.gotoAndWait("/", "text=Welcome to Frigate");
+    await frigateApp.gotoAndWait("/", "text=Welcome to Architel VMS");
     await gotoDetectorStep(page);
     await page.getByRole("button", { name: "Next" }).click();
     await expect(page.getByText("Hardware Acceleration")).toBeVisible();

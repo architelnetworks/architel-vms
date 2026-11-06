@@ -66,7 +66,7 @@
     },
     "management": {
       "title": "จัดการผู้ใช้",
-      "desc": "จัดการบัญชีของ Frigate นี้."
+      "desc": "จัดการบัญชีของ Architel VMS นี้."
     },
     "addUser": "แก้ไขผู้ใช้",
     "title": "ผู้ใช้",
@@ -92,17 +92,17 @@
     }
   },
   "documentTitle": {
-    "default": "ตั้งค่า - Frigate",
-    "authentication": "การตั้งค่าการตรวจสอบสิทธิ์ - Frigate",
-    "masksAndZones": "ตัวแก้ไขแมสและโซน - Frigate",
-    "general": "การตั้งค่าทั่วไป - Frigate",
-    "frigatePlus": "การตั้งค่า Frigate+ - Frigate",
-    "notifications": "การตั้งค่าการแจ้งเตือน - Frigate",
-    "cameraManagement": "จัดการกล้อง - Frigate",
-    "enrichments": "การตั้งค่าของเพิ่มเติม - Frigate",
-    "motionTuner": "ปรับแต่งการเคลื่อนไหว - Frigate",
-    "object": "ดีบั๊ก - Frigate",
-    "cameraReview": "แสดงการตั้งค่าของกล้อง - Frigate"
+    "default": "ตั้งค่า - Architel VMS",
+    "authentication": "การตั้งค่าการตรวจสอบสิทธิ์ - Architel VMS",
+    "masksAndZones": "ตัวแก้ไขแมสและโซน - Architel VMS",
+    "general": "การตั้งค่าทั่วไป - Architel VMS",
+    "frigatePlus": "การตั้งค่า Frigate+ - Architel VMS",
+    "notifications": "การตั้งค่าการแจ้งเตือน - Architel VMS",
+    "cameraManagement": "จัดการกล้อง - Architel VMS",
+    "enrichments": "การตั้งค่าของเพิ่มเติม - Architel VMS",
+    "motionTuner": "ปรับแต่งการเคลื่อนไหว - Architel VMS",
+    "object": "ดีบั๊ก - Architel VMS",
+    "cameraReview": "แสดงการตั้งค่าของกล้อง - Architel VMS"
   },
   "menu": {
     "notifications": "การแจ้งเตือน",

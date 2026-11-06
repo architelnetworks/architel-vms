@@ -185,7 +185,7 @@
       "title": "Úložiště kamery",
       "unused": {
         "title": "Nepoužité",
-        "tips": "Tato hodnota nemusí přesně odpovídat volnému místu dostupnému pro Frigate, pokud máte na disku další soubory kromě jeho záznamů. Frigate nesleduje využití úložiště mimo své záznamy."
+        "tips": "Tato hodnota nemusí přesně odpovídat volnému místu dostupnému pro Architel VMS, pokud máte na disku další soubory kromě jeho záznamů. Architel VMS nesleduje využití úložiště mimo své záznamy."
       },
       "bandwidth": "Šířka pásma",
       "unusedStorageInformation": "Informace o nepoužitém úložišti",
@@ -198,7 +198,7 @@
     "recordings": {
       "title": "Záznamy",
       "earliestRecording": "Nejstarší dostupný záznam:",
-      "tips": "Tato hodnota uvádí celkové využití disku záznamy uloženými v databázi Frigate. Frigate nesleduje využití disku ostatními soubory na vašem disku."
+      "tips": "Tato hodnota uvádí celkové využití disku záznamy uloženými v databázi Architel VMS. Architel VMS nesleduje využití disku ostatními soubory na vašem disku."
     },
     "title": "Úložiště",
     "overview": "Přehled",
@@ -213,17 +213,17 @@
   },
   "lastRefreshed": "Poslední aktualizace: ",
   "documentTitle": {
-    "cameras": "Statistiky kamer – Frigate",
-    "storage": "Statistiky úložiště – Frigate",
-    "general": "Obecné statistiky - Frigate",
-    "enrichments": "Statistiky obohacení – Frigate",
+    "cameras": "Statistiky kamer – Architel VMS",
+    "storage": "Statistiky úložiště – Architel VMS",
+    "general": "Obecné statistiky - Architel VMS",
+    "enrichments": "Statistiky obohacení – Architel VMS",
     "logs": {
-      "frigate": "Protokoly Frigate - Frigate",
-      "go2rtc": "Protokoly Go2RTC - Frigate",
-      "nginx": "Protokoly Nginx - Frigate",
-      "websocket": "Protokoly zpráv – Frigate"
+      "frigate": "Protokoly Architel VMS - Architel VMS",
+      "go2rtc": "Protokoly Go2RTC - Architel VMS",
+      "nginx": "Protokoly Nginx - Architel VMS",
+      "websocket": "Protokoly zpráv – Architel VMS"
     },
-    "health": "Stav systému – Frigate"
+    "health": "Stav systému – Architel VMS"
   },
   "title": "Systém",
   "logs": {
@@ -283,7 +283,7 @@
     "title": "Stav systému",
     "notices": {
       "title": "Hlášení",
-      "empty": "Vaše instalace Frigate je v pořádku",
+      "empty": "Vaše instalace Architel VMS je v pořádku",
       "acknowledge": "Vzít na vědomí",
       "acknowledgeHint": "Skrýt do dalšího výskytu",
       "mute": "Trvale skrýt",
@@ -314,7 +314,7 @@
         "ffmpeg_high_cpu": "Využití CPU procesem FFmpeg je vysoké (průměr {{cpu}} %)",
         "detect_high_cpu": "Využití CPU detekcí je vysoké (průměr {{cpu}} %)",
         "shm_too_low": "Přidělenou paměť /dev/shm ({{total}} MB) je třeba zvýšit alespoň na {{min}} MB",
-        "object_processing_behind": "Zpracování sledovaných objektů nestíhalo, proto byly snímky kamer vynechány. Zkontrolujte využití CPU a zda limity CPU nebo přiřazení jader kontejneru či virtuálního stroje neposkytují Frigate příliš málo výkonu CPU",
+        "object_processing_behind": "Zpracování sledovaných objektů nestíhalo, proto byly snímky kamer vynechány. Zkontrolujte využití CPU a zda limity CPU nebo přiřazení jader kontejneru či virtuálního stroje neposkytují Architel VMS příliš málo výkonu CPU",
         "failed_login_one": "Neúspěšný pokus o přihlášení uživatele {{user}}",
         "failed_login_other": "Neúspěšné pokusy o přihlášení uživatele {{user}}",
         "update_available": "Je dostupný Frigate {{version}}"
@@ -341,7 +341,7 @@
       "nothingConfigured": "Nic není nastaveno",
       "allCameras": "Všechny kamery",
       "probeUnavailable": "Detekce hardwaru není dostupná",
-      "justStarted": "Frigate právě nastartoval",
+      "justStarted": "Architel VMS právě nastartoval",
       "deviceNotFound": "V tomto systému nebylo nalezeno zařízení {{devices}}",
       "detectorNotRunning": "Proces detektoru neběží",
       "inferenceVerySlow": "Inference je velmi pomalá ({{speed}} ms)",

@@ -3,11 +3,11 @@
     "title": "Biztosan újra szeretnéd indítani a Frigate-et?",
     "button": "Újraindítás",
     "restarting": {
-      "title": "A Frigate újraindul",
+      "title": "A Architel VMS újraindul",
       "content": "Az oldal újratölt {{countdown}} másodperc múlva.",
       "button": "Erőltetett újraindítás azonnal"
     },
-    "description": "Ez rövid időre leállítja a Frigate programot, amíg újraindul."
+    "description": "Ez rövid időre leállítja a Architel VMS programot, amíg újraindul."
   },
   "explore": {
     "plus": {
@@ -21,7 +21,7 @@
         },
         "question": {
           "ask_a": "Ez a tárgy egy <code>{{label}}</code>?",
-          "label": "Erősítse meg ezt a cimkét a Frigate plus felé",
+          "label": "Erősítse meg ezt a cimkét a Architel VMS plus felé",
           "ask_an": "Ez a tárgy egy <code>{{label}}</code>?",
           "ask_full": "Ez a tárgy egy {{translatedLabel}} (<code>{{untranslatedLabel}}</code>)?"
         }

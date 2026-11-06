@@ -1,16 +1,16 @@
 {
   "documentTitle": {
-    "cameras": "Cameras Stats - Frigate",
-    "storage": "Storage Stats - Frigate",
-    "general": "General Stats - Frigate",
-    "enrichments": "Enrichments Stats - Frigate",
+    "cameras": "Cameras Stats - Architel VMS",
+    "storage": "Storage Stats - Architel VMS",
+    "general": "General Stats - Architel VMS",
+    "enrichments": "Enrichments Stats - Architel VMS",
     "logs": {
-      "frigate": "Frigate Logs - Frigate",
-      "go2rtc": "Go2RTC Logs - Frigate",
-      "nginx": "Nginx Logs - Frigate",
-      "websocket": "Messages Logs - Frigate"
+      "frigate": "Architel VMS Logs - Architel VMS",
+      "go2rtc": "Go2RTC Logs - Architel VMS",
+      "nginx": "Nginx Logs - Architel VMS",
+      "websocket": "Messages Logs - Architel VMS"
     },
-    "health": "Health - Frigate"
+    "health": "Health - Architel VMS"
   },
   "title": "System",
   "metrics": "System metrics",
@@ -20,7 +20,7 @@
     "title": "Health",
     "notices": {
       "title": "Notices",
-      "empty": "Your Frigate installation is healthy",
+      "empty": "Your Architel VMS installation is healthy",
       "acknowledge": "Acknowledge",
       "acknowledgeHint": "Hide until this happens again",
       "mute": "Mute",
@@ -53,7 +53,7 @@
         "ffmpeg_high_cpu": "FFmpeg CPU usage is high ({{cpu}}% average)",
         "detect_high_cpu": "Detection CPU usage is high ({{cpu}}% average)",
         "shm_too_low": "/dev/shm allocation ({{total}} MB) should be increased to at least {{min}} MB",
-        "object_processing_behind": "Tracked object processing could not keep up, so camera frames were dropped. Check CPU utilization, and whether CPU limits or pinning on the container or VM are leaving Frigate too little CPU",
+        "object_processing_behind": "Tracked object processing could not keep up, so camera frames were dropped. Check CPU utilization, and whether CPU limits or pinning on the container or VM are leaving Architel VMS too little CPU",
         "failed_login_one": "Failed login attempt for {{user}}",
         "failed_login_other": "Failed login attempts for {{user}}",
         "update_available": "Frigate {{version}} is available"
@@ -80,7 +80,7 @@
       "nothingConfigured": "Nothing configured",
       "allCameras": "All cameras",
       "probeUnavailable": "Hardware detection is unavailable",
-      "justStarted": "Frigate just started",
+      "justStarted": "Architel VMS just started",
       "deviceNotFound": "{{devices}} was not found on this system",
       "detectorNotRunning": "Detector process is not running",
       "inferenceVerySlow": "Inference is very slow ({{speed}} ms)",
@@ -161,7 +161,9 @@
         "fetchingLogsFailed": "Error fetching logs: {{errorMessage}}",
         "whileStreamingLogs": "Error while streaming logs: {{errorMessage}}"
       }
-    }
+    },
+    "automaticStorageCleanup": "Architel VMS Automatic Storage Cleanup",
+    "selectService": "Select {{service}}"
   },
   "general": {
     "title": "General",
@@ -227,7 +229,7 @@
     "overview": "Overview",
     "recordings": {
       "title": "Recordings",
-      "tips": "This value represents the total storage used by the recordings in Frigate's database. Frigate does not track storage usage for all files on your disk.",
+      "tips": "This value represents the total storage used by the recordings in Architel VMS's database. Architel VMS does not track storage usage for all files on your disk.",
       "earliestRecording": "Earliest recording available:"
     },
     "shm": {
@@ -247,7 +249,7 @@
       "bandwidth": "Bandwidth",
       "unused": {
         "title": "Unused",
-        "tips": "This value may not accurately represent the free space available to Frigate if you have other files stored on your drive beyond Frigate's recordings. Frigate does not track storage usage outside of its recordings."
+        "tips": "This value may not accurately represent the free space available to Architel VMS if you have other files stored on your drive beyond Architel VMS's recordings. Architel VMS does not track storage usage outside of its recordings."
       },
       "subStream": {
         "information": "Sub Stream Storage Information",

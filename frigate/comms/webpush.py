@@ -531,7 +531,7 @@ class WebPushClient(Communicator):
                 user=user,
                 payload={},
                 title="Test Notification",
-                message="This is a test notification from Frigate.",
+                message="This is a test notification from Architel VMS.",
                 direct_url="/",
                 notification_type="test",
             )

@@ -790,7 +790,7 @@
             },
             "calibrate_on_startup": {
                 "label": "Kalibrer ved start",
-                "description": "Mål PTZ-motorhastigheter ved oppstart for å forbedre sporingsnøyaktighet. Frigate vil oppdatere konfigurasjonen etter kalibrering."
+                "description": "Mål PTZ-motorhastigheter ved oppstart for å forbedre sporingsnøyaktighet. Architel VMS vil oppdatere konfigurasjonen etter kalibrering."
             },
             "zooming": {
                 "label": "Zoom-modus",

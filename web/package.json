@@ -1,5 +1,5 @@
 {
-  "name": "web-new",
+  "name": "architel-vms-web",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -128,5 +128,6 @@
   "overrides": {
     "@radix-ui/react-compose-refs": "1.1.2",
     "@radix-ui/react-slot": "1.5.0"
-  }
+  },
+  "description": "Architel VMS web application"
 }

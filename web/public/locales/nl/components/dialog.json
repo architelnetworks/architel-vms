@@ -1,13 +1,13 @@
 {
   "restart": {
-    "title": "Weet je zeker dat je Frigate opnieuw wilt opstarten?",
+    "title": "Weet je zeker dat je Architel VMS opnieuw wilt opstarten?",
     "button": "Herstart",
     "restarting": {
-      "title": "Frigate wordt opnieuw gestart",
+      "title": "Architel VMS wordt opnieuw gestart",
       "button": "Forceer herladen nu",
       "content": "Deze pagina zal herladen in {{countdown}} seconden."
     },
-    "description": "Dit zal Frigate kort stoppen terwijl het opnieuw opstart."
+    "description": "Dit zal Architel VMS kort stoppen terwijl het opnieuw opstart."
   },
   "explore": {
     "plus": {
@@ -189,10 +189,10 @@
     "shareTimestamp": {
       "label": "Tijdstempel delen",
       "title": "Tijdstempel delen",
-      "description": "Deel een URL met tijdstempel van de huidige positie in de afspeler of kies een aangepaste tijdstempel. Let op: dit is geen openbare deel-URL en is alleen toegankelijk voor gebruikers die toegang hebben tot Frigate en deze camera.",
+      "description": "Deel een URL met tijdstempel van de huidige positie in de afspeler of kies een aangepaste tijdstempel. Let op: dit is geen openbare deel-URL en is alleen toegankelijk voor gebruikers die toegang hebben tot Architel VMS en deze camera.",
       "custom": "Aangepaste tijdstempel",
       "button": "Deel tijdstempel URL",
-      "shareTitle": "Frigate Beoordelingstijdstempel: {{camera}}"
+      "shareTitle": "Architel VMS Beoordelingstijdstempel: {{camera}}"
     },
     "genaiDescription": {
       "toast": {

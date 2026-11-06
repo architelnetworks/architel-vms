@@ -37,17 +37,17 @@
     }
   },
   "documentTitle": {
-    "cameras": "Kameroiden tilastot - Frigate",
+    "cameras": "Kameroiden tilastot - Architel VMS",
     "storage": "Tallenteiden tilastot - Fgirage",
-    "general": "Yleiset tilastot - Frigate",
-    "enrichments": "Rikastetut tilastot - Frigate",
+    "general": "Yleiset tilastot - Architel VMS",
+    "enrichments": "Rikastetut tilastot - Architel VMS",
     "logs": {
-      "frigate": "Frigaten lokit - Frigate",
-      "go2rtc": "Go2RTC lokit - Frigate",
-      "nginx": "Nginx lokit - Frigate",
-      "websocket": "Viestilokit - Frigate"
+      "frigate": "Frigaten lokit - Architel VMS",
+      "go2rtc": "Go2RTC lokit - Architel VMS",
+      "nginx": "Nginx lokit - Architel VMS",
+      "websocket": "Viestilokit - Architel VMS"
     },
-    "health": "Kunto - Frigate"
+    "health": "Kunto - Architel VMS"
   },
   "title": "Järjestelmä",
   "metrics": "Järjestelmämittarit",
@@ -104,7 +104,7 @@
     "title": "Kunto",
     "notices": {
       "title": "Tiedotteet",
-      "empty": "Frigate asennuksesi on kunnossa",
+      "empty": "Architel VMS asennuksesi on kunnossa",
       "acknowledge": "Hyväksy",
       "acknowledgeHint": "Pillota kunnes tapahtuu uudestaan",
       "mute": "Mykistä",

@@ -84,7 +84,7 @@ test.describe("Error boundaries - page failure @high", () => {
 
     await expect
       .poll(() => readClipboard(frigateApp.page), { timeout: 5_000 })
-      .toContain("Frigate UI crash report");
+      .toContain("Architel VMS UI crash report");
 
     const report = await readClipboard(frigateApp.page);
     expect(report).toContain("Version: 0.15.0-test");
@@ -173,9 +173,12 @@ test.describe("Error boundaries - clipboard refused @high", () => {
   test("a refused clipboard write reports the failure", async ({
     frigateApp,
   }) => {
-    // copy-to-clipboard treats a false return from execCommand as a failure
-    // and falls back to a prompt, which Playwright dismisses on its own.
+    // Refuse both the Clipboard API and its execCommand fallback. Playwright
+    // dismisses the final prompt fallback automatically.
     await frigateApp.page.addInitScript(() => {
+      navigator.clipboard.writeText = async () => {
+        throw new DOMException("Clipboard refused", "NotAllowedError");
+      };
       document.execCommand = () => false;
     });
     await breakExportsPage(frigateApp);

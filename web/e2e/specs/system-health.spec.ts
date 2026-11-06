@@ -133,7 +133,7 @@ test.describe("System — Health tab @medium", () => {
         frigateApp.page.locator("[data-testid^='health-problem-']"),
       ).toHaveCount(0, { timeout: 5_000 });
       await expect(
-        frigateApp.page.getByText("Your Frigate installation is healthy"),
+        frigateApp.page.getByText("Your Architel VMS installation is healthy"),
       ).toBeVisible();
     });
   }
@@ -146,7 +146,7 @@ test.describe("System — Health tab @medium", () => {
     await frigateApp.goto("/system#health");
 
     await expect(
-      frigateApp.page.getByText("Your Frigate installation is healthy"),
+      frigateApp.page.getByText("Your Architel VMS installation is healthy"),
     ).toBeVisible({
       timeout: 15_000,
     });
@@ -798,7 +798,7 @@ test.describe("System — Health notices sources @medium", () => {
       frigateApp.page.locator("[data-testid^='health-problem-']"),
     ).toHaveCount(0);
     await expect(
-      frigateApp.page.getByText("Your Frigate installation is healthy"),
+      frigateApp.page.getByText("Your Architel VMS installation is healthy"),
     ).toBeVisible();
   });
 
@@ -940,7 +940,7 @@ test.describe("System — Health notices sources @medium", () => {
     await frigateApp.goto("/system#health");
 
     await expect(
-      frigateApp.page.getByText("Your Frigate installation is healthy"),
+      frigateApp.page.getByText("Your Architel VMS installation is healthy"),
     ).toBeVisible({
       timeout: 15_000,
     });

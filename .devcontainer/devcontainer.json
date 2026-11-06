@@ -1,5 +1,5 @@
 {
-  "name": "Frigate Devcontainer",
+  "name": "Architel VMS Development",
   "dockerComposeFile": "../docker-compose.yml",
   "service": "devcontainer",
   "workspaceFolder": "/workspace/frigate",

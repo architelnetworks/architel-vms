@@ -12,7 +12,7 @@ function LoginPage() {
           <div className="p-8">
             <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
               <div className="flex flex-col items-center space-y-2">
-                <Logo className="mb-6 h-8 w-8" />
+                <Logo horizontal className="mb-6" />
               </div>
               <UserAuthForm />
             </div>

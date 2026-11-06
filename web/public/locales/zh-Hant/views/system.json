@@ -1,14 +1,14 @@
 {
   "documentTitle": {
-    "cameras": "鏡頭統計 - Frigate",
-    "storage": "儲存裝置統計 - Frigate",
-    "general": "一般統計 - Frigate",
-    "enrichments": "進階功能統計 - Frigate",
+    "cameras": "鏡頭統計 - Architel VMS",
+    "storage": "儲存裝置統計 - Architel VMS",
+    "general": "一般統計 - Architel VMS",
+    "enrichments": "進階功能統計 - Architel VMS",
     "logs": {
-      "frigate": "Frigate 日誌 - Frigate",
-      "go2rtc": "Go2RTC 日誌 - Frigate",
-      "nginx": "Nginx 日誌 - Frigate",
-      "websocket": "訊息日誌 - Frigate"
+      "frigate": "Architel VMS 日誌 - Architel VMS",
+      "go2rtc": "Go2RTC 日誌 - Architel VMS",
+      "nginx": "Nginx 日誌 - Architel VMS",
+      "websocket": "訊息日誌 - Architel VMS"
     }
   },
   "title": "系統",
@@ -127,7 +127,7 @@
     "overview": "總覽",
     "recordings": {
       "title": "錄影檔案",
-      "tips": "此數值僅代表 Frigate 資料庫中錄影資料的儲存空間用量。Frigate 不會追蹤硬碟上所有檔案的使用量。",
+      "tips": "此數值僅代表 Architel VMS 資料庫中錄影資料的儲存空間用量。Architel VMS 不會追蹤硬碟上所有檔案的使用量。",
       "earliestRecording": "最早的錄影檔案："
     },
     "cameraStorage": {
@@ -139,7 +139,7 @@
       "bandwidth": "頻寬",
       "unused": {
         "title": "未使用",
-        "tips": "在磁碟中有除了 Frigate 錄影內容以外的檔案時，此數值可能無法正確反應可用的空間。Frigate 不會追蹤錄影資料以外的檔案的儲存空間用量。"
+        "tips": "在磁碟中有除了 Architel VMS 錄影內容以外的檔案時，此數值可能無法正確反應可用的空間。Architel VMS 不會追蹤錄影資料以外的檔案的儲存空間用量。"
       }
     },
     "shm": {

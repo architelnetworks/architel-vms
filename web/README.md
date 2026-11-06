@@ -1,4 +1,4 @@
-This is the Frigate frontend which connects to and provides a User Interface to the Python backend.
+This is the Architel VMS frontend which connects to and provides a User Interface to the Python backend.
 
 # Web Development
 

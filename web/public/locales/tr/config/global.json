@@ -1,11 +1,11 @@
 {
     "safe_mode": {
         "label": "Güvenli mod",
-        "description": "Sorun gidermek için Frigate'i kısıtlı özelliklere sahip güvenli modda başlatır."
+        "description": "Sorun gidermek için Architel VMS'i kısıtlı özelliklere sahip güvenli modda başlatır."
     },
     "environment_vars": {
         "label": "Ortam değişkenleri",
-        "description": "Home Assistant OS'teki Frigate işlemi (process) için ayarlanacak ortam değişkenlerinin anahtar/değer çiftleri. HAOS kullanmayanlar bunun yerine Docker ortam değişkeni yapılandırmasını kullanmalıdırlar."
+        "description": "Home Assistant OS'teki Architel VMS işlemi (process) için ayarlanacak ortam değişkenlerinin anahtar/değer çiftleri. HAOS kullanmayanlar bunun yerine Docker ortam değişkeni yapılandırmasını kullanmalıdırlar."
     },
     "audio": {
         "label": "Ses algılaması",
@@ -144,7 +144,7 @@
         },
         "model": {
             "label": "Ses döküm modeli veya GenAI sağlayıcı adı",
-            "description": "Metne dönüştürme arka ucu: Frigate'in yerleşik yerel modelleri için 'whisper' veya metne dönüştürme rolüne sahip bir GenAI sağlayıcısının adı."
+            "description": "Metne dönüştürme arka ucu: Architel VMS'in yerleşik yerel modelleri için 'whisper' veya metne dönüştürme rolüne sahip bir GenAI sağlayıcısının adı."
         },
         "device": {
             "label": "Metne dönüştürme aygıtı",
@@ -256,7 +256,7 @@
         "description": "Kimlik doğrulama ve oturum ile ilgili ayarlar; sık deneme limiti ve çerez seçenekleri dahil.",
         "enabled": {
             "label": "Kimlik doğrulamayı etkinleştir",
-            "description": "Frigate kullanıcı arayüzü için dahili kimlik doğrulamayı etkinleştir."
+            "description": "Architel VMS kullanıcı arayüzü için dahili kimlik doğrulamayı etkinleştir."
         },
         "reset_admin_password": {
             "label": "Yönetici parolasını sıfırla",
@@ -1073,7 +1073,7 @@
         },
         "topic_prefix": {
             "label": "Konu ön eki",
-            "description": "Tüm Frigate başlıkları için MQTT konu (topic) ön eki; birden fazla kopya (instance) çalıştırılıyorsa benzersiz olmalıdır."
+            "description": "Tüm Architel VMS başlıkları için MQTT konu (topic) ön eki; birden fazla kopya (instance) çalıştırılıyorsa benzersiz olmalıdır."
         },
         "client_id": {
             "label": "İstemci kimliği",
@@ -1168,7 +1168,7 @@
             },
             "calibrate_on_startup": {
                 "label": "Başlangıçta ölçüm ayarı yap",
-                "description": "Takip hassasiyetini artırmak için başlangıçta PTZ motor hızlarını ölç. Frigate ölçüm ayarı (kalibrasyon) sonrasında yapılandırmayı movement_weights (hareket ağırlıkları) ile güncelleyecektir."
+                "description": "Takip hassasiyetini artırmak için başlangıçta PTZ motor hızlarını ölç. Architel VMS ölçüm ayarı (kalibrasyon) sonrasında yapılandırmayı movement_weights (hareket ağırlıkları) ile güncelleyecektir."
             },
             "zooming": {
                 "label": "Yaklaştırma modu",
@@ -1205,12 +1205,12 @@
         },
         "ignore_time_mismatch": {
             "label": "Zaman uyumsuzluğunu yoksay",
-            "description": "ONVIF iletişimi için kamera ve Frigate sunucusu arasındaki zaman senkronizasyonu farklarını yoksay."
+            "description": "ONVIF iletişimi için kamera ve Architel VMS sunucusu arasındaki zaman senkronizasyonu farklarını yoksay."
         }
     },
     "database": {
         "label": "Veritabanı",
-        "description": "Frigate tarafından takip edilen nesneler ve kayıt meta verilerinin depolandığı SQLite veritabanına ait ayarlar.",
+        "description": "Architel VMS tarafından takip edilen nesneler ve kayıt meta verilerinin depolandığı SQLite veritabanına ait ayarlar.",
         "path": {
             "label": "Veritabanı yolu",
             "description": "SQLite veritabanı dosyasının depolanacağı dosya sistemi yolu."
@@ -1222,13 +1222,13 @@
     },
     "networking": {
         "label": "Ağ",
-        "description": "Ağ ile ilgili ayarlar; Frigate uç noktaları için IPv6 etkinleştirilmesi gibi.",
+        "description": "Ağ ile ilgili ayarlar; Architel VMS uç noktaları için IPv6 etkinleştirilmesi gibi.",
         "ipv6": {
             "label": "IPv6 yapılandırması",
-            "description": "Frigate ağ hizmetleri için IPv6'ya özgü ayarlar.",
+            "description": "Architel VMS ağ hizmetleri için IPv6'ya özgü ayarlar.",
             "enabled": {
                 "label": "IPv6'yı etkinleştir",
-                "description": "Frigate hizmetleri (API ve kullanıcı arayüzü) için uygun yerlerde IPv6 desteğini etkinleştir."
+                "description": "Architel VMS hizmetleri (API ve kullanıcı arayüzü) için uygun yerlerde IPv6 desteğini etkinleştir."
             }
         },
         "listen": {
@@ -1236,20 +1236,20 @@
             "description": "İç ve dış dinleme portları yapılandırması. İleri düzey kullanıcılar içindir. Çoğu durumda Docker compose dosyanızdaki portlar bölümünü değiştirmeniz önerilir.",
             "internal": {
                 "label": "İç port",
-                "description": "Frigate dahili dinleme portu (varsayılan 5000)."
+                "description": "Architel VMS dahili dinleme portu (varsayılan 5000)."
             },
             "external": {
                 "label": "Dış port",
-                "description": "Frigate için dış dinleme portu (varsayılan 8971)."
+                "description": "Architel VMS için dış dinleme portu (varsayılan 8971)."
             }
         }
     },
     "proxy": {
         "label": "Vekil sunucu",
-        "description": "Frigate'i kimliği doğrulanmış kullanıcı başlıklarını (headers) ileten bir ters vekil sunucu arkasında entegre etmeye yönelik ayarlar.",
+        "description": "Architel VMS'i kimliği doğrulanmış kullanıcı başlıklarını (headers) ileten bir ters vekil sunucu arkasında entegre etmeye yönelik ayarlar.",
         "header_map": {
             "label": "Başlık eşleştirme",
-            "description": "Vekil sunucu tabanlı kimlik doğrulama için gelen vekil sunucu başlıklarını (headers) Frigate kullanıcı ve rol alanlarıyla eşleştir.",
+            "description": "Vekil sunucu tabanlı kimlik doğrulama için gelen vekil sunucu başlıklarını (headers) Architel VMS kullanıcı ve rol alanlarıyla eşleştir.",
             "user": {
                 "label": "Kullanıcı başlığı",
                 "description": "Üst vekil sunucudan iletilen doğrulanmış kullanıcı adını içeren başlık (header)."
@@ -1260,7 +1260,7 @@
             },
             "role_map": {
                 "label": "Rol eşleşmesi",
-                "description": "Üstten gelen grup değerlerini Frigate rollerine eşleştir (örneğin yönetici gruplarını yönetici rolüne)."
+                "description": "Üstten gelen grup değerlerini Architel VMS rollerine eşleştir (örneğin yönetici gruplarını yönetici rolüne)."
             }
         },
         "logout_url": {
@@ -1309,7 +1309,7 @@
         },
         "version_check": {
             "label": "Sürüm kontrolü",
-            "description": "Daha yeni bir Frigate sürümü var mı tespiti için dışa dönük kontrolü etkinleştir."
+            "description": "Daha yeni bir Architel VMS sürümü var mı tespiti için dışa dönük kontrolü etkinleştir."
         }
     },
     "ui": {
@@ -1330,10 +1330,10 @@
     },
     "tls": {
         "label": "TLS",
-        "description": "Frigate web uçları için TLS ayarları (port 8971).",
+        "description": "Architel VMS web uçları için TLS ayarları (port 8971).",
         "enabled": {
             "label": "TLS'i etkinleştir",
-            "description": "Frigate web arayüzü ve API'ı için TLS'i yapılandırılan portta etkinleştir."
+            "description": "Architel VMS web arayüzü ve API'ı için TLS'i yapılandırılan portta etkinleştir."
         }
     },
     "models": {

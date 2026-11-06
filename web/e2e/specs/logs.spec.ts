@@ -30,9 +30,11 @@ test.describe("Logs — service tabs @medium", () => {
       route.fulfill({ status: 200, body: "" }),
     );
     await frigateApp.goto("/logs");
-    await expect(frigateApp.page.getByLabel("Select frigate")).toBeVisible({
-      timeout: 5_000,
-    });
+    await expect(frigateApp.page.getByLabel("Select Architel VMS")).toBeVisible(
+      {
+        timeout: 5_000,
+      },
+    );
     await expect(frigateApp.page.getByText(/Frigate started/)).toBeVisible({
       timeout: 10_000,
     });
@@ -56,9 +58,11 @@ test.describe("Logs — service tabs @medium", () => {
     );
 
     await frigateApp.goto("/logs");
-    await expect(frigateApp.page.getByLabel("Select frigate")).toBeVisible({
-      timeout: 5_000,
-    });
+    await expect(frigateApp.page.getByLabel("Select Architel VMS")).toBeVisible(
+      {
+        timeout: 5_000,
+      },
+    );
     const go2rtcTab = frigateApp.page.getByLabel("Select go2rtc");
     await expect(go2rtcTab).toBeVisible();
     await go2rtcTab.click();
@@ -215,8 +219,10 @@ test.describe("Logs — mobile @medium @mobile", () => {
       route.fulfill({ status: 200, body: "" }),
     );
     await frigateApp.goto("/logs");
-    await expect(frigateApp.page.getByLabel("Select frigate")).toBeVisible({
-      timeout: 5_000,
-    });
+    await expect(frigateApp.page.getByLabel("Select Architel VMS")).toBeVisible(
+      {
+        timeout: 5_000,
+      },
+    );
   });
 });

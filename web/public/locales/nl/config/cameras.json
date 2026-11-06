@@ -5,7 +5,7 @@
         "description": "Cameranaam is vereist"
     },
     "friendly_name": {
-        "description": "Cameranaam te gebruiken in de Frigate UI",
+        "description": "Cameranaam te gebruiken in de Architel VMS UI",
         "label": "Eenvoudige naam"
     },
     "enabled": {
@@ -949,7 +949,7 @@
             },
             "calibrate_on_startup": {
                 "label": "Kalibreren bij opstarten",
-                "description": "PTZ-motorsnelheden meten bij opstarten voor nauwkeurigere volging. Frigate werkt de configuratie bij met movement_weights na kalibratie."
+                "description": "PTZ-motorsnelheden meten bij opstarten voor nauwkeurigere volging. Architel VMS werkt de configuratie bij met movement_weights na kalibratie."
             },
             "zooming": {
                 "label": "Zoommodus",

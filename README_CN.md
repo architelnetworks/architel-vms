@@ -1,8 +1,6 @@
-<p align="center">
-  <img align="center" alt="logo" src="docs/static/img/branding/frigate.png">
-</p>
+# Architel VMS
 
-# Frigate NVR™ - 一个具有实时目标检测的本地 NVR
+Architel VMS 基于 Frigate。项目架构与开发说明见 [English README](README.md)。以下保留上游功能、集成和许可证说明。
 
 <a href="https://hosted.weblate.org/engage/frigate-nvr/-/zh_Hans/">
 <img src="https://hosted.weblate.org/widget/frigate-nvr/-/zh_Hans/svg-badge.svg" alt="翻译状态" />

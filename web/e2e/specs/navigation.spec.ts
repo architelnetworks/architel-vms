@@ -11,6 +11,107 @@ import { BasePage } from "../pages/base.page";
 
 const PRIMARY_ROUTES = ["/review", "/explore", "/export"] as const;
 
+test.describe("Architel sidebar", () => {
+  test("labels preserve icon buttons and collapse persists", async ({
+    frigateApp,
+  }) => {
+    test.skip(frigateApp.isMobile, "Desktop sidebar");
+    await frigateApp.goto("/review");
+    const sidebar = frigateApp.page.getByRole("complementary", {
+      name: "Main navigation",
+    });
+    const review = sidebar.getByRole("link", { name: "Review", exact: true });
+    await expect(review.getByText("Review", { exact: true })).toBeVisible();
+    await expect(review).toHaveAttribute("aria-current", "page");
+    const icon = review.locator("span").first();
+    await expect(icon).toHaveCSS("width", "32px");
+    await expect(icon).toHaveCSS("height", "32px");
+    const iconBounds = await icon.boundingBox();
+    const labelBounds = await review
+      .getByText("Review", { exact: true })
+      .boundingBox();
+    expect(labelBounds!.x).toBeGreaterThan(iconBounds!.x + iconBounds!.width);
+    expect(
+      Math.abs(
+        labelBounds!.y +
+          labelBounds!.height / 2 -
+          iconBounds!.y -
+          iconBounds!.height / 2,
+      ),
+    ).toBeLessThan(2);
+    await expect(sidebar).toHaveCSS("width", "192px");
+    await expect(frigateApp.page.locator("#pageRoot")).toHaveCSS(
+      "left",
+      "192px",
+    );
+    await sidebar.getByRole("button", { name: "Collapse sidebar" }).click();
+    await expect(sidebar).toHaveCSS("width", "52px");
+    await expect(review.getByText("Review", { exact: true })).toHaveCount(0);
+    await expect(icon).toHaveCSS("width", "32px");
+    await review.hover();
+    await expect(frigateApp.page.getByRole("tooltip")).toContainText("Review");
+    // Wait for IndexedDB persistence, then verify a new page load restores it.
+    await expect
+      .poll(() =>
+        frigateApp.page.evaluate(async () => {
+          const request = indexedDB.open("keyval-store");
+          const db = await new Promise<IDBDatabase>((resolve, reject) => {
+            request.onsuccess = () => resolve(request.result);
+            request.onerror = () => reject(request.error);
+          });
+          const transaction = db.transaction("keyval", "readonly");
+          const values = transaction
+            .objectStore("keyval")
+            .get("architel-sidebar-collapsed:admin");
+          return new Promise<boolean>((resolve, reject) => {
+            values.onsuccess = () => {
+              db.close();
+              resolve(values.result === true);
+            };
+            values.onerror = () => {
+              db.close();
+              reject(values.error);
+            };
+          });
+        }),
+      )
+      .toBe(true);
+    await frigateApp.page.reload();
+    await expect(
+      sidebar.getByRole("button", { name: "Expand sidebar" }),
+    ).toBeEnabled();
+    await expect(sidebar).toHaveCSS("width", "52px");
+    await expect(frigateApp.page.locator("#pageRoot")).toHaveCSS(
+      "left",
+      "52px",
+    );
+    await sidebar.getByRole("button", { name: "Expand sidebar" }).click();
+    await expect(sidebar).toHaveCSS("width", "192px");
+    await expect(review.getByText("Review", { exact: true })).toBeVisible();
+  });
+
+  test("application metadata and assets are available @mobile", async ({
+    frigateApp,
+  }) => {
+    await frigateApp.goto("/");
+    await expect(frigateApp.page).toHaveTitle(/Architel VMS/);
+    const manifest = await frigateApp.page.request.get("/site.webmanifest");
+    expect(manifest.ok()).toBe(true);
+    const metadata = await manifest.json();
+    expect(metadata.name).toBe("Architel VMS");
+    for (const icon of metadata.icons) {
+      const response = await frigateApp.page.request.get(
+        new URL(icon.src, manifest.url()).href,
+      );
+      expect(response.ok()).toBe(true);
+    }
+    const favicon = await frigateApp.page.request.get(
+      "/images/branding/favicon.svg",
+    );
+    expect(favicon.ok()).toBe(true);
+  });
+});
+
 test.describe("Navigation — primary links @critical", () => {
   test("every primary link is visible and navigates", async ({
     frigateApp,

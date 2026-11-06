@@ -28,6 +28,7 @@ type NavItemProps = {
   Icon: IconType;
   onClick?: () => void;
   large?: boolean;
+  showLabel?: boolean;
 };
 
 export default function NavItem({
@@ -36,6 +37,7 @@ export default function NavItem({
   Icon,
   onClick,
   large,
+  showLabel = false,
 }: NavItemProps) {
   const { t } = useTranslation(["common"]);
   if (item.enabled == false) {
@@ -46,23 +48,41 @@ export default function NavItem({
     <NavLink
       to={item.url}
       onClick={onClick}
+      aria-label={t(item.title)}
       className={({ isActive }) =>
         cn(
-          "flex flex-col items-center justify-center rounded-lg p-[6px]",
+          "flex items-center justify-center rounded-lg",
           className,
-          large && "size-12",
-          variants[item.variant ?? "primary"][isActive ? "active" : "inactive"],
+          showLabel && "w-full justify-start gap-3 text-sm",
+          isActive && showLabel && "font-bold",
         )
       }
     >
-      <Icon className={large ? "size-6" : "size-5"} />
+      {({ isActive }) => (
+        <>
+          <span
+            className={cn(
+              "flex shrink-0 items-center justify-center rounded-lg p-[6px]",
+              large && "size-12",
+              variants[item.variant ?? "primary"][
+                isActive ? "active" : "inactive"
+              ],
+            )}
+          >
+            <Icon aria-hidden="true" className={large ? "size-6" : "size-5"} />
+          </span>
+          {showLabel && <span className="text-left">{t(item.title)}</span>}
+        </>
+      )}
     </NavLink>
   );
 
   if (isDesktop) {
     return (
       <Tooltip>
-        <TooltipTrigger>{content}</TooltipTrigger>
+        <TooltipTrigger asChild>
+          <div className={showLabel ? "w-full" : undefined}>{content}</div>
+        </TooltipTrigger>
         <TooltipPortal>
           <TooltipContent side="right">
             <p>{t(item.title)}</p>

@@ -56,7 +56,7 @@
         },
         "model": {
             "label": "Model přepisu zvuku nebo název poskytovatele generativní AI",
-            "description": "Zpracování přepisu: 'whisper' pro vestavěné místní modely Frigate nebo název poskytovatele generativní AI s rolí transcribe."
+            "description": "Zpracování přepisu: 'whisper' pro vestavěné místní modely Architel VMS nebo název poskytovatele generativní AI s rolí transcribe."
         },
         "device": {
             "label": "Zařízení pro přepis",
@@ -993,7 +993,7 @@
         },
         "topic_prefix": {
             "label": "Prefix témat",
-            "description": "Prefix všech témat MQTT Frigate; při provozu více instancí musí být jedinečný."
+            "description": "Prefix všech témat MQTT Architel VMS; při provozu více instancí musí být jedinečný."
         },
         "client_id": {
             "label": "ID klienta",
@@ -1088,7 +1088,7 @@
             },
             "calibrate_on_startup": {
                 "label": "Kalibrovat při spuštění",
-                "description": "Při spuštění změřit rychlosti motorů PTZ pro zlepšení přesnosti sledování. Frigate po kalibraci aktualizuje movement_weights v konfiguraci."
+                "description": "Při spuštění změřit rychlosti motorů PTZ pro zlepšení přesnosti sledování. Architel VMS po kalibraci aktualizuje movement_weights v konfiguraci."
             },
             "zooming": {
                 "label": "Režim zoomu",
@@ -1125,7 +1125,7 @@
         },
         "ignore_time_mismatch": {
             "label": "Ignorovat rozdíl času",
-            "description": "Ignorovat rozdíly v synchronizaci času mezi kamerou a serverem Frigate při komunikaci ONVIF."
+            "description": "Ignorovat rozdíly v synchronizaci času mezi kamerou a serverem Architel VMS při komunikaci ONVIF."
         }
     },
     "profiles": {
@@ -1142,11 +1142,11 @@
     },
     "safe_mode": {
         "label": "Nouzový režim",
-        "description": "Při zapnutí se Frigate spustí v nouzovém režimu s omezenými funkcemi pro řešení problémů."
+        "description": "Při zapnutí se Architel VMS spustí v nouzovém režimu s omezenými funkcemi pro řešení problémů."
     },
     "environment_vars": {
         "label": "Proměnné prostředí",
-        "description": "Dvojice klíč/hodnota proměnných prostředí pro proces Frigate v Home Assistant OS. Mimo HAOS použijte nastavení proměnných prostředí Dockeru."
+        "description": "Dvojice klíč/hodnota proměnných prostředí pro proces Architel VMS v Home Assistant OS. Mimo HAOS použijte nastavení proměnných prostředí Dockeru."
     },
     "logger": {
         "label": "Protokolování",
@@ -1165,7 +1165,7 @@
         "description": "Nastavení ověřování a relací včetně cookies a omezení četnosti požadavků.",
         "enabled": {
             "label": "Povolit ověřování",
-            "description": "Povolit vestavěné ověřování v uživatelském rozhraní Frigate."
+            "description": "Povolit vestavěné ověřování v uživatelském rozhraní Architel VMS."
         },
         "reset_admin_password": {
             "label": "Obnovit heslo správce",
@@ -1210,10 +1210,10 @@
     },
     "database": {
         "label": "Databáze",
-        "description": "Nastavení databáze SQLite, do které Frigate ukládá metadata sledovaných objektů a záznamů.",
+        "description": "Nastavení databáze SQLite, do které Architel VMS ukládá metadata sledovaných objektů a záznamů.",
         "path": {
             "label": "Cesta k databázi",
-            "description": "Cesta v souborovém systému, kam se uloží soubor databáze SQLite Frigate."
+            "description": "Cesta v souborovém systému, kam se uloží soubor databáze SQLite Architel VMS."
         }
     },
     "go2rtc": {
@@ -1222,13 +1222,13 @@
     },
     "networking": {
         "label": "Síť",
-        "description": "Síťová nastavení, například povolení IPv6 pro koncové body Frigate.",
+        "description": "Síťová nastavení, například povolení IPv6 pro koncové body Architel VMS.",
         "ipv6": {
             "label": "Konfigurace IPv6",
-            "description": "Nastavení IPv6 pro síťové služby Frigate.",
+            "description": "Nastavení IPv6 pro síťové služby Architel VMS.",
             "enabled": {
                 "label": "Povolit IPv6",
-                "description": "Povolit podporu IPv6 ve službách Frigate (API a uživatelské rozhraní), kde je to možné."
+                "description": "Povolit podporu IPv6 ve službách Architel VMS (API a uživatelské rozhraní), kde je to možné."
             }
         },
         "listen": {
@@ -1236,20 +1236,20 @@
             "description": "Konfigurace interních a externích naslouchajících portů. Určeno pro pokročilé uživatele. Ve většině případů se doporučuje změnit sekci ports v souboru Docker Compose.",
             "internal": {
                 "label": "Interní port",
-                "description": "Interní naslouchající port Frigate (výchozí 5000)."
+                "description": "Interní naslouchající port Architel VMS (výchozí 5000)."
             },
             "external": {
                 "label": "Externí port",
-                "description": "Externí naslouchající port Frigate (výchozí 8971)."
+                "description": "Externí naslouchající port Architel VMS (výchozí 8971)."
             }
         }
     },
     "proxy": {
         "label": "Proxy",
-        "description": "Nastavení integrace Frigate za reverzní proxy, která předává hlavičky ověřeného uživatele.",
+        "description": "Nastavení integrace Architel VMS za reverzní proxy, která předává hlavičky ověřeného uživatele.",
         "header_map": {
             "label": "Mapování hlaviček",
-            "description": "Mapování příchozích hlaviček proxy na pole uživatele a role Frigate pro ověřování pomocí proxy.",
+            "description": "Mapování příchozích hlaviček proxy na pole uživatele a role Architel VMS pro ověřování pomocí proxy.",
             "user": {
                 "label": "Hlavička uživatele",
                 "description": "Hlavička obsahující ověřené uživatelské jméno předané nadřazenou proxy."
@@ -1260,7 +1260,7 @@
             },
             "role_map": {
                 "label": "Mapování rolí",
-                "description": "Mapování hodnot skupin z nadřazené proxy na role Frigate (například skupin správců na roli admin)."
+                "description": "Mapování hodnot skupin z nadřazené proxy na role Architel VMS (například skupin správců na roli admin)."
             }
         },
         "logout_url": {
@@ -1309,15 +1309,15 @@
         },
         "version_check": {
             "label": "Kontrola verze",
-            "description": "Povolit odchozí kontrolu dostupnosti novější verze Frigate."
+            "description": "Povolit odchozí kontrolu dostupnosti novější verze Architel VMS."
         }
     },
     "tls": {
         "label": "TLS",
-        "description": "Nastavení TLS pro webové koncové body Frigate (port 8971).",
+        "description": "Nastavení TLS pro webové koncové body Architel VMS (port 8971).",
         "enabled": {
             "label": "Povolit TLS",
-            "description": "Povolit TLS pro webové rozhraní a API Frigate na nastaveném portu TLS."
+            "description": "Povolit TLS pro webové rozhraní a API Architel VMS na nastaveném portu TLS."
         }
     },
     "ui": {

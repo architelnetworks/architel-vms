@@ -1,0 +1,32 @@
+{
+  "dataset": "MEVA KF1 drops-123-r13",
+  "publisher": "Kitware Inc. and IARPA",
+  "license": "CC-BY-4.0",
+  "license_url": "https://mevadata.org/resources/MEVA-data-license.txt",
+  "clips": [
+    {
+      "camera": "main_entrance",
+      "display_name": "Main Entrance",
+      "url": "https://mevadata-public-01.s3.amazonaws.com/drops-123-r13/2018-03-07/16/2018-03-07.16-50-06.16-55-06.school.G300.r13.avi",
+      "sha256": "19d144d04bc245ec0aa411a4b2d8dba7ceb645635b8cd6033fca7ed2eeccaad9",
+      "start_seconds": 0,
+      "duration_seconds": 90
+    },
+    {
+      "camera": "corridor",
+      "display_name": "Corridor",
+      "url": "https://mevadata-public-01.s3.amazonaws.com/drops-123-r13/2018-03-07/16/2018-03-07.16-50-01.16-55-01.school.G423.r13.avi",
+      "sha256": "f23b0b8162cd046be385f935d412fae53fff85f4e5be77b1fc544bf4904acb23",
+      "start_seconds": 100,
+      "duration_seconds": 90
+    },
+    {
+      "camera": "car_park",
+      "display_name": "Car Park",
+      "url": "https://mevadata-public-01.s3.amazonaws.com/drops-123-r13/2018-03-07/16/2018-03-07.16-50-06.16-55-06.school.G336.r13.avi",
+      "sha256": "8f4a4698c1b9ac72fb3f74cc4a31c6895cbce3f94d074739a3329a0d9f052ae3",
+      "start_seconds": 75,
+      "duration_seconds": 90
+    }
+  ]
+}

@@ -57,15 +57,15 @@
     "detectIsVerySlow": "{{detect}} ช้ามาก ({{speed}} มิลลิวินาที)"
   },
   "documentTitle": {
-    "cameras": "ข้อมูลกล้อง - Frigate",
-    "storage": "สถิติคลังข้อมูล - Frigate",
-    "general": "สถิติทั่วไป - Frigate",
-    "enrichments": "สถิติเพิ่มเติม - Frigate",
+    "cameras": "ข้อมูลกล้อง - Architel VMS",
+    "storage": "สถิติคลังข้อมูล - Architel VMS",
+    "general": "สถิติทั่วไป - Architel VMS",
+    "enrichments": "สถิติเพิ่มเติม - Architel VMS",
     "logs": {
-      "frigate": "Frigate Logs - Frigate",
-      "go2rtc": "Logs ของ Go2RTC - Frigate",
-      "nginx": "Logs ของ Nginx - Frigate",
-      "websocket": "ประวัติข้อความ - Frigate"
+      "frigate": "Architel VMS Logs - Architel VMS",
+      "go2rtc": "Logs ของ Go2RTC - Architel VMS",
+      "nginx": "Logs ของ Nginx - Architel VMS",
+      "websocket": "ประวัติข้อความ - Architel VMS"
     }
   },
   "logs": {

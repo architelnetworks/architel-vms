@@ -5,6 +5,11 @@ Existing features and evidence are in [Architecture](ARCHITECTURE.md).
 Dependencies below are gates, not calendar commitments. No stage is claimed
 complete merely because corresponding source code exists.
 
+2026-11-06 product stage update: Stage 2 branding and desktop sidebar work is
+implemented; see [Branding](BRANDING.md). This UI delivery does not mark the
+authenticated deployment, site pilot, capacity, or production acceptance gates
+below complete.
+
 | Order | Stage | Dependencies | Deliverable and acceptance gate |
 | --- | --- | --- | --- |
 | 1 | Reproducible development and authenticated baseline | Audit | Document and test local users/admin/viewer/restricted-camera sessions through the authenticated listener; preserve a separate explicit internal-port development mode. Resolve Python/Node baseline with build/test evidence. One known-good build and recovery path |

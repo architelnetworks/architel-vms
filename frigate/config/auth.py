@@ -11,7 +11,7 @@ class AuthConfig(FrigateBaseModel):
     enabled: bool = Field(
         default=True,
         title="Enable authentication",
-        description="Enable native authentication for the Frigate UI.",
+        description="Enable native authentication for the Architel VMS UI.",
     )
     reset_admin_password: bool = Field(
         default=False,
@@ -27,7 +27,7 @@ class AuthConfig(FrigateBaseModel):
     cookie_secure: bool = Field(
         default=False,
         title="Secure cookie flag",
-        description="Always set the secure flag on the auth cookie. Frigate sets it automatically when serving TLS; enable this when a reverse proxy terminates TLS in front of Frigate. A proxy that connects to the TLS port must serve Frigate to browsers over HTTPS.",
+        description="Always set the secure flag on the auth cookie. Architel VMS sets it automatically when serving TLS; enable this when a reverse proxy terminates TLS in front of Architel VMS. A proxy that connects to the TLS port must serve Architel VMS to browsers over HTTPS.",
     )
     session_length: int = Field(
         default=86400,

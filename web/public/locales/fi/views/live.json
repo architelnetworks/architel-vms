@@ -1,8 +1,8 @@
 {
   "documentTitle": {
-    "default": "Suora - Frigate"
+    "default": "Suora - Architel VMS"
   },
-  "documentTitle.withCamera": "{{camera}} - Suora - Frigate",
+  "documentTitle.withCamera": "{{camera}} - Suora - Architel VMS",
   "lowBandwidthMode": "Pienen kaistanleveyden tila",
   "twoWayTalk": {
     "enable": "Ota käyttöön kaksisuuntainen puhe",

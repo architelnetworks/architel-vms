@@ -1,3 +1,7 @@
+# Architel VMS documentation
+
+This documentation includes inherited Frigate technical guides. Internal names, upstream integration links, and third-party acknowledgments remain unchanged for compatibility. Architel architecture and branding records live in [architel/](architel/ARCHITECTURE.md).
+
 # Website
 
 This website is built using [Docusaurus 3.5](https://docusaurus.io/docs), a modern static website generator.

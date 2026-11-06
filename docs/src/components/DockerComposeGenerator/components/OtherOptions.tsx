@@ -113,7 +113,7 @@ export default function OtherOptions({
             Optional. You can specify{" "}
             <CodeInline>{"{FRIGATE_RTSP_PASSWORD}"}</CodeInline>{" "}
             in the config file to reference camera stream passwords. This is NOT
-            the Frigate login password.
+            the Architel VMS login password.
           </p>
         </div>
       </div>

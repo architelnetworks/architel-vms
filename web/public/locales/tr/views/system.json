@@ -1,16 +1,16 @@
 {
   "documentTitle": {
     "logs": {
-      "frigate": "Frigate Günlükleri - Frigate",
-      "go2rtc": "Go2RTC Günlükleri - Frigate",
-      "nginx": "Nginx Günlükleri - Frigate",
-      "websocket": "Mesaj Günlükleri - Frigate"
+      "frigate": "Architel VMS Günlükleri - Architel VMS",
+      "go2rtc": "Go2RTC Günlükleri - Architel VMS",
+      "nginx": "Nginx Günlükleri - Architel VMS",
+      "websocket": "Mesaj Günlükleri - Architel VMS"
     },
-    "general": "Genel İstatistikler - Frigate",
-    "storage": "Depolama İstatistikleri - Frigate",
-    "cameras": "Kamera İstatistikleri - Frigate",
-    "enrichments": "Zenginleştirme İstatistikleri - Frigate",
-    "health": "Sağlık - Frigate"
+    "general": "Genel İstatistikler - Architel VMS",
+    "storage": "Depolama İstatistikleri - Architel VMS",
+    "cameras": "Kamera İstatistikleri - Architel VMS",
+    "enrichments": "Zenginleştirme İstatistikleri - Architel VMS",
+    "health": "Sağlık - Architel VMS"
   },
   "metrics": "Sistem metrikleri",
   "general": {
@@ -78,13 +78,13 @@
     "recordings": {
       "title": "Kayıtlar",
       "earliestRecording": "Mevcut en erken kayıt:",
-      "tips": "Bu değer Frigate veritabanındaki kayıtların kullandığı toplam depolama alanını ifade eder. Frigate, diskinizdeki tüm dosyaların alan kullanımını takip etmez."
+      "tips": "Bu değer Architel VMS veritabanındaki kayıtların kullandığı toplam depolama alanını ifade eder. Architel VMS, diskinizdeki tüm dosyaların alan kullanımını takip etmez."
     },
     "cameraStorage": {
       "title": "Kamera Depolaması",
       "camera": "Kamera",
       "unused": {
-        "tips": "Eğer sürücünüzde Frigate'in kayıtları dışında dosyalar varsa bu değer boş alanı doğru olarak göstermeyebilir. Frigate kendi kayıtları dışındaki depolama kullanımını takip etmez.",
+        "tips": "Eğer sürücünüzde Architel VMS'in kayıtları dışında dosyalar varsa bu değer boş alanı doğru olarak göstermeyebilir. Architel VMS kendi kayıtları dışındaki depolama kullanımını takip etmez.",
         "title": "Kullanılmayan"
       },
       "percentageOfTotalUsed": "Yüzde",
@@ -281,7 +281,7 @@
     "title": "Sağlık",
     "notices": {
       "title": "Bilgilendirmeler",
-      "empty": "Frigate kurulumunuz sağlıklı",
+      "empty": "Architel VMS kurulumunuz sağlıklı",
       "openSettings": "Ayarları aç",
       "openLink": "Bağlantıyı aç",
       "noMatches": "Filtreye uygun bilgilendirme yok",
@@ -302,7 +302,7 @@
         "update_available": "Frigate {{version}} sürümü çıkmış",
         "ffmpeg_high_cpu": "FFmpeg CPU kullanımı yüksek (ortalama %{{cpu}})",
         "detect_high_cpu": "Algılama CPU kullanımı yüksek (ortalama %{{cpu}})",
-        "object_processing_behind": "Takipli nesneler eş zamanlı işlenemediği için kamera kareleri atlandı. CPU kullanımını kontrol edin. Konteyner ya da sanal makine (VM) üzerindeki CPU limitleri veya sabitlemeleri (pinning) de Frigate'e çok az CPU bırakıyor olabilir"
+        "object_processing_behind": "Takipli nesneler eş zamanlı işlenemediği için kamera kareleri atlandı. CPU kullanımını kontrol edin. Konteyner ya da sanal makine (VM) üzerindeki CPU limitleri veya sabitlemeleri (pinning) de Architel VMS'e çok az CPU bırakıyor olabilir"
       },
       "streamPrefix": "{{index}}. yayın: {{message}}",
       "streamPrefixRestream": "{{index}}. Yayın (go2rtc üzerinden): {{message}}",
@@ -339,7 +339,7 @@
       "nothingConfigured": "Hiçbir şey yapılandırılmamış",
       "allCameras": "Tüm kameralar",
       "probeUnavailable": "Donanım tespiti kullanılamıyor",
-      "justStarted": "Frigate başladı",
+      "justStarted": "Architel VMS başladı",
       "deviceNotFound": "{{devices}} bu sistemde bulunamadı",
       "detectorNotRunning": "Algılayıcı işlemi çalışmıyor",
       "inferenceVerySlow": "Çıkarım çok yavaş ({{speed}} ms)",

@@ -1,7 +1,7 @@
 {
   "time": {
     "untilForTime": "Till {{time}}",
-    "untilForRestart": "Tills Frigate startar om.",
+    "untilForRestart": "Tills Architel VMS startar om.",
     "untilRestart": "Tills omstart",
     "ago": "{{timeAgo}} sedan",
     "justNow": "Just nu",
@@ -227,7 +227,7 @@
       "label": "Frigate-dokumentation"
     },
     "uiPlayground": "Testmiljö för gränssnittet",
-    "restart": "Starta om Frigate",
+    "restart": "Starta om Architel VMS",
     "review": "Granska",
     "languages": "Språk",
     "configurationEditor": "Konfigurationsredigerare",
@@ -254,7 +254,7 @@
   "accessDenied": {
     "title": "Åtkomst nekad",
     "desc": "Du har inte rättigheter att visa den här sidan.",
-    "documentTitle": "Åtkomst nekad – Frigate"
+    "documentTitle": "Åtkomst nekad – Architel VMS"
   },
   "role": {
     "admin": "Administratör",
@@ -263,7 +263,7 @@
     "title": "Roll"
   },
   "notFound": {
-    "documentTitle": "Sidan hittades inte – Frigate",
+    "documentTitle": "Sidan hittades inte – Architel VMS",
     "desc": "Sidan hittades inte",
     "title": "404"
   },
@@ -317,7 +317,7 @@
   },
   "field": {
     "optional": "Valfritt",
-    "internalID": "Det interna ID som Frigate använder i konfigurationen och databasen"
+    "internalID": "Det interna ID som Architel VMS använder i konfigurationen och databasen"
   },
   "no_items": "Inga objekt",
   "validation_errors": "Valideringsfel",

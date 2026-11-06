@@ -107,6 +107,7 @@ export default function LogInfoDialog({
 
 function useHelpfulLinks(content: string | undefined) {
   const { getLocaleDocUrl } = useDocDomain();
+  const { t } = useTranslation("views/system");
   return useMemo(() => {
     if (!content) {
       return [];
@@ -118,7 +119,7 @@ function useHelpfulLinks(content: string | undefined) {
         link: getLocaleDocUrl(
           "configuration/record#will-frigate-delete-old-recordings-if-my-storage-runs-out",
         ),
-        text: "Frigate Automatic Storage Cleanup",
+        text: t("logs.automaticStorageCleanup"),
       });
     }
 
@@ -164,5 +165,5 @@ function useHelpfulLinks(content: string | undefined) {
     }
 
     return links;
-  }, [content, getLocaleDocUrl]);
+  }, [content, getLocaleDocUrl, t]);
 }

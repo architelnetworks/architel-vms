@@ -669,7 +669,7 @@
             },
             "calibrate_on_startup": {
                 "label": "Beim Start kalibrieren",
-                "description": "Messen Sie die Drehzahlen der PTZ-Motoren beim Start, um die Nachführgenauigkeit zu verbessern. Frigate aktualisiert die Konfiguration nach der Kalibrierung mit den Bewegungsgewichten."
+                "description": "Messen Sie die Drehzahlen der PTZ-Motoren beim Start, um die Nachführgenauigkeit zu verbessern. Architel VMS aktualisiert die Konfiguration nach der Kalibrierung mit den Bewegungsgewichten."
             },
             "zooming": {
                 "label": "Zoom-Modus",
@@ -876,7 +876,7 @@
         "description": "Mit Zonen können Sie einen bestimmten Bereich des Bildausschnitts festlegen, um zu bestimmen, ob sich ein Objekt innerhalb dieses Bereichs befindet oder nicht.",
         "friendly_name": {
             "label": "Zonen Name",
-            "description": "Ein benutzerfreundlicher Name für die Zone, der in der Benutzeroberfläche von Frigate angezeigt wird. Wenn kein Name festgelegt ist, wird eine formatierte Version des Zonennamens verwendet."
+            "description": "Ein benutzerfreundlicher Name für die Zone, der in der Benutzeroberfläche von Architel VMS angezeigt wird. Wenn kein Name festgelegt ist, wird eine formatierte Version des Zonennamens verwendet."
         },
         "enabled": {
             "label": "Aktiviert",

@@ -1,6 +1,6 @@
 {
   "generativeAI": "Generativ AI",
-  "documentTitle": "Utforska - Frigate",
+  "documentTitle": "Utforska - Architel VMS",
   "exploreIsUnavailable": {
     "embeddingsReindexing": {
       "startingUp": "Startar upp…",
@@ -25,7 +25,7 @@
         "context": "Du kanske vill omindexera inbäddningarna av dina spårade objekt när modellerna har laddats ner."
       },
       "error": "Ett fel har inträffat. Kontrollera Frigate-loggarna.",
-      "context": "Frigate laddar ned de inbäddningsmodeller som behövs för semantisk sökning. Det kan ta flera minuter beroende på nätverksanslutningens hastighet."
+      "context": "Architel VMS laddar ned de inbäddningsmodeller som behövs för semantisk sökning. Det kan ta flera minuter beroende på nätverksanslutningens hastighet."
     }
   },
   "details": {
@@ -40,7 +40,7 @@
       "tips": {
         "mismatch_one": "{{count}} otillgängligt objekt detekterades och inkluderades i det här granskningsobjektet. Objektet kvalificerade sig antingen inte som en varning eller detektering, eller så har det redan rensats eller tagits bort.",
         "mismatch_other": "{{count}} otillgängliga objekt detekterades och inkluderades i det här granskningsobjektet. Objekten kvalificerade sig antingen inte som varningar eller detekteringar, eller så har de redan rensats eller tagits bort.",
-        "hasMissingObjects": "Justera din konfiguration om du vill att Frigate ska spara spårade objekt för följande etiketter: <em>{{objects}}</em>"
+        "hasMissingObjects": "Justera din konfiguration om du vill att Architel VMS ska spara spårade objekt för följande etiketter: <em>{{objects}}</em>"
       },
       "toast": {
         "success": {
@@ -95,7 +95,7 @@
     "description": {
       "label": "Beskrivning",
       "placeholder": "Beskrivning av det spårade objektet",
-      "aiTips": "Frigate kommer inte att begära en beskrivning från din generativa AI-leverantör förrän det spårade objektets livscykel har avslutats."
+      "aiTips": "Architel VMS kommer inte att begära en beskrivning från din generativa AI-leverantör förrän det spårade objektets livscykel har avslutats."
     },
     "expandRegenerationMenu": "Visa menyn för återskapande",
     "regenerateFromSnapshot": "Återskapa från ögonblicksbild",

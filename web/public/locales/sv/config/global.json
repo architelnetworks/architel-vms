@@ -160,7 +160,7 @@
         },
         "retry_interval": {
             "label": "Återförsöksintervall för FFmpeg",
-            "description": "Antal sekunder att vänta innan Frigate försöker återansluta en kameraström efter ett fel. Standardvärdet är 10."
+            "description": "Antal sekunder att vänta innan Architel VMS försöker återansluta en kameraström efter ett fel. Standardvärdet är 10."
         },
         "apple_compatibility": {
             "label": "Apple-kompatibilitet",
@@ -789,7 +789,7 @@
             },
             "calibrate_on_startup": {
                 "label": "Kalibrera vid start",
-                "description": "Mät PTZ-motorernas hastigheter vid start för att förbättra spårningsnoggrannheten. Frigate uppdaterar konfigurationen med movement_weights efter kalibreringen."
+                "description": "Mät PTZ-motorernas hastigheter vid start för att förbättra spårningsnoggrannheten. Architel VMS uppdaterar konfigurationen med movement_weights efter kalibreringen."
             },
             "zooming": {
                 "label": "Zoomläge",
@@ -834,7 +834,7 @@
     },
     "safe_mode": {
         "label": "Säkert läge",
-        "description": "När detta är aktiverat startar Frigate i felsäkert läge med begränsad funktionalitet för felsökning."
+        "description": "När detta är aktiverat startar Architel VMS i felsäkert läge med begränsad funktionalitet för felsökning."
     },
     "environment_vars": {
         "label": "Miljövariabler",
@@ -902,7 +902,7 @@
     },
     "database": {
         "label": "Databas",
-        "description": "Inställningar för SQLite-databasen som används av Frigate för att lagra metadata för spårade objekt och inspelningar.",
+        "description": "Inställningar för SQLite-databasen som används av Architel VMS för att lagra metadata för spårade objekt och inspelningar.",
         "path": {
             "label": "Databassökväg",
             "description": "Filsystemsökväg där Frigates SQLite-databasfil ska lagras."
@@ -928,17 +928,17 @@
             "description": "Konfiguration av interna och externa lyssningsportar. Detta är avsett för avancerade användare. I de flesta fall rekommenderas att portinställningarna ändras i Docker Compose-filen.",
             "internal": {
                 "label": "Intern port",
-                "description": "Intern lyssningsport för Frigate (standard: 5000)."
+                "description": "Intern lyssningsport för Architel VMS (standard: 5000)."
             },
             "external": {
                 "label": "Extern port",
-                "description": "Extern lyssningsport för Frigate (standard: 8971)."
+                "description": "Extern lyssningsport för Architel VMS (standard: 8971)."
             }
         }
     },
     "proxy": {
         "label": "Proxyserver",
-        "description": "Inställningar för att köra Frigate bakom en omvänd proxy som skickar vidare autentiserade användarheaders.",
+        "description": "Inställningar för att köra Architel VMS bakom en omvänd proxy som skickar vidare autentiserade användarheaders.",
         "header_map": {
             "label": "Header-mappning",
             "description": "Mappar inkommande proxyheaders till Frigates användar- och rollfält för proxybaserad autentisering.",
@@ -1017,7 +1017,7 @@
         },
         "version_check": {
             "label": "Versionskontroll",
-            "description": "Aktivera en utgående kontroll för att se om en nyare version av Frigate finns tillgänglig."
+            "description": "Aktivera en utgående kontroll för att se om en nyare version av Architel VMS finns tillgänglig."
         }
     },
     "tls": {

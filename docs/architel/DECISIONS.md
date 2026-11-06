@@ -42,6 +42,13 @@ See [Architecture](ARCHITECTURE.md) and [Roadmap](ROADMAP.md).
 
 ## Change discipline
 
+2026-11-06, Stage 2: use Architel VMS for product display identity, preserving
+technical Frigate identifiers and third-party brands. Reuse the existing desktop
+navigation and per-user preference store; preserve the original icon buttons
+with adjacent labels and a 52 px collapsed mode. Use text placeholders until
+official assets arrive. See [Branding](BRANDING.md). No recording or application
+security behavior is changed by this decision.
+
 For a resolved decision, record date, rationale, alternatives, affected modules,
 migration/compatibility effects, and acceptance evidence here. Product constraints
 remain in force until explicitly revised. A feature's presence in source does not

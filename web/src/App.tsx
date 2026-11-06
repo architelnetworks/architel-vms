@@ -7,7 +7,8 @@ import CommandMenu from "@/components/menu/CommandMenu";
 import { isDesktop, isMobile } from "react-device-detect";
 import Statusbar from "./components/Statusbar";
 import Bottombar from "./components/navigation/Bottombar";
-import { lazy, useContext, useEffect, useState } from "react";
+import { CSSProperties, lazy, useContext, useEffect, useState } from "react";
+import { useUserPersistence } from "@/hooks/use-user-persistence";
 import { Redirect } from "./components/navigation/Redirect";
 import { cn } from "./lib/utils";
 import { isPWA } from "./utils/isPWA";
@@ -63,6 +64,8 @@ function DefaultAppView() {
   const [showWizard, setShowWizard] = useState<boolean>();
   const { auth } = useContext(AuthContext);
   const isAdmin = useIsAdmin();
+  const [sidebarCollapsed = false, setSidebarCollapsed, sidebarLoaded] =
+    useUserPersistence<boolean>("architel-sidebar-collapsed", false);
 
   useEffect(() => {
     // every step writes through admin only endpoints, and the role isn't
@@ -108,8 +111,23 @@ function DefaultAppView() {
   }
 
   return (
-    <div className="size-full overflow-hidden">
-      <ChromeErrorBoundary>{isDesktop && <Sidebar />}</ChromeErrorBoundary>
+    <div
+      className="size-full overflow-hidden"
+      style={
+        {
+          "--architel-sidebar-width": sidebarCollapsed ? "52px" : "192px",
+        } as CSSProperties
+      }
+    >
+      <ChromeErrorBoundary>
+        {isDesktop && (
+          <Sidebar
+            collapsed={sidebarCollapsed}
+            onToggle={() => setSidebarCollapsed(!sidebarCollapsed)}
+            preferenceLoaded={sidebarLoaded}
+          />
+        )}
+      </ChromeErrorBoundary>
       <ChromeErrorBoundary>{isDesktop && <Statusbar />}</ChromeErrorBoundary>
       <ChromeErrorBoundary>{isDesktop && <CommandMenu />}</ChromeErrorBoundary>
       <ChromeErrorBoundary>{isMobile && <Bottombar />}</ChromeErrorBoundary>
@@ -121,7 +139,7 @@ function DefaultAppView() {
             ? isPWA
               ? "bottom-[calc(3rem+env(safe-area-inset-bottom))] left-0 pt-[env(safe-area-inset-top)] md:bottom-[calc(4rem+env(safe-area-inset-bottom))] landscape:pl-[env(safe-area-inset-left)] landscape:pr-[env(safe-area-inset-right)]"
               : "bottom-12 left-0 md:bottom-16"
-            : "bottom-8 left-[52px]",
+            : "bottom-8 left-[var(--architel-sidebar-width)]",
         )}
       >
         <LazyPage

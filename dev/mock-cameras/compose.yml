@@ -1,0 +1,29 @@
+name: architel-vms-mock
+
+# Reuse the dependency image built by docker-compose.dev.yml.
+services:
+  backend:
+    image: architel-vms-backend
+    pull_policy: never
+    working_dir: /opt/frigate
+    restart: unless-stopped
+    shm_size: "512mb"
+    ports:
+      - "127.0.0.1:5002:5000"
+    volumes:
+      - ../../frigate:/opt/frigate/frigate:ro
+      - ../../migrations:/opt/frigate/migrations:ro
+      - ./.data/config:/config
+      - ./.data/media:/media/frigate
+      - ./.data/footage:/media/frigate/mock:ro
+    tmpfs:
+      - /tmp/cache:size=1000000000
+
+  prepare:
+    image: architel-vms-backend
+    pull_policy: never
+    profiles: ["tools"]
+    entrypoint: ["python3", "/tools/prepare.py"]
+    volumes:
+      - .:/tools:ro
+      - ./.data:/data

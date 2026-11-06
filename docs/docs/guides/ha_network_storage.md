@@ -3,7 +3,7 @@ id: ha_network_storage
 title: Home Assistant storage
 ---
 
-Frigate's media (`/media/frigate`) can be stored on a network share or a separate local disk (internal or USB) instead of the Home Assistant system disk.
+Architel VMS's media (`/media/frigate`) can be stored on a network share or a separate local disk (internal or USB) instead of the Home Assistant system disk.
 
 ## Prerequisites
 
@@ -21,7 +21,7 @@ Frigate's media (`/media/frigate`) can be stored on a network share or a separat
 
 ### Initial Setup
 
-1. Stop the Frigate App
+1. Stop the Architel VMS App
 
 ### Move current data
 
@@ -45,4 +45,4 @@ Keeping the current data is optional, but `/media/frigate` must be moved or dele
    - For a local disk, choose `Local disk` and select the disk to use
 5. Connect
 6. Move files from `/media/frigate_tmp` to `/media/frigate` if they were kept in previous step
-7. Start the Frigate App
+7. Start the Architel VMS App

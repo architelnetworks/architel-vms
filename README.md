@@ -1,8 +1,4 @@
-<p align="center">
-  <img align="center" alt="logo" src="docs/static/img/branding/frigate.png">
-</p>
-
-# Frigate NVR™ - Realtime Object Detection for IP Cameras
+# Architel VMS
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -12,7 +8,11 @@
 
 \[English\] | [简体中文](https://github.com/blakeblackshear/frigate/blob/dev/README_CN.md)
 
-A complete and local NVR designed for [Home Assistant](https://www.home-assistant.io) with AI object detection. Uses OpenCV and Tensorflow to perform realtime object detection locally for IP cameras.
+Architel VMS is a standalone, locally operated video management system built on [Frigate](https://github.com/blakeblackshear/frigate). It retains Frigate's recording, streaming, playback, search, and object detection foundation. Core video operation does not depend on Architel ACS or internet connectivity.
+
+Project architecture and implementation status: [Architecture](docs/architel/ARCHITECTURE.md), [Roadmap](docs/architel/ROADMAP.md), [Decisions](docs/architel/DECISIONS.md), [Integrations](docs/architel/INTEGRATIONS.md).
+
+For local development with live refresh, see [web/README.md](web/README.md). Official branding asset requirements are listed in [BRANDING.md](docs/architel/BRANDING.md).
 
 Use of a GPU or AI accelerator is highly recommended. AI accelerators will outperform even the best CPUs with very little overhead. See Frigate's supported [object detectors](https://docs.frigate.video/configuration/object_detectors/).
 
@@ -29,11 +29,11 @@ Use of a GPU or AI accelerator is highly recommended. AI accelerators will outpe
 
 ## Documentation
 
-View the documentation at https://docs.frigate.video
+Read [Architel project documentation](docs/architel/ARCHITECTURE.md). The underlying video engine is documented at https://docs.frigate.video.
 
-## Donations
+## Upstream support
 
-If you would like to make a donation to support development, please use [Github Sponsors](https://github.com/sponsors/blakeblackshear).
+If you would like to make a donation to support upstream Frigate development, please use [Github Sponsors](https://github.com/sponsors/blakeblackshear).
 
 ## License
 
@@ -42,9 +42,11 @@ This project is licensed under the **MIT License**.
 - **Code:** The source code, configuration files, and documentation in this repository are available under the [MIT License](LICENSE). You are free to use, modify, and distribute the code as long as you include the original copyright notice.
 - **Trademarks:** The "Frigate" name, the "Frigate NVR" brand, and the Frigate logo are **trademarks of Frigate, Inc.** and are **not** covered by the MIT License.
 
-Please see our [Trademark Policy](TRADEMARK.md) for details on acceptable use of our brand assets.
+Please see the upstream [Trademark Policy](TRADEMARK.md) for details on acceptable use of our brand assets.
 
 ## Screenshots
+
+The following screenshots show the upstream Frigate interface and are retained as reference.
 
 ### Live dashboard
 

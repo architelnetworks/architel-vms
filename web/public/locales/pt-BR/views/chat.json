@@ -77,7 +77,7 @@
     },
     "approval": {
         "title": "Aprovar {{tool}}?",
-        "desc": "Esta ação muda algo no Frigate. Revise os detalhes antes de aprovar.",
+        "desc": "Esta ação muda algo no Architel VMS. Revise os detalhes antes de aprovar.",
         "approve": "Aprovar",
         "always_allow": "Sempre permitir",
         "reject": "Rejeitar",

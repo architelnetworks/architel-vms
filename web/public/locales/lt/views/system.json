@@ -1,15 +1,15 @@
 {
   "documentTitle": {
-    "cameras": "Kamerų Statistika - Frigate",
-    "storage": "Saugyklos Statistika - Frigate",
+    "cameras": "Kamerų Statistika - Architel VMS",
+    "storage": "Saugyklos Statistika - Architel VMS",
     "logs": {
-      "frigate": "Frigate Žurnalas - Frigate",
-      "go2rtc": "Go2RTC Žurnalas - Frigate",
-      "nginx": "Nginx Žurnalas - Frigate",
-      "websocket": "Žinučių Išrašas - Frigate"
+      "frigate": "Architel VMS Žurnalas - Architel VMS",
+      "go2rtc": "Go2RTC Žurnalas - Architel VMS",
+      "nginx": "Nginx Žurnalas - Architel VMS",
+      "websocket": "Žinučių Išrašas - Architel VMS"
     },
-    "general": "Bendroji Statistika - Frigate",
-    "enrichments": "Pagerinimų Statistika - Frigate"
+    "general": "Bendroji Statistika - Architel VMS",
+    "enrichments": "Pagerinimų Statistika - Architel VMS"
   },
   "title": "Sistema",
   "metrics": "Sistemos metrikos",
@@ -127,7 +127,7 @@
     "overview": "Apžvalga",
     "recordings": {
       "title": "Įrašai",
-      "tips": "Ši reikšmė nurodo kiek iš viso Frigate duombazėje esantys įrašai užima vietos saugykloje. Frigate neseka kiek vietos užima visi kiti failai esantys laikmenoje.",
+      "tips": "Ši reikšmė nurodo kiek iš viso Architel VMS duombazėje esantys įrašai užima vietos saugykloje. Architel VMS neseka kiek vietos užima visi kiti failai esantys laikmenoje.",
       "earliestRecording": "Anksčiausias esantis įrašas:"
     },
     "cameraStorage": {
@@ -139,7 +139,7 @@
       "bandwidth": "Pralaidumas",
       "unused": {
         "title": "Nepanaudota",
-        "tips": "Jei saugykloje turite daugiau failų apart Frigate įrašų, ši reikšmė neatspindės tikslios likusios laisvos vietos Frigate panaudojimui. Frigate neseka saugyklos panaudojimo už savo įrašų ribų."
+        "tips": "Jei saugykloje turite daugiau failų apart Architel VMS įrašų, ši reikšmė neatspindės tikslios likusios laisvos vietos Architel VMS panaudojimui. Architel VMS neseka saugyklos panaudojimo už savo įrašų ribų."
       }
     },
     "shm": {

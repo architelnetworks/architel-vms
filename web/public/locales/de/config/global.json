@@ -5,7 +5,7 @@
     },
     "safe_mode": {
         "label": "abgesicherter Modus",
-        "description": "Wenn aktiviert, startet Frigate im abgesicherten Modus mit reduzierten Features für die Fehlersuche."
+        "description": "Wenn aktiviert, startet Architel VMS im abgesicherten Modus mit reduzierten Features für die Fehlersuche."
     },
     "audio": {
         "label": "Audioereignisse",
@@ -64,7 +64,7 @@
         "description": "Einstellungen für die Authentifizierung und Sitzungen, einschließlich Optionen für Cookies und Limits.",
         "enabled": {
             "label": "Authentifizierung aktivieren",
-            "description": "Aktivierung native Authentifizierung für Frigate UI."
+            "description": "Aktivierung native Authentifizierung für Architel VMS UI."
         },
         "reset_admin_password": {
             "label": "Zurücksetzen vom Admin Passwort",
@@ -181,7 +181,7 @@
     },
     "database": {
         "label": "Datenbank",
-        "description": "Einstellungen für die SQLite-Datenbank, die von Frigate zum Speichern von verfolgten Objekten und Aufzeichnungsmetadaten verwendet wird.",
+        "description": "Einstellungen für die SQLite-Datenbank, die von Architel VMS zum Speichern von verfolgten Objekten und Aufzeichnungsmetadaten verwendet wird.",
         "path": {
             "label": "Pfad zur Datenbank",
             "description": "Dateisystempfad, in dem die Frigate-SQLite-Datenbankdatei gespeichert wird."
@@ -455,17 +455,17 @@
             "description": "Konfiguration für interne und externe Listening-Ports. Dies ist für fortgeschrittene Benutzer gedacht. Für die meisten Anwendungsfälle wird empfohlen, den Abschnitt „Ports“ Ihrer Docker-Compose-Datei zu ändern.",
             "internal": {
                 "label": "interne port",
-                "description": "Interner Listening-Port für Frigate (Standard 5000)."
+                "description": "Interner Listening-Port für Architel VMS (Standard 5000)."
             },
             "external": {
                 "label": "Externer Anschluss",
-                "description": "Externer Listening-Port für Frigate (Standard 8971)."
+                "description": "Externer Listening-Port für Architel VMS (Standard 8971)."
             }
         }
     },
     "proxy": {
         "label": "Proxy",
-        "description": "Einstellungen für die Integration von Frigate hinter einem Reverse-Proxy, der authentifizierte Benutzer-Header weiterleitet.",
+        "description": "Einstellungen für die Integration von Architel VMS hinter einem Reverse-Proxy, der authentifizierte Benutzer-Header weiterleitet.",
         "header_map": {
             "label": "Header-Zuordnung",
             "description": "Ordnen Sie eingehende Proxy-Header den Frigate-Benutzer- und Rollenfeldern für die proxybasierte Authentifizierung zu.",
@@ -544,7 +544,7 @@
         },
         "version_check": {
             "label": "Versionscheck",
-            "description": "Aktivieren Sie eine Outbound-Prüfung, um festzustellen, ob eine neuere Version von Frigate verfügbar ist."
+            "description": "Aktivieren Sie eine Outbound-Prüfung, um festzustellen, ob eine neuere Version von Architel VMS verfügbar ist."
         }
     },
     "lpr": {
@@ -670,10 +670,10 @@
     },
     "tls": {
         "label": "TLS",
-        "description": "TLS-Einstellungen für die Website von Frigate (Port 8971).",
+        "description": "TLS-Einstellungen für die Website von Architel VMS (Port 8971).",
         "enabled": {
             "label": "Aktivieren TLS",
-            "description": "Aktivieren Sie TLS für die Web-Benutzeroberfläche und die API von Frigate auf dem konfigurierten TLS-Port."
+            "description": "Aktivieren Sie TLS für die Web-Benutzeroberfläche und die API von Architel VMS auf dem konfigurierten TLS-Port."
         }
     },
     "ui": {
@@ -1038,7 +1038,7 @@
             },
             "calibrate_on_startup": {
                 "label": "Beim Start kalibrieren",
-                "description": "Messen Sie die Drehzahlen der PTZ-Motoren beim Start, um die Nachführgenauigkeit zu verbessern. Frigate aktualisiert die Konfiguration nach der Kalibrierung mit den Bewegungsgewichten."
+                "description": "Messen Sie die Drehzahlen der PTZ-Motoren beim Start, um die Nachführgenauigkeit zu verbessern. Architel VMS aktualisiert die Konfiguration nach der Kalibrierung mit den Bewegungsgewichten."
             },
             "zooming": {
                 "label": "Zoom-Modus",

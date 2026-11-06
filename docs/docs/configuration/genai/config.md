@@ -10,7 +10,7 @@ import FaqItem from "@site/src/components/FaqItem";
 
 ## Configuration
 
-A Generative AI provider can be configured in the global config, which will make the Generative AI features available for use. There are currently 5 native providers available to integrate with Frigate. Other providers that support the OpenAI standard API can also be used. See the OpenAI-Compatible section below.
+A Generative AI provider can be configured in the global config, which will make the Generative AI features available for use. There are currently 5 native providers available to integrate with Architel VMS. Other providers that support the OpenAI standard API can also be used. See the OpenAI-Compatible section below.
 
 `genai` is a map of named providers. Each key under `genai` is a name you choose, and its value is that provider's settings:
 
@@ -55,7 +55,7 @@ Each provider handles one or more **roles**: `chat`, `descriptions`, `embeddings
 | Azure OpenAI (`azure_openai`) |      ✅      |  ✅  |     ❌     |      ✅       |
 | Google Gemini (`gemini`)      |      ✅      |  ✅  |     ❌     |      ✅       |
 
-A ✅ means Frigate can use the provider for that feature. The configured model must also support it: a vision model for descriptions and chat, a multimodal embedding model for embeddings (see [Embedding models](#embedding-models)), and an audio-capable model for transcription. Some features also need extra provider setup, covered in each provider's section below. OpenAI-compatible servers use the `openai` provider, so they follow the OpenAI row.
+A ✅ means Architel VMS can use the provider for that feature. The configured model must also support it: a vision model for descriptions and chat, a multimodal embedding model for embeddings (see [Embedding models](#embedding-models)), and an audio-capable model for transcription. Some features also need extra provider setup, covered in each provider's section below. OpenAI-compatible servers use the `openai` provider, so they follow the OpenAI row.
 
 If the provider you choose requires an API key, you may either directly paste it in your configuration, or store it in an environment variable prefixed with `FRIGATE_`.
 
@@ -73,7 +73,7 @@ Running Generative AI models on CPU is not recommended, as high inference times 
 
 #### Vision models
 
-You must use a vision-capable model with Frigate. The following models are recommended for local deployment of the `descriptions` and `chat` roles:
+You must use a vision-capable model with Architel VMS. The following models are recommended for local deployment of the `descriptions` and `chat` roles:
 
 | Model               | Review [frame mode](/configuration/genai/genai_review#frame-mode) | Review [response style](/configuration/genai/genai_review#response-style) | Notes                                                                                                                                                                                                                    |
 | ------------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -100,7 +100,7 @@ The `transcribe` role needs a model that accepts audio input. A text-only or vis
 | `qwen3-asr` | Dedicated speech recognition model covering 30 languages, and the better choice for transcription quality. It only transcribes, so it cannot be shared with the `descriptions` or `chat` roles.            |
 | `gemma4`    | General multimodal model that accepts audio as well as images, so one served model can cover `transcribe` alongside the other roles. Transcript quality is below `qwen3-asr`, particularly on noisy audio. |
 
-Both must be served by llama.cpp started with the matching audio `--mmproj`. llama.cpp only reports audio support when an audio projector is loaded. Without it Frigate sees the model as text-only and the `transcribe` role is unavailable in the UI. Frigate transcribes through the server's `/v1/audio/transcriptions` route, which llama.cpp serves for any audio-capable model.
+Both must be served by llama.cpp started with the matching audio `--mmproj`. llama.cpp only reports audio support when an audio projector is loaded. Without it Architel VMS sees the model as text-only and the `transcribe` role is unavailable in the UI. Architel VMS transcribes through the server's `/v1/audio/transcriptions` route, which llama.cpp serves for any audio-capable model.
 
 :::info
 
@@ -118,12 +118,12 @@ You should have at least 8 GB of RAM available (or VRAM if running on GPU) to ru
 
 Vision-language models come in **instruct** variants (fine-tuned to follow instructions and respond concisely), **thinking** variants (fine-tuned for free-form, speculative reasoning), and **hybrid** variants that support both modes per request. Most modern vision-language models are hybrid.
 
-Frigate manages reasoning per task automatically:
+Architel VMS manages reasoning per task automatically:
 
-- **Description tasks** (object descriptions, review descriptions, review summaries) are synthesis-only and benefit from concise, direct output, so Frigate disables thinking for these calls when the model exposes a per-request toggle.
+- **Description tasks** (object descriptions, review descriptions, review summaries) are synthesis-only and benefit from concise, direct output, so Architel VMS disables thinking for these calls when the model exposes a per-request toggle.
 - **Chat** lets you toggle thinking on or off from the composer when the configured model supports it.
 
-You can use a pure instruct, hybrid, or thinking-capable model with Frigate. No extra configuration is required to disable thinking for descriptions.
+You can use a pure instruct, hybrid, or thinking-capable model with Architel VMS. No extra configuration is required to disable thinking for descriptions.
 
 ### llama.cpp
 
@@ -133,7 +133,7 @@ It is highly recommended to host the llama.cpp server on a machine with a discre
 
 #### Supported Models
 
-You must use a vision capable model with Frigate. The llama.cpp server supports various vision models in GGUF format.
+You must use a vision capable model with Architel VMS. The llama.cpp server supports various vision models in GGUF format.
 
 #### Configuration
 
@@ -146,7 +146,7 @@ All llama.cpp native options can be passed through `provider_options`, including
    - Set **Provider** to `llamacpp`
    - Set **Base URL** to your llama.cpp server address (e.g., `http://localhost:8080`)
    - Set **Model** to the name of your model
-   - Optionally, under **Provider Options**, set `context_size` to override the context size Frigate detects from the server
+   - Optionally, under **Provider Options**, set `context_size` to override the context size Architel VMS detects from the server
 
 </TabItem>
 <TabItem value="yaml">
@@ -164,7 +164,7 @@ genai:
 </TabItem>
 </ConfigTabs>
 
-Frigate queries the llama.cpp server for the model's context size at startup and logs it along with the other detected capabilities. If `context_size` is set in `provider_options`, that value is always used instead, even when the server reports its own.
+Architel VMS queries the llama.cpp server for the model's context size at startup and logs it along with the other detected capabilities. If `context_size` is set in `provider_options`, that value is always used instead, even when the server reports its own.
 
 #### Embeddings
 
@@ -180,11 +180,11 @@ Parallel requests also come with some caveats. You will need to set `OLLAMA_NUM_
 
 :::tip
 
-If you are trying to use a single model for Frigate and HomeAssistant, it will need to support vision and tools calling. qwen3-VL supports vision and tools simultaneously in Ollama.
+If you are trying to use a single model for Architel VMS and HomeAssistant, it will need to support vision and tools calling. qwen3-VL supports vision and tools simultaneously in Ollama.
 
 :::
 
-Note that Frigate will not automatically download the model you specify in your config. Ollama will try to download the model but it may take longer than the timeout, so it is recommended to pull the model beforehand by running `ollama pull your_model` on your Ollama server/Docker container. The model specified in Frigate's config must match the downloaded model tag.
+Note that Architel VMS will not automatically download the model you specify in your config. Ollama will try to download the model but it may take longer than the timeout, so it is recommended to pull the model beforehand by running `ollama pull your_model` on your Ollama server/Docker container. The model specified in Architel VMS's config must match the downloaded model tag.
 
 #### Configuration
 
@@ -221,7 +221,7 @@ Ollama can serve the `embeddings` role for [Semantic Search](/configuration/sema
 
 ### OpenAI-Compatible
 
-Frigate supports any provider that implements the OpenAI API standard. This includes self-hosted solutions like [vLLM](https://docs.vllm.ai/), [LocalAI](https://localai.io/), and other OpenAI-compatible servers.
+Architel VMS supports any provider that implements the OpenAI API standard. This includes self-hosted solutions like [vLLM](https://docs.vllm.ai/), [LocalAI](https://localai.io/), and other OpenAI-compatible servers.
 
 :::tip
 
@@ -237,7 +237,7 @@ genai:
       context_size: 8192 # Specify the configured context size
 ```
 
-This ensures Frigate uses the correct context window size when generating prompts.
+This ensures Architel VMS uses the correct context window size when generating prompts.
 
 :::
 
@@ -321,11 +321,11 @@ genai:
 
 ### Google Gemini
 
-Google Gemini has a [free tier](https://ai.google.dev/pricing) for the API, however the limits may not be sufficient for standard Frigate usage. Choose a plan appropriate for your installation.
+Google Gemini has a [free tier](https://ai.google.dev/pricing) for the API, however the limits may not be sufficient for standard Architel VMS usage. Choose a plan appropriate for your installation.
 
 #### Supported Models
 
-You must use a vision capable model with Frigate. Current model variants can be found [in their documentation](https://ai.google.dev/gemini-api/docs/models/gemini).
+You must use a vision capable model with Architel VMS. Current model variants can be found [in their documentation](https://ai.google.dev/gemini-api/docs/models/gemini).
 
 #### Get API Key
 
@@ -383,7 +383,7 @@ OpenAI does not have a free tier for their API.
 
 #### Supported Models
 
-You must use a vision capable model with Frigate. Current model variants can be found [in their documentation](https://platform.openai.com/docs/models).
+You must use a vision capable model with Architel VMS. Current model variants can be found [in their documentation](https://platform.openai.com/docs/models).
 
 #### Get API Key
 
@@ -433,7 +433,7 @@ genai:
       context_size: 8192 # Specify the configured context size
 ```
 
-This ensures Frigate uses the correct context window size when generating prompts.
+This ensures Architel VMS uses the correct context window size when generating prompts.
 
 :::
 
@@ -443,7 +443,7 @@ Microsoft offers several vision models through Azure OpenAI. A subscription is r
 
 #### Supported Models
 
-You must use a vision capable model with Frigate. Current model variants can be found [in their documentation](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models).
+You must use a vision capable model with Architel VMS. Current model variants can be found [in their documentation](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models).
 
 #### Create Resource and Get API Key
 
@@ -479,24 +479,24 @@ genai:
 
 <FaqItem id="how-do-i-debug-genai-issues" question="How do I debug GenAI issues?">
 
-Frigate's Generative AI features are configured and enabled separately. [Review descriptions and summaries](/configuration/genai/genai_review) live under `review.genai`, and [object descriptions](/configuration/genai/genai_objects) live under `objects.genai`. Configuring a provider on this page does not enable either feature, and enabling one does not enable the other. Decide which of the two is not working, then work through the steps below.
+Architel VMS's Generative AI features are configured and enabled separately. [Review descriptions and summaries](/configuration/genai/genai_review) live under `review.genai`, and [object descriptions](/configuration/genai/genai_objects) live under `objects.genai`. Configuring a provider on this page does not enable either feature, and enabling one does not enable the other. Decide which of the two is not working, then work through the steps below.
 
 1. Confirm a provider is available and holds the `descriptions` role.
    - Review descriptions, review summaries, and object descriptions all use the provider that has the `descriptions` role assigned in <NavPath path="Settings > Enrichments > Generative AI > Roles" /> (`genai.<provider>.roles`).
    - A provider is contacted the first time one of its roles is actually used. A provider holding the `embeddings` role for semantic search is initialized during startup, while a `descriptions` provider is not initialized until the first description is requested, which may be well after boot.
-   - In <NavPath path="Settings > Enrichments > Generative AI" />, use **Refresh models** next to the model field. It queries the provider for its model list and is a quick way to verify that the base URL, API key, and network path between Frigate and your provider are correct.
+   - In <NavPath path="Settings > Enrichments > Generative AI" />, use **Refresh models** next to the model field. It queries the provider for its model list and is a quick way to verify that the base URL, API key, and network path between Architel VMS and your provider are correct.
 
 2. Confirm the feature you expect is actually enabled.
    - Object descriptions are disabled by default. Turn on <NavPath path="Settings > Global configuration > Objects > GenAI object config > Enable GenAI" /> (`objects.genai.enabled`), either globally or per camera. This is the most common reason custom prompts appear to be ignored while review summaries are still being generated.
    - Review descriptions are disabled by default. Turn on <NavPath path="Settings > Global configuration > Review > GenAI config > Enable GenAI descriptions" /> (`review.genai.enabled`). Once enabled, alerts are described by default but detections are not, so a detection-only review item will never get a summary unless **Enable GenAI for detections** (`review.genai.detections`) is also on.
 
 3. If object descriptions are never requested, check the filters that skip generation.
-   - <NavPath path="Settings > Global configuration > Objects > GenAI object config > GenAI objects" /> (`objects.genai.objects`) limits generation to specific labels, and **Required zones** (`objects.genai.required_zones`) requires the object to have entered one of those zones. If either is set and does not match, Frigate skips the request silently.
+   - <NavPath path="Settings > Global configuration > Objects > GenAI object config > GenAI objects" /> (`objects.genai.objects`) limits generation to specific labels, and **Required zones** (`objects.genai.required_zones`) requires the object to have entered one of those zones. If either is set and does not match, Architel VMS skips the request silently.
    - Thumbnails are only collected while an object is moving. Objects that go stationary early contribute fewer frames.
-   - **Use snapshots** (`objects.genai.use_snapshot`) requires snapshots to be enabled for the camera. If the snapshot cannot be read, Frigate logs `Cannot load snapshot for <id>, file not found` and no description is generated.
+   - **Use snapshots** (`objects.genai.use_snapshot`) requires snapshots to be enabled for the camera. If the snapshot cannot be read, Architel VMS logs `Cannot load snapshot for <id>, file not found` and no description is generated.
    - **Send on end** (`objects.genai.send_triggers.tracked_object_end`) is on by default. If you have turned it off in favor of **Early GenAI trigger** (`objects.genai.send_triggers.after_significant_updates`), descriptions are only requested once that number of updates is reached.
 
-4. Enable debug logs to see exactly what Frigate is doing. Restart Frigate after this change. The next step also requires a restart, so turn both on at the same time to avoid restarting twice.
+4. Enable debug logs to see exactly what Architel VMS is doing. Restart Architel VMS after this change. The next step also requires a restart, so turn both on at the same time to avoid restarting twice.
 
    ```yaml
    logger:
@@ -545,11 +545,11 @@ objects:
 
 6. Verify the prompt is what you think it is.
    - Object description prompts are the ones you control directly. A camera-level <NavPath path="Settings > Camera configuration > Objects > GenAI object config > Caption prompt" /> (`objects.genai.prompt`) overrides the global one, and an entry in **Object prompts** (`objects.genai.object_prompts`) for a label overrides both for that label. Only `{label}`, `{sub_label}`, and `{camera}` are substituted.
-   - Review description prompts are built by Frigate and request a structured JSON response, so they are not fully replaceable. The parts you control are <NavPath path="Settings > Global configuration > Review > GenAI config > Activity context prompt" /> (`review.genai.activity_context_prompt`) and **Additional concerns** (`review.genai.additional_concerns`). Keep the activity context prompt general, since overly specific rules will sway the model's threat level scoring.
+   - Review description prompts are built by Architel VMS and request a structured JSON response, so they are not fully replaceable. The parts you control are <NavPath path="Settings > Global configuration > Review > GenAI config > Activity context prompt" /> (`review.genai.activity_context_prompt`) and **Additional concerns** (`review.genai.additional_concerns`). Keep the activity context prompt general, since overly specific rules will sway the model's threat level scoring.
 
 7. If descriptions are generated but the results are poor or inconsistent, look at the model and the context window.
    - Empty fields, missing `shortSummary` values, or `Failed to parse review description` errors usually mean the model is not following the requested JSON schema. Smaller models struggle with structured output. Try a larger parameter size or one of the [recommended models](#recommended-local-models).
-   - Frigate calculates how many frames to send from the context size the provider reports. If your server reports a different value than it is actually running with, frames will be truncated or the request will fail. Pin the value by adding `context_size` under <NavPath path="Settings > Enrichments > Generative AI > Provider options" /> (`genai.<provider>.provider_options`), and for Ollama also confirm `options.num_ctx` there matches the context you have configured.
-   - Check **Review Description Speed** and **Object Description Speed** in <NavPath path="Health and Metrics > Enrichments" />. If inference takes tens of seconds, requests will queue behind each other and descriptions will appear to stop. For Ollama, review `OLLAMA_NUM_PARALLEL`, `OLLAMA_MAX_QUEUE`, and `OLLAMA_MAX_LOADED_MODELS` so that concurrent requests from Frigate are handled the way you expect.
+   - Architel VMS calculates how many frames to send from the context size the provider reports. If your server reports a different value than it is actually running with, frames will be truncated or the request will fail. Pin the value by adding `context_size` under <NavPath path="Settings > Enrichments > Generative AI > Provider options" /> (`genai.<provider>.provider_options`), and for Ollama also confirm `options.num_ctx` there matches the context you have configured.
+   - Check **Review Description Speed** and **Object Description Speed** in <NavPath path="Health and Metrics > Enrichments" />. If inference takes tens of seconds, requests will queue behind each other and descriptions will appear to stop. For Ollama, review `OLLAMA_NUM_PARALLEL`, `OLLAMA_MAX_QUEUE`, and `OLLAMA_MAX_LOADED_MODELS` so that concurrent requests from Architel VMS are handled the way you expect.
 
 </FaqItem>

@@ -1,5 +1,5 @@
 {
-  "documentTitle": "Classificatiemodellen - Frigate",
+  "documentTitle": "Classificatiemodellen - Architel VMS",
   "button": {
     "deleteClassificationAttempts": "Classificatieafbeeldingen verwijderen",
     "renameCategory": "Klasse hernoemen",
@@ -134,7 +134,7 @@
       "selectImagesDescription": "Klik op afbeeldingen om ze te selecteren. Klik op doorgaan wanneer je klaar bent met deze klasse.",
       "generating": {
         "title": "Voorbeeldafbeeldingen genereren",
-        "description": "Frigate haalt representatieve afbeeldingen uit je opnames. Dit kan even duren..."
+        "description": "Architel VMS haalt representatieve afbeeldingen uit je opnames. Dit kan even duren..."
       },
       "training": {
         "title": "Model trainen",

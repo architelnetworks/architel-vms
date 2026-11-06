@@ -1,16 +1,16 @@
 {
   "documentTitle": {
-    "storage": "Statistici Stocare - Frigate",
-    "cameras": "Statistici Camere - Frigate",
-    "general": "Statistici Generale - Frigate",
+    "storage": "Statistici Stocare - Architel VMS",
+    "cameras": "Statistici Camere - Architel VMS",
+    "general": "Statistici Generale - Architel VMS",
     "logs": {
-      "go2rtc": "Jurnale Go2RTC - Frigate",
-      "nginx": "Jurnale Nginx - Frigate",
-      "frigate": "Jurnale Frigate - Frigate",
-      "websocket": "Jurnale de mesaje - Frigate"
+      "go2rtc": "Jurnale Go2RTC - Architel VMS",
+      "nginx": "Jurnale Nginx - Architel VMS",
+      "frigate": "Jurnale Architel VMS - Architel VMS",
+      "websocket": "Jurnale de mesaje - Architel VMS"
     },
-    "enrichments": "Statistici Procesări Avansate - Frigate",
-    "health": "Stare sistem - Frigate"
+    "enrichments": "Statistici Procesări Avansate - Architel VMS",
+    "health": "Stare sistem - Architel VMS"
   },
   "general": {
     "hardwareInfo": {
@@ -75,7 +75,7 @@
     "recordings": {
       "title": "Înregistrări",
       "earliestRecording": "Cea mai veche înregistrare disponibilă:",
-      "tips": "Această valoare reprezintă stocarea totală folosită de înregistrări în baza de date Frigate. Frigate nu monitorizează utilizarea stocării pentru toate fișierele de pe disc."
+      "tips": "Această valoare reprezintă stocarea totală folosită de înregistrări în baza de date Architel VMS. Architel VMS nu monitorizează utilizarea stocării pentru toate fișierele de pe disc."
     },
     "title": "Stocare",
     "cameraStorage": {
@@ -86,7 +86,7 @@
       "percentageOfTotalUsed": "Procent din total",
       "unused": {
         "title": "Neutilizat",
-        "tips": "Este posibil ca această valoare să nu reprezinte cu precizie spațiul liber disponibil pentru Frigate dacă ai și alte fișiere pe disc în afara înregistrărilor Frigate. Frigate nu urmărește utilizarea stocării în afara propriilor înregistrări."
+        "tips": "Este posibil ca această valoare să nu reprezinte cu precizie spațiul liber disponibil pentru Architel VMS dacă ai și alte fișiere pe disc în afara înregistrărilor Architel VMS. Architel VMS nu urmărește utilizarea stocării în afara propriilor înregistrări."
       },
       "bandwidth": "Lățime de bandă",
       "subStream": {
@@ -281,7 +281,7 @@
     "title": "Stare sistem",
     "notices": {
       "title": "Notificări",
-      "empty": "Instalația ta Frigate este în stare bună",
+      "empty": "Instalația ta Architel VMS este în stare bună",
       "openSettings": "Deschide setările",
       "openLink": "Deschide linkul",
       "noMatches": "Nicio notificare nu se potrivește cu filtrul",
@@ -302,7 +302,7 @@
         "update_available": "Frigate {{version}} este disponibil",
         "ffmpeg_high_cpu": "Utilizarea CPU FFmpeg este ridicată (medie {{cpu}}%)",
         "detect_high_cpu": "Utilizarea CPU pentru detecție este ridicată (medie {{cpu}}%)",
-        "object_processing_behind": "Procesarea obiectelor urmărite nu a făcut față, așa că au fost omise cadre de la cameră. Verifică utilizarea CPU-ului și dacă limitele sau fixarea (pinning) CPU-ului pe container sau VM lasă prea puține resurse de procesare pentru Frigate"
+        "object_processing_behind": "Procesarea obiectelor urmărite nu a făcut față, așa că au fost omise cadre de la cameră. Verifică utilizarea CPU-ului și dacă limitele sau fixarea (pinning) CPU-ului pe container sau VM lasă prea puține resurse de procesare pentru Architel VMS"
       },
       "streamPrefix": "Stream {{index}}: {{message}}",
       "streamPrefixRestream": "Stream {{index}} (via go2rtc): {{message}}",
@@ -339,7 +339,7 @@
       "nothingConfigured": "Nimic configurat",
       "allCameras": "Toate camerele",
       "probeUnavailable": "Detecția hardware este indisponibilă",
-      "justStarted": "Frigate tocmai a pornit",
+      "justStarted": "Architel VMS tocmai a pornit",
       "deviceNotFound": "{{devices}} nu a fost găsit pe acest sistem",
       "detectorNotRunning": "Procesul detectorului nu rulează",
       "inferenceVerySlow": "Inferența este foarte lentă ({{speed}} ms)",

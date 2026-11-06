@@ -1,9 +1,9 @@
 {
   "restart": {
-    "title": "Jeste li sigurni da želite ponovno pokrenuti Frigate?",
+    "title": "Jeste li sigurni da želite ponovno pokrenuti Architel VMS?",
     "button": "Ponovno pokreni",
     "restarting": {
-      "title": "Frigate se ponovno pokreće",
+      "title": "Architel VMS se ponovno pokreće",
       "content": "Ova stranica će se osvježiti za {{countdown}} sekundi.",
       "button": "Forsiraj ponovno pokretanje odmah"
     }

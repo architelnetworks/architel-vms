@@ -65,7 +65,7 @@ class CameraConfig(FrigateBaseModel):
     friendly_name: str | None = Field(
         None,
         title="Friendly name",
-        description="Camera friendly name used in the Frigate UI",
+        description="Camera friendly name used in the Architel VMS UI",
     )
 
     @model_validator(mode="before")

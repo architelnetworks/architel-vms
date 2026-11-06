@@ -1,0 +1,67 @@
+# Seed configuration copied into .data/config/config.yml on first startup only.
+# This file is never merged into the normal config/config.yml.
+mqtt:
+  enabled: false
+telemetry:
+  version_check: false
+models:
+  - devices: [cpu]
+detect:
+  enabled: true
+  width: 640
+  height: 360
+  fps: 5
+objects:
+  track: [person, car]
+record:
+  enabled: true
+  # Roughly 72 minutes. Keep local development disk use bounded by retention.
+  continuous:
+    days: 0.05
+  alerts:
+    retain:
+      days: 0.05
+      mode: all
+  detections:
+    retain:
+      days: 0.05
+      mode: all
+snapshots:
+  enabled: true
+  retain:
+    default: 1
+go2rtc:
+  ffmpeg:
+    file: "-re -stream_loop -1 -fflags +genpts -i {input}"
+  streams:
+    main_entrance: ffmpeg:/media/frigate/mock/main_entrance.mp4#video=copy
+    corridor: ffmpeg:/media/frigate/mock/corridor.mp4#video=copy
+    car_park: ffmpeg:/media/frigate/mock/car_park.mp4#video=copy
+  webrtc:
+    # MSE needs no direct browser-to-container connection or STUN service.
+    candidates: []
+cameras:
+  main_entrance:
+    friendly_name: Main Entrance
+    ffmpeg:
+      hwaccel_args: []
+      inputs:
+        - path: /media/frigate/mock/main_entrance.mp4
+          input_args: -re -stream_loop -1 -fflags +genpts
+          roles: [detect, record]
+  corridor:
+    friendly_name: Corridor
+    ffmpeg:
+      hwaccel_args: []
+      inputs:
+        - path: /media/frigate/mock/corridor.mp4
+          input_args: -re -stream_loop -1 -fflags +genpts
+          roles: [detect, record]
+  car_park:
+    friendly_name: Car Park
+    ffmpeg:
+      hwaccel_args: []
+      inputs:
+        - path: /media/frigate/mock/car_park.mp4
+          input_args: -re -stream_loop -1 -fflags +genpts
+          roles: [detect, record]

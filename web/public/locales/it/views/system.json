@@ -1,14 +1,14 @@
 {
   "documentTitle": {
-    "cameras": "Statistiche telecamere - Frigate",
-    "enrichments": "Statistiche di miglioramento - Frigate",
-    "storage": "Statistiche archiviazione - Frigate",
-    "general": "Statistiche generali - Frigate",
+    "cameras": "Statistiche telecamere - Architel VMS",
+    "enrichments": "Statistiche di miglioramento - Architel VMS",
+    "storage": "Statistiche archiviazione - Architel VMS",
+    "general": "Statistiche generali - Architel VMS",
     "logs": {
-      "frigate": "Registri Frigate - Frigate",
-      "go2rtc": "Registri Go2RTC - Frigate",
-      "nginx": "Registri Nginx - Frigate",
-      "websocket": "Registri dei messaggi - Frigate"
+      "frigate": "Registri Architel VMS - Architel VMS",
+      "go2rtc": "Registri Go2RTC - Architel VMS",
+      "nginx": "Registri Nginx - Architel VMS",
+      "websocket": "Registri dei messaggi - Architel VMS"
     }
   },
   "logs": {
@@ -236,7 +236,7 @@
     "overview": "Sommario",
     "recordings": {
       "title": "Registrazioni",
-      "tips": "Questo valore rappresenta lo spazio di archiviazione totale utilizzato dalle registrazioni nel database di Frigate. Frigate non tiene traccia dell'utilizzo dello spazio di archiviazione per tutti i file presenti sul disco.",
+      "tips": "Questo valore rappresenta lo spazio di archiviazione totale utilizzato dalle registrazioni nel database di Architel VMS. Architel VMS non tiene traccia dell'utilizzo dello spazio di archiviazione per tutti i file presenti sul disco.",
       "earliestRecording": "Prima registrazione disponibile:"
     },
     "cameraStorage": {
@@ -248,7 +248,7 @@
       "bandwidth": "Larghezza di banda",
       "unused": {
         "title": "Liberi",
-        "tips": "Questo valore potrebbe non rappresentare accuratamente lo spazio libero disponibile per Frigate se nel disco sono archiviati altri file oltre alle registrazioni di Frigate. Frigate non tiene traccia dell'utilizzo dello spazio di archiviazione al di fuori delle sue registrazioni."
+        "tips": "Questo valore potrebbe non rappresentare accuratamente lo spazio libero disponibile per Architel VMS se nel disco sono archiviati altri file oltre alle registrazioni di Architel VMS. Architel VMS non tiene traccia dell'utilizzo dello spazio di archiviazione al di fuori delle sue registrazioni."
       }
     },
     "shm": {

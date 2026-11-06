@@ -1,13 +1,13 @@
 {
   "documentTitle": {
-    "cameras": "Statusi kamera - Frigate",
-    "storage": "Statistika skladištenja - Frigate",
+    "cameras": "Statusi kamera - Architel VMS",
+    "storage": "Statistika skladištenja - Architel VMS",
     "general": "Општа статистика - Фригејт",
-    "enrichments": "Statistika obogaćivanja - Frigate",
+    "enrichments": "Statistika obogaćivanja - Architel VMS",
     "logs": {
-      "frigate": "Frigate logovi - Frigate",
-      "go2rtc": "Go2RTC dnevnici - Frigate",
-      "nginx": "Nginx logovi - Frigate"
+      "frigate": "Architel VMS logovi - Architel VMS",
+      "go2rtc": "Go2RTC dnevnici - Architel VMS",
+      "nginx": "Nginx logovi - Architel VMS"
     }
   },
   "title": "Sistem",

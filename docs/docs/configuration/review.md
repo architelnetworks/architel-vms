@@ -7,7 +7,7 @@ import ConfigTabs from "@site/src/components/ConfigTabs";
 import TabItem from "@theme/TabItem";
 import NavPath from "@site/src/components/NavPath";
 
-The Review page of the Frigate UI is for quickly reviewing historical footage of interest from your cameras. _Review items_ are indicated on a vertical timeline and displayed as a grid of previews - bandwidth-optimized, low frame rate, low resolution videos. Hovering over or swiping a preview plays the video and marks it as reviewed. If more in-depth analysis is required, the preview can be clicked/tapped and the full frame rate, full resolution recording is displayed.
+The Review page of the Architel VMS UI is for quickly reviewing historical footage of interest from your cameras. _Review items_ are indicated on a vertical timeline and displayed as a grid of previews - bandwidth-optimized, low frame rate, low resolution videos. Hovering over or swiping a preview plays the video and marks it as reviewed. If more in-depth analysis is required, the preview can be clicked/tapped and the full frame rate, full resolution recording is displayed.
 
 Review items are filterable by date, object type, and camera.
 
@@ -23,11 +23,11 @@ In 0.14 and later, all of that is bundled into a single review item which starts
 
 ## Alerts and Detections
 
-Not every segment of video captured by Frigate may be of the same level of interest to you. Video of people who enter your property may be a different priority than those walking by on the sidewalk. For this reason, Frigate categorizes review items as _alerts_ and _detections_. By default, all person and car objects are considered alerts. You can refine categorization of your review items by configuring [required zones](/configuration/zones#restricting-alerts-and-detections-to-specific-zones) for them.
+Not every segment of video captured by Architel VMS may be of the same level of interest to you. Video of people who enter your property may be a different priority than those walking by on the sidewalk. For this reason, Architel VMS categorizes review items as _alerts_ and _detections_. By default, all person and car objects are considered alerts. You can refine categorization of your review items by configuring [required zones](/configuration/zones#restricting-alerts-and-detections-to-specific-zones) for them.
 
 :::note
 
-Alerts and detections categorize the tracked objects in review items, but Frigate must first detect those objects with your configured object detector (Coral, OpenVINO, etc). By default, the object tracker only detects `person`. Setting `labels` for `alerts` and `detections` does not automatically enable detection of new objects. To detect more than `person`, you should add more labels via <NavPath path="Settings > Global configuration > Objects" /> or <NavPath path="Settings > Camera configuration > Objects" /> and select your camera. Alternatively, add the following to your config:
+Alerts and detections categorize the tracked objects in review items, but Architel VMS must first detect those objects with your configured object detector (Coral, OpenVINO, etc). By default, the object tracker only detects `person`. Setting `labels` for `alerts` and `detections` does not automatically enable detection of new objects. To detect more than `person`, you should add more labels via <NavPath path="Settings > Global configuration > Objects" /> or <NavPath path="Settings > Camera configuration > Objects" /> and select your camera. Alternatively, add the following to your config:
 
 ```yaml
 objects:
@@ -37,7 +37,7 @@ objects:
     - ...
 ```
 
-See the [objects documentation](objects.md) for the list of objects that Frigate's default model tracks.
+See the [objects documentation](objects.md) for the list of objects that Architel VMS's default model tracks.
 :::
 
 ## Restricting alerts to specific labels

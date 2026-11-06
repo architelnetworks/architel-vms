@@ -7,8 +7,8 @@ import type * as OpenApiPlugin from "docusaurus-plugin-openapi-docs";
 const STABLE_VERSION = "0.18";
 
 const config: Config = {
-  title: "Frigate",
-  tagline: "NVR With Realtime Object Detection for IP Cameras",
+  title: "Architel VMS",
+  tagline: "Local video management system",
   url: "https://docs.frigate.video",
   baseUrl: "/",
   onBrokenLinks: "throw",
@@ -127,16 +127,11 @@ const config: Config = {
       },
     ],
     navbar: {
-      title: "Frigate",
-      logo: {
-        alt: "Frigate",
-        src: "img/branding/logo.svg",
-        srcDark: "img/branding/logo-dark.svg",
-      },
+      title: "Architel VMS",
       items: [
         {
           href: "https://github.com/blakeblackshear/frigate/releases",
-          label: `${STABLE_VERSION}`,
+          label: `Frigate engine ${STABLE_VERSION}`,
           position: "left",
         },
         {
@@ -147,12 +142,12 @@ const config: Config = {
         },
         {
           href: "https://frigate.video",
-          label: "Website",
+          label: "Upstream website",
           position: "right",
         },
         {
           href: "http://demo.frigate.video",
-          label: "Demo",
+          label: "Upstream demo",
           position: "right",
         },
         {
@@ -167,7 +162,7 @@ const config: Config = {
         },
         {
           href: "https://github.com/blakeblackshear/frigate",
-          label: "GitHub",
+          label: "Upstream GitHub",
           position: "right",
         },
       ],
@@ -179,7 +174,7 @@ const config: Config = {
           title: "Community",
           items: [
             {
-              label: "GitHub",
+              label: "Upstream GitHub",
               href: "https://github.com/blakeblackshear/frigate",
             },
             {
